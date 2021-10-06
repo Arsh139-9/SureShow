@@ -1,0 +1,6 @@
+framework module Pods_SureShow {
+  umbrella header "Pods-SureShow-umbrella.h"
+
+  export *
+  module * { export * }
+}
