@@ -101,6 +101,9 @@ class NavigationManager: NSObject {
     public var appointmentDetailVC: AppointmentDetailVC {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentDetailVC.self)) as! AppointmentDetailVC
     }
+    public var appointmentHistoryVC: AppointmentHistoryVC {
+        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentHistoryVC.self)) as! AppointmentHistoryVC
+    }
     public var patientDetailVC: PatientDetailVC {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: PatientDetailVC.self)) as! PatientDetailVC
     }

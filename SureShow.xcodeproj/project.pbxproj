@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182E2F5B270EFE1A000FC964 /* AppointmentHistoryTVCell.xib */; };
+		182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */; };
+		182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */; };
+		182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */; };
 		187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */; };
 		187DCD61270DBA7400579F16 /* ForgotPasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */; };
 		187DCD63270DBA9C00579F16 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD62270DBA9C00579F16 /* AppConstant.swift */; };
@@ -82,6 +86,10 @@
 
 /* Begin PBXFileReference section */
 		14BDB9F8457FA7347E74BDB7 /* Pods-SureShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SureShow.debug.xcconfig"; path = "Target Support Files/Pods-SureShow/Pods-SureShow.debug.xcconfig"; sourceTree = "<group>"; };
+		182E2F5B270EFE1A000FC964 /* AppointmentHistoryTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentHistoryTVCell.xib; sourceTree = "<group>"; };
+		182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryTVCell.swift; sourceTree = "<group>"; };
+		182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryVC.swift; sourceTree = "<group>"; };
+		182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
 		187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
 		187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEntity.swift; sourceTree = "<group>"; };
 		187DCD62270DBA9C00579F16 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
@@ -273,6 +281,7 @@
 			children = (
 				187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */,
 				187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */,
+				182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */,
 				7C692D5126FB1B23005608C3 /* AppoitmentModal */,
 			);
 			path = Model;
@@ -305,6 +314,7 @@
 				7C8EFEF926F9BD80000CFAE4 /* PendingTVCell.xib */,
 				7C8EFF0226F9C658000CFAE4 /* NotificationTVCell.xib */,
 				7C8EFF0826F9CAE2000CFAE4 /* ProfileTVCell.xib */,
+				182E2F5B270EFE1A000FC964 /* AppointmentHistoryTVCell.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -327,20 +337,21 @@
 				7C8EFEB126F8BB42000CFAE4 /* AddQueueVC.swift */,
 				7C8EFEDC26F9A899000CFAE4 /* AppointmentDetailVC.swift */,
 				7C8EFED326F99CDC000CFAE4 /* AppointmentVC.swift */,
-				7C8EFEAB26F8BAC7000CFAE4 /* ChangePasswordVC.swift */,
 				7C8EFEB726F8BBAC000CFAE4 /* EditPatientDetailVC.swift */,
-				7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */,
 				7C8EFED026F99C7F000CFAE4 /* HomeVC.swift */,
 				7C8EFECA26F8BE20000CFAE4 /* LoadingIndicatorVC.swift */,
 				7C8EFEA226F8BA2E000CFAE4 /* LogInVC.swift */,
 				7C8EFEA526F8BA65000CFAE4 /* SignUpVC.swift */,
 				7C8EFEA826F8BA90000CFAE4 /* ForgotPasswordVC.swift */,
+				7C8EFEAB26F8BAC7000CFAE4 /* ChangePasswordVC.swift */,
 				7C8EFED626F99D2D000CFAE4 /* NotificationVC.swift */,
 				7C8EFEDF26F9AB08000CFAE4 /* PatientDetailVC.swift */,
 				7C8EFF1026F9D323000CFAE4 /* PrivacyVC.swift */,
 				7C8EFED926F99D5E000CFAE4 /* ProfileVC.swift */,
+				7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */,
 				7C8EFF1326F9DE7F000CFAE4 /* ServiceVC.swift */,
 				7C8EFECD26F99C23000CFAE4 /* TabBarVC.swift */,
+				182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -354,6 +365,7 @@
 				7C8EFEF826F9BD80000CFAE4 /* PendingTVCell.swift */,
 				7C8EFF0726F9CAE2000CFAE4 /* ProfileTVCell.swift */,
 				7C8EFEF226F9BBAF000CFAE4 /* QueueTVCell.swift */,
+				182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -495,6 +507,7 @@
 				7C3CD8E126F84FA4009E736B /* Poppins-Light.ttf in Resources */,
 				7C50968026F5ABC80058E146 /* Assets.xcassets in Resources */,
 				7C8EFEEF26F9B899000CFAE4 /* AppointmentConfirmedTVCell.xib in Resources */,
+				182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */,
 				7C3CD8DF26F84FA4009E736B /* Poppins-SemiBold.ttf in Resources */,
 				7C8EFEE626F9AF4E000CFAE4 /* HomeTVCell.xib in Resources */,
 				7C50967E26F5ABC60058E146 /* Main.storyboard in Resources */,
@@ -562,6 +575,7 @@
 				187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */,
 				7C8EFECB26F8BE20000CFAE4 /* LoadingIndicatorVC.swift in Sources */,
 				7C692D6E26FC62FC005608C3 /* DisplayAlertManager.swift in Sources */,
+				182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */,
 				7C8EFEC626F8BC02000CFAE4 /* NavigationManager.swift in Sources */,
 				7C8EFEAC26F8BAC7000CFAE4 /* ChangePasswordVC.swift in Sources */,
 				7C692D4C26FAEC9A005608C3 /* BaseVC.swift in Sources */,
@@ -588,6 +602,7 @@
 				7C5096B126F5ADDD0058E146 /* AppFunctions.swift in Sources */,
 				187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */,
 				7C8EFF2826F9E186000CFAE4 /* SSButton.swift in Sources */,
+				182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */,
 				187DCD63270DBA9C00579F16 /* AppConstant.swift in Sources */,
 				7C8EFEE526F9AF4E000CFAE4 /* HomeTVCell.swift in Sources */,
 				7C8EFF2326F9E186000CFAE4 /* SSImagePickerVC.swift in Sources */,
@@ -602,6 +617,7 @@
 				7C8EFEC726F8BC02000CFAE4 /* DateTimeManager.swift in Sources */,
 				7C692D5626FB4272005608C3 /* SSTextField.swift in Sources */,
 				7C8EFEA926F8BA90000CFAE4 /* ForgotPasswordVC.swift in Sources */,
+				182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */,
 				7C8EFF2626F9E186000CFAE4 /* SSDebouncer.swift in Sources */,
 				7C8EFF1126F9D323000CFAE4 /* PrivacyVC.swift in Sources */,
 				7C8EFF0326F9C658000CFAE4 /* NotificationTVCell.swift in Sources */,

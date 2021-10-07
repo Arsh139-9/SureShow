@@ -70,11 +70,19 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.signIn, params: generatingParameters(), headers: nil) { response in
             AFWrapperClass.svprogressHudDismiss(view: self)
             print(response)
-            let message = response["message"] as? String ?? ""
-            if let status = response["status"] as? Int {
+            let loginResp = LoginSignUpData(dict:response as? [String : AnyHashable] ?? [:])
+            let message = loginResp?.alertMessage ?? ""
+            if let status = loginResp?.status  {
                 if status == 200{
+                    setAppDefaults(loginResp?.access_token, key: "AuthToken")
+
                     showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
-                        self.navigationController?.popViewController(animated: true)
+                        
+                        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                        let vc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as? TabBarVC
+                        if let vc = vc {
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
                     }
                 }else{
                     alert(AppAlertTitle.appName.rawValue, message: message, view: self)

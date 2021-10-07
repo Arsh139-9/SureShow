@@ -25,7 +25,9 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtFirstName: SSUsernameTextField!
     @IBOutlet weak var txtLastName: SSUsernameTextField!
-    
+    var imgArray = [Data]()
+    var getProfileResp: GetUserProfileData<Any>?
+
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var imagePickerVC: ImagePicker?
     var selectedImage: UIImage? {
@@ -101,14 +103,107 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             }
             return false
         }
-        if ValidationManager.shared.isEmpty(text: txtOtherInfo.text) == true {
-            showAlertMessage(title: kAppName.localized(), message: "Please enter relation to patient" , okButton: "Ok", controller: self) {
-                
-            }
-            return false
-        }
+//        if ValidationManager.shared.isEmpty(text: txtOtherInfo.text) == true {
+//            showAlertMessage(title: kAppName.localized(), message: "Please enter relation to patient" , okButton: "Ok", controller: self) {
+//
+//            }
+//            return false
+//        }
         
         return true
+    }
+    
+    func editProfileApi() {
+        let compressedData = (imgProfile.image?.jpegData(compressionQuality: 0.3))!
+        imgArray.removeAll()
+        
+        imgArray.append(compressedData)
+        
+        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","email":txtEmail.text ?? "","cellno":txtPhone.text ?? ""] as [String : Any]
+        
+        let strURL = kBASEURL + WSMethods.editProfile
+        
+        self.requestWith(endUrl: strURL , parameters: paramds)
+        
+        
+    }
+    func requestWith(endUrl: String, parameters: [AnyHashable : Any]){
+        
+        let url = endUrl /* your API url */
+        var authToken = getSAppDefault(key: "AuthToken") as? String ?? ""
+//        let headers: HTTPHeaders = [
+//            .authorization(bearerToken: authToken)]
+        authToken = "Bearer " + authToken
+        let headers : HTTPHeaders = ["Content-Type":"application/json" , "Authorization":authToken ]
+//        let headers: HTTPHeaders = [
+//            /* "Authorization": "your_access_token",  in case you need authorization header */
+//            "Content-type": "multipart/form-data",
+//            "Authorization": "Bearer " + authToken,
+//        ]
+        DispatchQueue.main.async {
+            
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        
+        AF.upload(multipartFormData: { (multipartFormData) in
+            
+            for (key, value) in parameters {
+                multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key as! String)
+            }
+            
+            
+            for i in 0..<self.imgArray.count{
+                let imageData1 = self.imgArray[i]
+                debugPrint("mime type is\(imageData1.mimeType)")
+                let ranStr = String.random(length: 7)
+                if imageData1.mimeType == "application/pdf" ||
+                    imageData1.mimeType == "application/vnd" ||
+                    imageData1.mimeType == "text/plain"{
+                    multipartFormData.append(imageData1, withName: "image[\(i + 1)]" , fileName: ranStr + String(i + 1) + ".pdf", mimeType: imageData1.mimeType)
+                }else{
+                    multipartFormData.append(imageData1, withName: "image" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
+                }
+                
+                
+                
+            }
+            
+            
+        }, to: url, usingThreshold: UInt64.init(), method: .post, headers: headers, interceptor: nil, fileManager: .default)
+        
+        .uploadProgress(closure: { (progress) in
+            print("Upload Progress: \(progress.fractionCompleted)")
+            
+        })
+        .responseJSON { (response) in
+            DispatchQueue.main.async {
+                
+                AFWrapperClass.svprogressHudDismiss(view: self)
+            }
+            
+            print("Succesfully uploaded\(response)")
+            let respDict =  response.value as? [String : AnyObject] ?? [:]
+            if respDict.count != 0{
+                let signUpStepData =  ForgotPasswordData(dict: respDict)
+                if signUpStepData?.status == 200{
+                    showAlertMessage(title: kAppName.localized(), message: signUpStepData?.message ?? ""  , okButton: "OK", controller: self) {
+                        self.navigationController?.popViewController(animated: true)
+
+//                        removeAppDefaults(key:"AuthToken")
+//                        appDel.logOut()
+                    }
+                }else{
+                    
+                }
+            }else{
+                
+            }
+            
+            
+        }
+        
+        
+        
     }
     
     //------------------------------------------------------
@@ -124,7 +219,12 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     }
     
     @IBAction func btnSave(_ sender: Any) {
-       validate()
+        if validate() == false {
+            return
+        }
+        else{
+            editProfileApi()
+        }
        
     }
     
@@ -191,6 +291,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         setup()
     }
     
@@ -198,9 +299,18 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        txtFirstName.text = getProfileResp?.first_name
+        txtLastName.text = getProfileResp?.last_name
+        txtEmail.text = getProfileResp?.email
+        txtPhone.text = getProfileResp?.cellno
+        var sPhotoStr = getProfileResp?.image
+        sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+        //        if sPhotoStr != ""{
+        imgProfile.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"place"))
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         imgProfile.circle()
     }
     

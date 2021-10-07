@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Medium.ttf">
+            <string>Poppins-Medium</string>
+        </array>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="150" id="3yq-Y5-w3v" customClass="AppointmentHistoryTVCell" customModule="SureShow" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3yq-Y5-w3v" id="GlB-nG-op7">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="erk-Ja-fvs">
+                        <rect key="frame" x="10" y="27.5" width="300" height="115.5"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uncle" translatesAutoresizingMaskIntoConstraints="NO" id="PYr-Gg-Oa3">
+                                <rect key="frame" x="8" y="8" width="39" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PYr-Gg-Oa3" secondAttribute="height" multiplier="1:1" id="Ioc-pp-aug"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="H4R-pV-lGg">
+                                <rect key="frame" x="57" y="8" width="195" height="35.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Grave Jodson" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xLz-sw-nxA" customClass="SSSemiboldLabel" customModule="SureShow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="106.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75 years old" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAF-xc-UHt" customClass="SSMediumLabel" customModule="SureShow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20" width="71.5" height="15.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="13"/>
+                                        <color key="textColor" red="0.43523043389999999" green="0.43519276379999999" blue="0.44388777019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYc-Y7-8Pr" customClass="SSMediumLabel" customModule="SureShow" customModuleProvider="target">
+                                <rect key="frame" x="257" y="8" width="40" height="17.5"/>
+                                <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="15"/>
+                                <color key="textColor" name="appColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wqt-fJ-GZs">
+                                <rect key="frame" x="8" y="55.5" width="294" height="1"/>
+                                <color key="backgroundColor" name="appLabel"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="fhr-Qb-tk4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FrC-2q-cHa">
+                                <rect key="frame" x="8" y="64.5" width="225" height="35"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08-07-2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fFb-jf-uyV" customClass="SSRegularLabel" customModule="SureShow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="225" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:00 PM - 05:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YTo-8f-ocJ" customClass="SSRegularLabel" customModule="SureShow" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="17.5" width="225" height="17.5"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal" translatesAutoresizingMaskIntoConstraints="NO" id="kC5-Od-fOo">
+                                <rect key="frame" x="266" y="71" width="22.5" height="22.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="kC5-Od-fOo" secondAttribute="height" multiplier="1:1" id="auo-pL-GXC"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="appHome"/>
+                        <constraints>
+                            <constraint firstItem="FrC-2q-cHa" firstAttribute="top" secondItem="Wqt-fJ-GZs" secondAttribute="bottom" constant="8" symbolic="YES" id="1tI-sH-HQ7"/>
+                            <constraint firstItem="PYr-Gg-Oa3" firstAttribute="width" secondItem="erk-Ja-fvs" secondAttribute="width" multiplier="0.13" id="23a-gC-2MV"/>
+                            <constraint firstItem="Wqt-fJ-GZs" firstAttribute="top" secondItem="PYr-Gg-Oa3" secondAttribute="bottom" constant="8.5" id="7H9-GU-s5d"/>
+                            <constraint firstItem="kC5-Od-fOo" firstAttribute="centerX" secondItem="NYc-Y7-8Pr" secondAttribute="centerX" id="8wO-0Y-3mR"/>
+                            <constraint firstItem="FrC-2q-cHa" firstAttribute="leading" secondItem="Wqt-fJ-GZs" secondAttribute="leading" id="Ddm-hE-PHH"/>
+                            <constraint firstItem="H4R-pV-lGg" firstAttribute="width" secondItem="erk-Ja-fvs" secondAttribute="width" multiplier="0.65" id="K9l-zf-ocD"/>
+                            <constraint firstItem="NYc-Y7-8Pr" firstAttribute="leading" secondItem="H4R-pV-lGg" secondAttribute="trailing" constant="5" id="KrR-Bp-pWE"/>
+                            <constraint firstItem="FrC-2q-cHa" firstAttribute="width" secondItem="erk-Ja-fvs" secondAttribute="width" multiplier="0.75" id="QYl-dE-PSf"/>
+                            <constraint firstItem="Wqt-fJ-GZs" firstAttribute="width" secondItem="erk-Ja-fvs" secondAttribute="width" multiplier="0.98" id="W4B-4u-ahA"/>
+                            <constraint firstItem="kC5-Od-fOo" firstAttribute="centerY" secondItem="FrC-2q-cHa" secondAttribute="centerY" id="WJR-Ql-P7g"/>
+                            <constraint firstItem="PYr-Gg-Oa3" firstAttribute="top" secondItem="erk-Ja-fvs" secondAttribute="top" constant="8" id="Y32-g7-dvC"/>
+                            <constraint firstItem="H4R-pV-lGg" firstAttribute="top" secondItem="erk-Ja-fvs" secondAttribute="top" constant="8" id="bcX-yi-B1I"/>
+                            <constraint firstItem="NYc-Y7-8Pr" firstAttribute="top" secondItem="H4R-pV-lGg" secondAttribute="top" id="lVz-ue-UeI"/>
+                            <constraint firstAttribute="trailing" secondItem="NYc-Y7-8Pr" secondAttribute="trailing" constant="3" id="nCF-bh-Rll"/>
+                            <constraint firstItem="Wqt-fJ-GZs" firstAttribute="leading" secondItem="PYr-Gg-Oa3" secondAttribute="leading" id="pu6-Bx-tT1"/>
+                            <constraint firstItem="PYr-Gg-Oa3" firstAttribute="leading" secondItem="erk-Ja-fvs" secondAttribute="leading" constant="8" id="rh5-XN-Ygl"/>
+                            <constraint firstItem="kC5-Od-fOo" firstAttribute="width" secondItem="erk-Ja-fvs" secondAttribute="width" multiplier="0.075" id="siD-FA-4on"/>
+                            <constraint firstItem="H4R-pV-lGg" firstAttribute="leading" secondItem="PYr-Gg-Oa3" secondAttribute="trailing" constant="10" id="yip-xR-bQn"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="appLabel"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feb 20,2021" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ve7-Ic-jME" customClass="SSRegularLabel" customModule="SureShow" customModuleProvider="target">
+                        <rect key="frame" x="10" y="5" width="84" height="17.5"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="appBackground"/>
+                <constraints>
+                    <constraint firstItem="ve7-Ic-jME" firstAttribute="top" secondItem="GlB-nG-op7" secondAttribute="top" constant="5" id="IGr-Bb-HLq"/>
+                    <constraint firstAttribute="bottom" secondItem="erk-Ja-fvs" secondAttribute="bottom" constant="7" id="UZ5-Ad-ujl"/>
+                    <constraint firstItem="erk-Ja-fvs" firstAttribute="leading" secondItem="GlB-nG-op7" secondAttribute="leading" constant="10" id="a1g-Mx-fSg"/>
+                    <constraint firstAttribute="trailing" secondItem="erk-Ja-fvs" secondAttribute="trailing" constant="10" id="gXj-pc-q6b"/>
+                    <constraint firstItem="ve7-Ic-jME" firstAttribute="leading" secondItem="GlB-nG-op7" secondAttribute="leading" constant="10" id="nc7-fd-wSl"/>
+                    <constraint firstItem="erk-Ja-fvs" firstAttribute="top" secondItem="ve7-Ic-jME" secondAttribute="bottom" constant="5" id="vsR-kn-uK8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="mJT-vL-WG1"/>
+            <connections>
+                <outlet property="appointmentCreatedDate" destination="ve7-Ic-jME" id="5Yh-kI-yyE"/>
+                <outlet property="appointmentHistoryDate" destination="fFb-jf-uyV" id="Ll5-7X-y2C"/>
+                <outlet property="imgProfile" destination="PYr-Gg-Oa3" id="BNs-aH-OMX"/>
+                <outlet property="lblAge" destination="rAF-xc-UHt" id="nJD-2k-5MI"/>
+                <outlet property="lblGender" destination="NYc-Y7-8Pr" id="Uxa-9D-zHl"/>
+                <outlet property="lblName" destination="xLz-sw-nxA" id="Phm-E0-6Ci"/>
+                <outlet property="lblTime" destination="YTo-8f-ocJ" id="EKh-Jh-Y9d"/>
+            </connections>
+            <point key="canvasLocation" x="113.04347826086958" y="12.053571428571429"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cal" width="89" height="89"/>
+        <image name="uncle" width="186" height="186"/>
+        <namedColor name="appBackground">
+            <color red="1" green="0.97600001096725464" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appColor">
+            <color red="0.5220000147819519" green="0.14900000393390656" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appHome">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appLabel">
+            <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

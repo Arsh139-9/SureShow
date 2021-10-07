@@ -24,7 +24,7 @@ struct WSMethods {
     static let addchildren = "addchildren.php"
     static let getChildrenDetails = "getChildrenDetails.php"
     static let getProfileDetails = "getProfileDetails.php"
-    static let changePassword = "changePassword.php"
+    static let changePassword = "user/changepassword"
     static let resentVerficationEmail = "ResentVerficationEmail.php"
     static let addBiWeeklyInventory = "AddBiWeeklyInventory.php"
     static let getAllProduct = "GetAllProduct.php"
@@ -41,9 +41,9 @@ struct WSMethods {
     static let getNotificationDetailById = "GetNotificationDetailById.php"
     
     
-    static let logOut = "logOut.php"
-    static let getUserDetail = "getProfileDetails.php"
-    static let editProfile = "editProfile.php"
+    static let logOut = "user/logout"
+    static let getUserDetail = "user/profile"
+    static let editProfile = "user/profile"
     static let forgotPassword = "user/forgotpassword"
     
     

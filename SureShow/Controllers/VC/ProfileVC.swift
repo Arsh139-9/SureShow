@@ -8,16 +8,24 @@
 import UIKit
 import Foundation
 import Alamofire
+import SDWebImage
 
 class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tblProfile: UITableView!
     @IBOutlet weak var imgProfile: UIImageView!
     
+    @IBOutlet weak var userNameLbl: SSMediumLabel!
+    
+    @IBOutlet weak var emailLbl: SSRegularLabel!
+    var getProfileResp: GetUserProfileData<Any>?
+
     struct ProfileItems {
         
         static let changePassword = LocalizableConstants.Controller.Profile.changePassword
         static let changePasswordIcon = SSImageName.iconChangePassword
+        static let appointmentHistory = LocalizableConstants.Controller.Profile.appointmentHistory
+        static let appointmenthistoryIcon = SSImageName.iconHistory
         static let about = LocalizableConstants.Controller.Profile.about
         static let aboutIcon = SSImageName.iconAbout
         static let privacyPolicy = LocalizableConstants.Controller.Profile.privacy
@@ -33,6 +41,7 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
         return [
             
             ["name": ProfileItems.changePassword, "image": ProfileItems.changePasswordIcon],
+            ["name": ProfileItems.appointmentHistory, "image": ProfileItems.appointmenthistoryIcon],
             ["name": ProfileItems.about, "image": ProfileItems.aboutIcon],
             ["name": ProfileItems.privacyPolicy, "image": ProfileItems.privacyPolicyIcon],
             ["name": ProfileItems.termsOfServices, "image": ProfileItems.termsOfServicesIcon],
@@ -84,8 +93,90 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func btnEdit(_ sender: Any) {
         let controller = NavigationManager.shared.editProfileVC
+        controller.getProfileResp = getProfileResp
         push(controller: controller)
     }
+    open func getProfileApi(){
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.getUserDetail, params:nil, headers: headers) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            self.getProfileResp  = GetUserProfileData(dict:response as? [String : AnyHashable] ?? [:])
+            let message = self.getProfileResp?.message ?? ""
+
+            if let status = self.getProfileResp?.status{
+                if status == 200{
+                    DispatchQueue.main.async {
+                        self.userNameLbl.text = "\(self.getProfileResp?.first_name ?? "") \(self.getProfileResp?.last_name ?? "")"
+                        self.emailLbl.text = self.getProfileResp?.email ?? ""
+                        var sPhotoStr = self.getProfileResp?.image ?? ""
+                        sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+                        //        if sPhotoStr != ""{
+                        self.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"place"))
+                        //}
+                        
+                    }
+//                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+//
+//                    }
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+                    
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } failure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+    }
+  
+    open func logOutApi(){
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.logOut, params:nil, headers: headers) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            let message = response["message"] as? String ?? ""
+            if let status = response["status"] as? Int {
+                if status == 200{
+                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+                        removeAppDefaults(key:"AuthToken")
+                        appDel.logOut()
+                    }
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } failure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+    }
+  
     
     //------------------------------------------------------
     
@@ -119,7 +210,14 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
             controller.textTitle = name?.localized()
             push(controller: controller)
             
-        }else if name == ProfileItems.about {
+        }
+        else if name == ProfileItems.appointmentHistory {
+            
+            let controller = NavigationManager.shared.appointmentHistoryVC
+            push(controller: controller)
+            
+        }
+        else if name == ProfileItems.about {
             
             let controller = NavigationManager.shared.aboutVC
             push(controller: controller)
@@ -137,12 +235,12 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
         }else if name == ProfileItems.logout {
             
             DisplayAlertManager.shared.displayAlertWithNoYes(target: self, animated: true, message: LocalizableConstants.ValidationMessage.confirmLogout.localized()) {
-                
                 //Nothing to handle
                 
             } handlerYes: {
-                
-                LoadingManager.shared.showLoading()
+                self.logOutApi()
+
+//                LoadingManager.shared.showLoading()
                 
             }
             
@@ -154,6 +252,7 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        
     }
     
     //------------------------------------------------------
@@ -163,6 +262,7 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
         setup()
         tblProfile.separatorStyle = .none
         imgProfile.circle()
+        getProfileApi()
     }
     
     //------------------------------------------------------

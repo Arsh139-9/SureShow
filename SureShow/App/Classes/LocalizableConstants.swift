@@ -184,6 +184,8 @@ struct LocalizableConstants {
             static let changePassword = "change_password"
             static let about = "about"
             static let history = "history"
+            static let appointmentHistory = "Appointment History"
+
             static let privacy = "privacy"
             static let termsOfService = "terms_of_service"
             static let logout = "sign_out"

@@ -87,7 +87,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
     }
-    
+    func logOut(){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryboardName.Main, bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier: ViewControllerIdentifier.LogInVC) as! LogInVC
+        let nav = UINavigationController(rootViewController: homeViewController)
+        nav.setNavigationBarHidden(true, animated: true)
+        appdelegate.window?.rootViewController = nav
+    }
+    func loginToHomePage(){
+        let appdelegate = UIApplication.shared.delegate as! AppDelegate
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: StoryboardName.Main, bundle: nil)
+        let homeViewController = mainStoryboard.instantiateViewController(withIdentifier:"TabBarVC") as! TabBarVC
+        homeViewController.selectedIndex = 0
+        let nav = UINavigationController(rootViewController: homeViewController)
+        nav.setNavigationBarHidden(true, animated: true)
+        appdelegate.window?.rootViewController = nav
+    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenString = deviceToken.map { String(format: "%02x", $0) }.joined()
