@@ -156,10 +156,10 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
             let message = response["message"] as? String ?? ""
             if let status = response["status"] as? Int {
                 if status == 200{
-                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+//                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
                         removeAppDefaults(key:"AuthToken")
                         appDel.logOut()
-                    }
+                    //}
                 }
                 else if status == 401{
                     removeAppDefaults(key:"AuthToken")

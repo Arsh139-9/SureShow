@@ -17,7 +17,7 @@ target 'SureShow' do
   pod 'pop', '~> 1.0.12'
   pod 'Toucan'
   pod "MonthYearPicker", '~> 4.0.2'
-  pod 'GCCountryPicker'
+  pod 'SKCountryPicker'
   pod 'SVProgressHUD'
 
 end

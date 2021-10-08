@@ -302,8 +302,8 @@
             filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "requestWith(endUrl:parameters:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "requestWith(endUrl:parameters:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,40 +334,200 @@
             filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "requestWith(endUrl:parameters:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4E87A71C-6D74-41B7-941E-3E0F91266550"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "signUpApi()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "953FEF4C-A39B-4735-B467-0DC5E2DBD370 - 50549e53844bd809"
+                  uuid = "4E87A71C-6D74-41B7-941E-3E0F91266550 - be0a62b6271fc36e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SureShow.EditProfileVC.requestWith(endUrl: Swift.String, parameters: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;) -&gt; ()"
+                  symbolName = "SureShow.SignUpVC.signUpApi() -&gt; ()"
                   moduleName = "SureShow"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow/SureShow/Controllers/VC/EditProfileVC.swift"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow/SureShow/Controllers/VC/SignUpVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "145"
-                  endingLineNumber = "145"
-                  offsetFromSymbolStart = "1351">
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "505">
                </Location>
                <Location
-                  uuid = "953FEF4C-A39B-4735-B467-0DC5E2DBD370 - 6875a3135dd1ad38"
+                  uuid = "4E87A71C-6D74-41B7-941E-3E0F91266550 - 8d777b2f39503520"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "closure #2 (Alamofire.MultipartFormData) -&gt; () in SureShow.EditProfileVC.requestWith(endUrl: Swift.String, parameters: Swift.Dictionary&lt;Swift.AnyHashable, Any&gt;) -&gt; ()"
+                  symbolName = "closure #2 (__C.NSDictionary) -&gt; () in SureShow.SignUpVC.signUpApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow/SureShow/Controllers/VC/SignUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "69">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9107EEE-7B5C-4328-B89D-A32717EE58FE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "generatingParameters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28535FC3-66B0-4B65-9331-C8F09B05EE05"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "generatingParameters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EF11C15-91C1-424A-8774-15AE2998E896"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "generatingParameters()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14BA7B65-BA32-42B7-9D29-964F82371F9B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "btnSave(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "586B8D9C-BAE9-4C41-BBF9-E12B4E0EA020"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "editProfileApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C743CB7-F80D-4AF8-8915-A419B3FFA829"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "editProfileApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6954A3E5-5720-43E4-BD60-600D83243DDC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/VC/EditProfileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "editProfileApi()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6954A3E5-5720-43E4-BD60-600D83243DDC - f2d96ab6aa199f25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SureShow.EditProfileVC.editProfileApi() -&gt; ()"
                   moduleName = "SureShow"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow/SureShow/Controllers/VC/EditProfileVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "276">
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "196">
+               </Location>
+               <Location
+                  uuid = "6954A3E5-5720-43E4-BD60-600D83243DDC - f2d96ab6aa199f25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SureShow.EditProfileVC.editProfileApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow/SureShow/Controllers/VC/EditProfileVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "4959">
                </Location>
             </Locations>
          </BreakpointContent>

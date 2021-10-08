@@ -76,14 +76,14 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
                 if status == 200{
                     setAppDefaults(loginResp?.access_token, key: "AuthToken")
 
-                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+//                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
                         
                         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
                         let vc = storyBoard.instantiateViewController(withIdentifier:"TabBarVC") as? TabBarVC
                         if let vc = vc {
                             self.navigationController?.pushViewController(vc, animated: true)
                         }
-                    }
+                    //}
                 }else{
                     alert(AppAlertTitle.appName.rawValue, message: message, view: self)
                 }

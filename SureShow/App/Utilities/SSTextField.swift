@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Toucan
 import MonthYearPicker
-import GCCountryPicker
 
 
 protocol UploadImages {

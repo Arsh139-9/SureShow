@@ -21,6 +21,9 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     @IBOutlet weak var txtName: SSUsernameTextField!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var viewName: UIView!
+    @IBOutlet weak var unchKRBtn: UIButton!
+    
+    @IBOutlet weak var cHKRBtn: UIButton!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var imagePickerVC: ImagePicker?
@@ -91,6 +94,18 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     //------------------------------------------------------
     
     //MARK: Actions
+    @IBAction func unchekRadioBtnAction(_ sender: UIButton) {
+//        inventoryCount = "2"
+        unchKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+    }
+    
+    @IBAction func chckRadioBtnAction(_ sender: UIButton) {
+//        inventoryCount = "1"
+        unchKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+        
+    }
     
     @IBAction func btnBack(_ sender: Any) {
         self.pop()

@@ -8,7 +8,7 @@
 import UIKit
 import Foundation
 import IQKeyboardManagerSwift
-
+import SKCountryPicker
 
 class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
@@ -24,7 +24,22 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var txtLastName: SSUsernameTextField!
     @IBOutlet weak var viewLastName: UIView!
+    
+    
+    @IBOutlet weak var txtPhoneNum: SSMobileNumberTextField!
+    
+    @IBOutlet weak var viewPhoneNum: UIView!
+    @IBOutlet weak var countryCodeBtn: UIButton!
+
+    @IBOutlet weak var countryCodeLbl: SSSemiboldLabel!
+    
+    
+    
+    
+    
     @IBOutlet weak var checkUncheckBtn: UIButton!
+    
+    
     let rest = RestManager()
 
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
@@ -78,6 +93,22 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             return false
         }
         
+        if ValidationManager.shared.isEmpty(text: txtPhoneNum.text) == true {
+            
+            showAlertMessage(title: kAppName.localized(), message: "Please enter mobile number." , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+        }
+      
+         if txtPhoneNum.text!.count < 10 || txtPhoneNum.text!.count > 14{
+            showAlertMessage(title: kAppName.localized(), message: AppSignInForgotSignUpAlertNessage.phoneNumberLimit , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+            
+            
+        }
         if ValidationManager.shared.isEmpty(text: txtEmail.text) == true {
             showAlertMessage(title: kAppName.localized(), message: "Please enter email address." , okButton: "Ok", controller: self) {
             }
@@ -131,7 +162,26 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     //------------------------------------------------------
     
     //MARK: Action
-    
+    @IBAction func countryCodePickerBtnAction(_ sender: Any) {
+ 
+        let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
+            
+            guard let self = self else { return }
+            
+            let selectedCountryCode = country.dialingCode
+//            let selectedCountryName = self.flag(country:country.countryCode)
+            let selectedCountryVal = "\(selectedCountryCode ?? "")"
+            self.countryCodeLbl.text = selectedCountryVal
+//            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+            
+            setAppDefaults(country.dialingCode, key: "countryName")
+            
+            
+        }
+        
+        countryController.detailColor = UIColor.red
+        
+    }
     @IBAction func btnConfrmPswrd(_ sender: Any) {
         if(iconClick == true) {
             txtConfirmPswrd.isSecureTextEntry = false
@@ -172,6 +222,8 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         parameters["password"] = txtPswrd.text  as AnyObject
         parameters["first_name"] = txtFirstName.text  as AnyObject
         parameters["last_name"] = txtLastName.text  as AnyObject
+        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
+        
         print(parameters)
         return parameters
     }
@@ -231,6 +283,8 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             viewFirstName.borderColor = SSColor.appButton
         case txtLastName:
             viewLastName.borderColor = SSColor.appButton
+        case txtPhoneNum:
+            viewPhoneNum.borderColor = SSColor.appButton
         case txtEmail:
             viewEmail.borderColor = SSColor.appButton
         case txtPswrd:
@@ -247,6 +301,8 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             viewFirstName.borderColor = SSColor.appBlack
         case txtLastName:
             viewLastName.borderColor = SSColor.appBlack
+        case txtPhoneNum:
+            viewPhoneNum.borderColor = SSColor.appBlack
         case txtEmail:
             viewEmail.borderColor = SSColor.appBlack
         case txtPswrd:
@@ -264,6 +320,15 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        self.countryCodeBtn.contentHorizontalAlignment = .center
+        guard let country = CountryManager.shared.currentCountry else {
+            return
+        }
+        countryCodeLbl.text = country.dialingCode
+//        countryCodeBtn.setTitle(country.countryCode, for: .highlighted)
+        countryCodeBtn.clipsToBounds = true
+        //        setAppDefaults(country.countryName, key: "countryName")
+        setAppDefaults("+1", key: "countryName")
     }
     
     //------------------------------------------------------

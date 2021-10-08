@@ -16,7 +16,10 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     @IBOutlet weak var segment4: SegmentView!
     @IBOutlet weak var segment2: SegmentView!
     @IBOutlet weak var segment1: SegmentView!
+    @IBOutlet weak var verifiedIdentityPopUpView: UIView!
+    @IBOutlet weak var verifiedPUpViewA: UIView!
     
+    @IBOutlet weak var callPopUpView: UIView!
     //    let appoitmentCases = AppoitmentListing()
     var needToshowInfoView: Bool = false
     
@@ -53,7 +56,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         segment4.delegate = self
         
         segment1.isSelected = true
-        segment2.isSelected = !segment1.isSelected
+        segment2.isSelected = true
+//        segment2.isSelected = !segment1.isSelected
         segment3.isSelected = !segment1.isSelected
         segment4.isSelected = !segment1.isSelected
         
@@ -75,6 +79,11 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     
     func updateUI() {
         
+        // Add the video preview layer to the view
+        self.tabBarController?.tabBar.isHidden = false
+        callPopUpView.isHidden = true
+        verifiedIdentityPopUpView.isHidden = true
+        verifiedPUpViewA.isHidden = true
         tblAppointment.reloadData()
     }
     
@@ -86,13 +95,29 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if segment1.isSelected{
+//        if segment1.isSelected{
+//            if indexPath.row % 2 == 0{
+//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+//                    return cell
+//                }
+//            }else if indexPath.row % 3 == 0{
+//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+//                    return cell
+//                }
+//            }else{
+//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
+//                    return cell
+//                }
+//            }
+//        }else
+        if segment2.isSelected {
             if indexPath.row % 2 == 0{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
                     return cell
                 }
             }else if indexPath.row % 3 == 0{
                 if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+                    cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
                     return cell
                 }
             }else{
@@ -100,12 +125,12 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
                     return cell
                 }
             }
-        }else if segment2.isSelected {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-                return cell
-            }
+//            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+//                return cell
+//            }
         }else if segment3.isSelected {
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+                cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
                 return cell
             }
         }else if segment4.isSelected{
@@ -180,6 +205,46 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     
     //MARK: Action
     
+    @IBAction func crossPopupViewBtnAction(_ sender: Any) {
+        self.verifiedIdentityPopUpView.isHidden = true
+        verifiedPUpViewA.isHidden = true
+
+    }
+    
+    @IBAction func callPopUpBtnAction(_ sender: Any) {
+        self.callPopUpView.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    
+    @IBAction func callEndPUPViewBtnAction(_ sender: Any) {
+        self.tabBarController?.tabBar.isHidden = false
+
+        self.verifiedIdentityPopUpView.isHidden = true
+        verifiedPUpViewA.isHidden = true
+        self.callPopUpView.isHidden = true
+
+    }
+    
+    @objc func acceptBtnAction(_ sender: UIButton?) {
+        verifiedPUpViewA.isHidden = false
+        self.verifiedIdentityPopUpView.isHidden = false
+        
+//        var parentCell = sender?.superview
+//
+//        while !(parentCell is NotificationsTVC) {
+//            parentCell = parentCell?.superview
+//        }
+//        var indexPath: IndexPath? = nil
+//        let cell1 = parentCell as? NotificationsTVC
+//        indexPath = notificationsTableView.indexPath(for: cell1!)
+//        let detailId = notificationArray[indexPath!.row].detail_id
+//
+//        let notificationId = notificationArray[indexPath!.row].notification_id
+//        acceptRejectApi(status: "1", id: detailId,notificationId: notificationId)
+        
+        
+    }
     @IBAction func btnAdd(_ sender: Any) {
         let controller = NavigationManager.shared.addQueueVC
         push(controller: controller)
@@ -191,6 +256,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setup()
         updateUI()
     }
@@ -199,6 +265,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     //------------------------------------------------------

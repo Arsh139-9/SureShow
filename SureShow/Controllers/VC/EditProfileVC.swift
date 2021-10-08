@@ -11,6 +11,7 @@ import SDWebImage
 import Foundation
 import Alamofire
 import IQKeyboardManagerSwift
+import SKCountryPicker
 
 class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePickerDelegate {
     
@@ -20,11 +21,16 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     @IBOutlet weak var viewPhone: UIView!
     @IBOutlet weak var viewOtherInfo: UIView!
     @IBOutlet weak var txtOtherInfo: SSBaseTextField!
-    @IBOutlet weak var txtPhone: SSMobileNumberTextField!
     @IBOutlet weak var txtEmail: SSEmailTextField!
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtFirstName: SSUsernameTextField!
     @IBOutlet weak var txtLastName: SSUsernameTextField!
+    
+    @IBOutlet weak var txtPhoneNum: SSMobileNumberTextField!
+    @IBOutlet weak var countryCodeBtn: UIButton!
+    
+    @IBOutlet weak var countryCodeLbl: SSSemiboldLabel!
+    
     var imgArray = [Data]()
     var getProfileResp: GetUserProfileData<Any>?
 
@@ -66,7 +72,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         txtFirstName.delegate = self
         txtLastName.delegate = self
         txtEmail.delegate = self
-        txtPhone.delegate = self
+        txtPhoneNum.delegate = self
         txtOtherInfo.delegate = self
         
     }
@@ -96,12 +102,20 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             return false
         }
         
-        if ValidationManager.shared.isEmpty(text: txtPhone.text) == true {
+        if ValidationManager.shared.isEmpty(text: txtPhoneNum.text) == true {
 
             showAlertMessage(title: kAppName.localized(), message: "Please enter mobile number." , okButton: "Ok", controller: self) {
                 
             }
             return false
+        }
+        if txtPhoneNum.text!.count < 10 || txtPhoneNum.text!.count > 14{
+            showAlertMessage(title: kAppName.localized(), message: AppSignInForgotSignUpAlertNessage.phoneNumberLimit , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+            
+            
         }
 //        if ValidationManager.shared.isEmpty(text: txtOtherInfo.text) == true {
 //            showAlertMessage(title: kAppName.localized(), message: "Please enter relation to patient" , okButton: "Ok", controller: self) {
@@ -116,10 +130,12 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     func editProfileApi() {
         let compressedData = (imgProfile.image?.jpegData(compressionQuality: 0.3))!
         imgArray.removeAll()
-        
+        if compressedData.isEmpty == false{
         imgArray.append(compressedData)
-        
-        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","email":txtEmail.text ?? "","cellno":txtPhone.text ?? ""] as [String : Any]
+        }
+        //        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
+
+        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","email":txtEmail.text ?? "","cellno":"\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         
@@ -209,6 +225,26 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     //------------------------------------------------------
     
     //MARK: Actions
+    @IBAction func countryCodePickerBtnAction(_ sender: Any) {
+        
+        let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
+            
+            guard let self = self else { return }
+            
+            let selectedCountryCode = country.dialingCode
+            //            let selectedCountryName = self.flag(country:country.countryCode)
+            let selectedCountryVal = "\(selectedCountryCode ?? "")"
+            self.countryCodeLbl.text = selectedCountryVal
+            //            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
+            
+            setAppDefaults(country.dialingCode, key: "countryName")
+            
+            
+        }
+        
+        countryController.detailColor = UIColor.red
+        
+    }
     
     @IBAction func btnBack(_ sender: Any) {
         self.pop()
@@ -261,7 +297,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             viewFirstName.borderColor =  SSColor.appButton
         case txtLastName:
             viewLastName.borderColor =  SSColor.appButton
-        case txtPhone:
+        case txtPhoneNum:
             viewPhone.borderColor =  SSColor.appButton
         case txtOtherInfo:
             viewOtherInfo.borderColor =  SSColor.appButton
@@ -278,7 +314,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             viewFirstName.borderColor = SSColor.appBlack
         case txtLastName:
             viewLastName.borderColor = SSColor.appBlack
-        case txtPhone:
+        case txtPhoneNum:
             viewPhone.borderColor = SSColor.appBlack
         case txtOtherInfo:
             viewOtherInfo.borderColor = SSColor.appBlack
@@ -302,11 +338,42 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         txtFirstName.text = getProfileResp?.first_name
         txtLastName.text = getProfileResp?.last_name
         txtEmail.text = getProfileResp?.email
-        txtPhone.text = getProfileResp?.cellno
+      
         var sPhotoStr = getProfileResp?.image
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
         imgProfile.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"place"))
+        
+        self.countryCodeBtn.contentHorizontalAlignment = .center
+        self.countryCodeBtn.clipsToBounds = true
+    
+       
+        if getProfileResp?.cellno != ""{
+            let arr = getProfileResp?.cellno.components(separatedBy:"-")
+            
+            txtPhoneNum.text = arr?[1]
+            for obj in CountryManager.shared.countries{
+                if obj.dialingCode == arr?[0]{
+                    let selectedCountryCode = obj.dialingCode
+                    countryCodeLbl.text = selectedCountryCode
+
+//                    self.countryCodeBtn.setTitle(selectedCountryCode, for: .normal)
+                    setAppDefaults(obj.dialingCode, key: "countryName")
+                    
+                    break
+                }
+                
+            }
+        }else{
+            guard let country = CountryManager.shared.currentCountry else {
+                return
+            }
+            countryCodeLbl.text = country.dialingCode
+            setAppDefaults("+1", key: "countryName")
+
+            //            setAppDefaults(country.countryName, key: "countryName")
+        }
+        
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
