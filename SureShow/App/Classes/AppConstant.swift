@@ -101,7 +101,7 @@ struct ViewControllerIdentifier {
 }
 struct StoryboardName {
     static let Main = "Main"
-    static let Setting = "Setting"
+    static let HomeChild = "HomeChild"
     static let BiweekelyInventory = "BiweekelyInventory"
     static let ProductIngredients = "ProductIngredients"
     static let BuildOrder = "BuildOrder"

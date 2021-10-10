@@ -82,6 +82,9 @@
 		7C8EFF2726F9E186000CFAE4 /* SSAssistiveTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFF1F26F9E186000CFAE4 /* SSAssistiveTouchView.swift */; };
 		7C8EFF2826F9E186000CFAE4 /* SSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFF2026F9E186000CFAE4 /* SSButton.swift */; };
 		E2E6A689076EF71C24B4325C /* Pods_SureShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1692A9E4CF51757879B2A2E /* Pods_SureShow.framework */; };
+		FCE2AAF12711CFCD001830C2 /* HomeChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */; };
+		FCE2AAF32711D91B001830C2 /* AppointmentChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */; };
+		FCE2AAF52712DF38001830C2 /* ProfileChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +167,9 @@
 		7C8EFF1F26F9E186000CFAE4 /* SSAssistiveTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSAssistiveTouchView.swift; sourceTree = "<group>"; };
 		7C8EFF2026F9E186000CFAE4 /* SSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSButton.swift; sourceTree = "<group>"; };
 		E1692A9E4CF51757879B2A2E /* Pods_SureShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SureShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeChild.storyboard; sourceTree = "<group>"; };
+		FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentChild.storyboard; sourceTree = "<group>"; };
+		FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileChild.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +307,9 @@
 			children = (
 				7C50968126F5ABC80058E146 /* LaunchScreen.storyboard */,
 				7C50967C26F5ABC60058E146 /* Main.storyboard */,
+				FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */,
+				FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */,
+				FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -504,13 +513,16 @@
 				7C3CD8C526F8456A009E736B /* Localizable.strings in Resources */,
 				7C8EFF0426F9C658000CFAE4 /* NotificationTVCell.xib in Resources */,
 				7C8EFEF526F9BBAF000CFAE4 /* QueueTVCell.xib in Resources */,
+				FCE2AAF32711D91B001830C2 /* AppointmentChild.storyboard in Resources */,
 				7C3CD8E126F84FA4009E736B /* Poppins-Light.ttf in Resources */,
 				7C50968026F5ABC80058E146 /* Assets.xcassets in Resources */,
+				FCE2AAF12711CFCD001830C2 /* HomeChild.storyboard in Resources */,
 				7C8EFEEF26F9B899000CFAE4 /* AppointmentConfirmedTVCell.xib in Resources */,
 				182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */,
 				7C3CD8DF26F84FA4009E736B /* Poppins-SemiBold.ttf in Resources */,
 				7C8EFEE626F9AF4E000CFAE4 /* HomeTVCell.xib in Resources */,
 				7C50967E26F5ABC60058E146 /* Main.storyboard in Resources */,
+				FCE2AAF52712DF38001830C2 /* ProfileChild.storyboard in Resources */,
 				7C3CD8DE26F84FA4009E736B /* Poppins-Regular.ttf in Resources */,
 				7C8EFF0A26F9CAE2000CFAE4 /* ProfileTVCell.xib in Resources */,
 			);

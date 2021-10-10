@@ -29,7 +29,8 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func btnAdd(_ sender: Any) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddPatientVC") as! AddPatientVC
+        let storyboard = UIStoryboard(name:StoryboardName.HomeChild, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AddPatientVC") as! AddPatientVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -53,7 +54,8 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PatientDetailVC") as! PatientDetailVC
+        let storyboard = UIStoryboard(name:StoryboardName.HomeChild, bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PatientDetailVC") as! PatientDetailVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

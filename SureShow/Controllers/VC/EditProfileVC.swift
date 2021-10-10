@@ -351,7 +351,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         if getProfileResp?.cellno != ""{
             let arr = getProfileResp?.cellno.components(separatedBy:"-")
             
-            txtPhoneNum.text = arr?[1]
+            txtPhoneNum.text = arr?.count ?? 0 > 1 ? arr?[1] : arr?[0]
             for obj in CountryManager.shared.countries{
                 if obj.dialingCode == arr?[0]{
                     let selectedCountryCode = obj.dialingCode
