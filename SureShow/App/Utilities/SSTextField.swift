@@ -662,6 +662,144 @@ class SSMobileNumberTextField: SSMediumTextField {
         setup()
     }
 }
+class SSRelationshipTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+    var rightUserView: UIView {
+        let imgView = UIImageView(image: UIImage(named: SSImageName.iconDropDown))
+        imgView.contentMode = .scaleAspectFit
+        return imgView
+    }
+    let paddings = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 5)
+    private static let height: CGFloat = 20
+    private static let crossButtonSize = CGSize(width: height, height: height)
+    private let crossButtonView = UIButton(frame: CGRect(origin: CGPoint.zero, size: crossButtonSize))
+    
+    let pvGender = UIPickerView()
+    //,"Others"
+   
+   
+    
+    let pvOptions: [String] = []
+
+    
+    
+//    var pvOption = [String](){
+//        didSet {
+//            for obj in relationshipListArr {
+//                pvOption.append(obj.relationship_name)
+//
+//            }
+//        }
+//    }
+    
+    var selectedOption: String? {
+        didSet {
+            self.text = selectedOption
+        }
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: Customs
+    
+    func setup() {
+        
+        rightView = rightUserView
+        //        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+        //        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: self.frame.height))
+        //        self.tintColor = SSColor.appWhite
+        rightViewMode = .always
+        self.keyboardType = .default
+        self.autocorrectionType = .no
+        self.autocapitalizationType = .words
+        self.tintColor = .clear
+        
+        pvGender.dataSource = self
+        pvGender.delegate = self
+        inputView = pvGender
+        
+        crossButtonView.contentMode = .center
+        crossButtonView.setImage(UIImage(named: ""), for: UIControl.State.normal)
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: Override
+    
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(origin: CGPoint(x: self.bounds.width - CGFloat(padding * 4), y: CGFloat(padding * 1.6)), size: CGSize(width: CGFloat(padding) * 2, height: bounds.height -  CGFloat(padding * 3.2)))
+        
+    }
+    
+    override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: paddings)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: paddings)
+    }
+    
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return bounds.inset(by: paddings)
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: UITextFieldDelegate
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return false
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if selectedOption == nil {
+            selectedOption = pvOptions.first
+        }
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: UIPickerViewDataSource
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pvOptions.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pvOptions[row]
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: UIPickerViewDelegate
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedOption = pvOptions[row]
+    }
+    
+    //------------------------------------------------------
+    
+    //MARK: Init
+    
+    /// common text field layout for inputs
+    ///
+    /// - Parameter aDecoder: aDecoder description
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.delegate = self
+    }
+}
 
 class SSGenderTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
@@ -676,7 +814,8 @@ class SSGenderTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDat
     private let crossButtonView = UIButton(frame: CGRect(origin: CGPoint.zero, size: crossButtonSize))
     
     let pvGender = UIPickerView()
-    let pvOptions: [String] = ["Not to Answer", "Male", "Female"]
+    //,"Others"
+    let pvOptions: [String] = ["Male","Female"]
     var selectedOption: String? {
         didSet {
             self.text = selectedOption

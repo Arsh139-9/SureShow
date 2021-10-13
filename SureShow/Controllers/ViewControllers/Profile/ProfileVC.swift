@@ -96,6 +96,20 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
         controller.getProfileResp = getProfileResp
         push(controller: controller)
     }
+    func generatingParameters() -> [String:AnyObject] {
+        var parameters:[String:AnyObject] = [:]
+       
+        parameters["usertype"] = "1"  as AnyObject
+        
+        //        parameters["device_type"] = "1"  as AnyObject
+        //        var deviceToken  = getSAppDefault(key: "DeviceToken") as? String ?? ""
+        //        if deviceToken == ""{
+        //            deviceToken = "123"
+        //        }
+        //        parameters["device_token"] = deviceToken  as AnyObject
+        print(parameters)
+        return parameters
+    }
     open func getProfileApi(){
         DispatchQueue.main.async {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)

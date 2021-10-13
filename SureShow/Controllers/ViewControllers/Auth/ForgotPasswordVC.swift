@@ -112,7 +112,8 @@ class ForgotPasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate  {
     func generatingParameters() -> [String:AnyObject] {
         var parameters:[String:AnyObject] = [:]
         parameters["username"] = txtEmail.text  as AnyObject
-       
+        parameters["usertype"] = "1"  as AnyObject
+
         print(parameters)
         return parameters
     }

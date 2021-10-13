@@ -11,6 +11,7 @@
 		182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */; };
 		182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */; };
 		182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */; };
+		18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18479F5327170275006C789D /* GetRelationshipEntity.swift */; };
 		187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */; };
 		187DCD61270DBA7400579F16 /* ForgotPasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */; };
 		187DCD63270DBA9C00579F16 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD62270DBA9C00579F16 /* AppConstant.swift */; };
@@ -20,6 +21,8 @@
 		187DCD6B270DBD1500579F16 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6A270DBD1500579F16 /* AppDefaults.swift */; };
 		187DCD6D270DC9BE00579F16 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */; };
 		187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6E270DCBC600579F16 /* HelperMethods.swift */; };
+		18E9528C271577EA00AD0F50 /* HomeUserListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */; };
+		18E9528E271579ED00AD0F50 /* AddUserListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */; };
 		7C3CD8C526F8456A009E736B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C3CD8C326F8456A009E736B /* Localizable.strings */; };
 		7C3CD8DE26F84FA4009E736B /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C3CD8DA26F84FA3009E736B /* Poppins-Regular.ttf */; };
 		7C3CD8DF26F84FA4009E736B /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C3CD8DB26F84FA3009E736B /* Poppins-SemiBold.ttf */; };
@@ -47,11 +50,9 @@
 		7C8EFEB226F8BB42000CFAE4 /* AddQueueVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEB126F8BB42000CFAE4 /* AddQueueVC.swift */; };
 		7C8EFEB526F8BB77000CFAE4 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */; };
 		7C8EFEB826F8BBAC000CFAE4 /* EditPatientDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEB726F8BBAC000CFAE4 /* EditPatientDetailVC.swift */; };
-		7C8EFEC326F8BC02000CFAE4 /* LoadingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEBC26F8BC02000CFAE4 /* LoadingManager.swift */; };
 		7C8EFEC426F8BC02000CFAE4 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEBD26F8BC02000CFAE4 /* ValidationManager.swift */; };
 		7C8EFEC626F8BC02000CFAE4 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEC026F8BC02000CFAE4 /* NavigationManager.swift */; };
 		7C8EFEC726F8BC02000CFAE4 /* DateTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEC126F8BC02000CFAE4 /* DateTimeManager.swift */; };
-		7C8EFECB26F8BE20000CFAE4 /* LoadingIndicatorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFECA26F8BE20000CFAE4 /* LoadingIndicatorVC.swift */; };
 		7C8EFECE26F99C23000CFAE4 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFECD26F99C23000CFAE4 /* TabBarVC.swift */; };
 		7C8EFED126F99C7F000CFAE4 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFED026F99C7F000CFAE4 /* HomeVC.swift */; };
 		7C8EFED426F99CDC000CFAE4 /* AppointmentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFED326F99CDC000CFAE4 /* AppointmentVC.swift */; };
@@ -82,6 +83,9 @@
 		7C8EFF2726F9E186000CFAE4 /* SSAssistiveTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFF1F26F9E186000CFAE4 /* SSAssistiveTouchView.swift */; };
 		7C8EFF2826F9E186000CFAE4 /* SSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFF2026F9E186000CFAE4 /* SSButton.swift */; };
 		E2E6A689076EF71C24B4325C /* Pods_SureShow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1692A9E4CF51757879B2A2E /* Pods_SureShow.framework */; };
+		FCE2AAF12711CFCD001830C2 /* HomeChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */; };
+		FCE2AAF32711D91B001830C2 /* AppointmentChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */; };
+		FCE2AAF52712DF38001830C2 /* ProfileChild.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +94,7 @@
 		182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryTVCell.swift; sourceTree = "<group>"; };
 		182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryVC.swift; sourceTree = "<group>"; };
 		182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
+		18479F5327170275006C789D /* GetRelationshipEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRelationshipEntity.swift; sourceTree = "<group>"; };
 		187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
 		187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEntity.swift; sourceTree = "<group>"; };
 		187DCD62270DBA9C00579F16 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
@@ -99,6 +104,8 @@
 		187DCD6A270DBD1500579F16 /* AppDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		187DCD6E270DCBC600579F16 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserListEntity.swift; sourceTree = "<group>"; };
+		18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserListEntity.swift; sourceTree = "<group>"; };
 		5706CF670E769D051E04F146 /* Pods-SureShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SureShow.release.xcconfig"; path = "Target Support Files/Pods-SureShow/Pods-SureShow.release.xcconfig"; sourceTree = "<group>"; };
 		7C3CD8C426F8456A009E736B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7C3CD8DA26F84FA3009E736B /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
@@ -129,11 +136,9 @@
 		7C8EFEB126F8BB42000CFAE4 /* AddQueueVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueueVC.swift; sourceTree = "<group>"; };
 		7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		7C8EFEB726F8BBAC000CFAE4 /* EditPatientDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPatientDetailVC.swift; sourceTree = "<group>"; };
-		7C8EFEBC26F8BC02000CFAE4 /* LoadingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingManager.swift; sourceTree = "<group>"; };
 		7C8EFEBD26F8BC02000CFAE4 /* ValidationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		7C8EFEC026F8BC02000CFAE4 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		7C8EFEC126F8BC02000CFAE4 /* DateTimeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeManager.swift; sourceTree = "<group>"; };
-		7C8EFECA26F8BE20000CFAE4 /* LoadingIndicatorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorVC.swift; sourceTree = "<group>"; };
 		7C8EFECD26F99C23000CFAE4 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		7C8EFED026F99C7F000CFAE4 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		7C8EFED326F99CDC000CFAE4 /* AppointmentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentVC.swift; sourceTree = "<group>"; };
@@ -164,6 +169,9 @@
 		7C8EFF1F26F9E186000CFAE4 /* SSAssistiveTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSAssistiveTouchView.swift; sourceTree = "<group>"; };
 		7C8EFF2026F9E186000CFAE4 /* SSButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSButton.swift; sourceTree = "<group>"; };
 		E1692A9E4CF51757879B2A2E /* Pods_SureShow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SureShow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeChild.storyboard; sourceTree = "<group>"; };
+		FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentChild.storyboard; sourceTree = "<group>"; };
+		FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileChild.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +186,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18CE59122714027700DEAE34 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFED026F99C7F000CFAE4 /* HomeVC.swift */,
+				7C8EFEDF26F9AB08000CFAE4 /* PatientDetailVC.swift */,
+				7C8EFEAE26F8BB1A000CFAE4 /* AddPatientVC.swift */,
+				7C8EFEB726F8BBAC000CFAE4 /* EditPatientDetailVC.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		18CE5913271402CF00DEAE34 /* Appointment */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFED326F99CDC000CFAE4 /* AppointmentVC.swift */,
+				7C8EFEDC26F9A899000CFAE4 /* AppointmentDetailVC.swift */,
+				7C8EFEB126F8BB42000CFAE4 /* AddQueueVC.swift */,
+				182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */,
+			);
+			path = Appointment;
+			sourceTree = "<group>";
+		};
+		18CE59142714033800DEAE34 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFED626F99D2D000CFAE4 /* NotificationVC.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		18CE59152714036F00DEAE34 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFED926F99D5E000CFAE4 /* ProfileVC.swift */,
+				7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */,
+				7C8EFF0D26F9D2F5000CFAE4 /* AboutVC.swift */,
+				7C8EFF1026F9D323000CFAE4 /* PrivacyVC.swift */,
+				7C8EFF1326F9DE7F000CFAE4 /* ServiceVC.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		18CE5916271403B400DEAE34 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFEA226F8BA2E000CFAE4 /* LogInVC.swift */,
+				7C8EFEA526F8BA65000CFAE4 /* SignUpVC.swift */,
+				7C8EFEA826F8BA90000CFAE4 /* ForgotPasswordVC.swift */,
+				7C8EFEAB26F8BAC7000CFAE4 /* ChangePasswordVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		18CE59172714040000DEAE34 /* RootTab */ = {
+			isa = PBXGroup;
+			children = (
+				7C8EFECD26F99C23000CFAE4 /* TabBarVC.swift */,
+			);
+			path = RootTab;
+			sourceTree = "<group>";
+		};
 		6675C28C33E6B7095A6E0ABA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +351,9 @@
 				187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */,
 				187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */,
 				182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */,
-				7C692D5126FB1B23005608C3 /* AppoitmentModal */,
+				18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */,
+				18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */,
+				18479F5327170275006C789D /* GetRelationshipEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +372,9 @@
 			children = (
 				7C50968126F5ABC80058E146 /* LaunchScreen.storyboard */,
 				7C50967C26F5ABC60058E146 /* Main.storyboard */,
+				FCE2AAF02711CFCD001830C2 /* HomeChild.storyboard */,
+				FCE2AAF22711D91B001830C2 /* AppointmentChild.storyboard */,
+				FCE2AAF42712DF38001830C2 /* ProfileChild.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -323,40 +397,26 @@
 			isa = PBXGroup;
 			children = (
 				7C5096E526F5AE7C0058E146 /* Views */,
-				7C50969926F5AD330058E146 /* Cell */,
-				7C50969826F5AD2A0058E146 /* VC */,
+				7C50969926F5AD330058E146 /* Cells */,
+				7C50969826F5AD2A0058E146 /* ViewControllers */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		7C50969826F5AD2A0058E146 /* VC */ = {
+		7C50969826F5AD2A0058E146 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7C8EFF0D26F9D2F5000CFAE4 /* AboutVC.swift */,
-				7C8EFEAE26F8BB1A000CFAE4 /* AddPatientVC.swift */,
-				7C8EFEB126F8BB42000CFAE4 /* AddQueueVC.swift */,
-				7C8EFEDC26F9A899000CFAE4 /* AppointmentDetailVC.swift */,
-				7C8EFED326F99CDC000CFAE4 /* AppointmentVC.swift */,
-				7C8EFEB726F8BBAC000CFAE4 /* EditPatientDetailVC.swift */,
-				7C8EFED026F99C7F000CFAE4 /* HomeVC.swift */,
-				7C8EFECA26F8BE20000CFAE4 /* LoadingIndicatorVC.swift */,
-				7C8EFEA226F8BA2E000CFAE4 /* LogInVC.swift */,
-				7C8EFEA526F8BA65000CFAE4 /* SignUpVC.swift */,
-				7C8EFEA826F8BA90000CFAE4 /* ForgotPasswordVC.swift */,
-				7C8EFEAB26F8BAC7000CFAE4 /* ChangePasswordVC.swift */,
-				7C8EFED626F99D2D000CFAE4 /* NotificationVC.swift */,
-				7C8EFEDF26F9AB08000CFAE4 /* PatientDetailVC.swift */,
-				7C8EFF1026F9D323000CFAE4 /* PrivacyVC.swift */,
-				7C8EFED926F99D5E000CFAE4 /* ProfileVC.swift */,
-				7C8EFEB426F8BB77000CFAE4 /* EditProfileVC.swift */,
-				7C8EFF1326F9DE7F000CFAE4 /* ServiceVC.swift */,
-				7C8EFECD26F99C23000CFAE4 /* TabBarVC.swift */,
-				182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */,
+				18CE59172714040000DEAE34 /* RootTab */,
+				18CE5916271403B400DEAE34 /* Auth */,
+				18CE59122714027700DEAE34 /* Home */,
+				18CE5913271402CF00DEAE34 /* Appointment */,
+				18CE59142714033800DEAE34 /* Notification */,
+				18CE59152714036F00DEAE34 /* Profile */,
 			);
-			path = VC;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		7C50969926F5AD330058E146 /* Cell */ = {
+		7C50969926F5AD330058E146 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				7C8EFEEC26F9B899000CFAE4 /* AppointmentConfirmedTVCell.swift */,
@@ -367,7 +427,7 @@
 				7C8EFEF226F9BBAF000CFAE4 /* QueueTVCell.swift */,
 				182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */,
 			);
-			path = Cell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		7C50969A26F5AD3D0058E146 /* Resources */ = {
@@ -395,20 +455,12 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7C692D5126FB1B23005608C3 /* AppoitmentModal */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AppoitmentModal;
-			sourceTree = "<group>";
-		};
 		7C8EFEBA26F8BC02000CFAE4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
 				187DCD66270DBAAB00579F16 /* Validation Managers.swift */,
 				7C8EFEC126F8BC02000CFAE4 /* DateTimeManager.swift */,
 				7C692D6D26FC62FC005608C3 /* DisplayAlertManager.swift */,
-				7C8EFEBC26F8BC02000CFAE4 /* LoadingManager.swift */,
 				7C8EFEC026F8BC02000CFAE4 /* NavigationManager.swift */,
 				7C692D7126FC6816005608C3 /* PreferenceManager.swift */,
 				7C8EFEBD26F8BC02000CFAE4 /* ValidationManager.swift */,
@@ -504,13 +556,16 @@
 				7C3CD8C526F8456A009E736B /* Localizable.strings in Resources */,
 				7C8EFF0426F9C658000CFAE4 /* NotificationTVCell.xib in Resources */,
 				7C8EFEF526F9BBAF000CFAE4 /* QueueTVCell.xib in Resources */,
+				FCE2AAF32711D91B001830C2 /* AppointmentChild.storyboard in Resources */,
 				7C3CD8E126F84FA4009E736B /* Poppins-Light.ttf in Resources */,
 				7C50968026F5ABC80058E146 /* Assets.xcassets in Resources */,
+				FCE2AAF12711CFCD001830C2 /* HomeChild.storyboard in Resources */,
 				7C8EFEEF26F9B899000CFAE4 /* AppointmentConfirmedTVCell.xib in Resources */,
 				182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */,
 				7C3CD8DF26F84FA4009E736B /* Poppins-SemiBold.ttf in Resources */,
 				7C8EFEE626F9AF4E000CFAE4 /* HomeTVCell.xib in Resources */,
 				7C50967E26F5ABC60058E146 /* Main.storyboard in Resources */,
+				FCE2AAF52712DF38001830C2 /* ProfileChild.storyboard in Resources */,
 				7C3CD8DE26F84FA4009E736B /* Poppins-Regular.ttf in Resources */,
 				7C8EFF0A26F9CAE2000CFAE4 /* ProfileTVCell.xib in Resources */,
 			);
@@ -565,6 +620,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E9528C271577EA00AD0F50 /* HomeUserListEntity.swift in Sources */,
 				187DCD61270DBA7400579F16 /* ForgotPasswordEntity.swift in Sources */,
 				7C8EFEB226F8BB42000CFAE4 /* AddQueueVC.swift in Sources */,
 				7C8EFED726F99D2D000CFAE4 /* NotificationVC.swift in Sources */,
@@ -573,11 +629,11 @@
 				7C5096A826F5ADD00058E146 /* LocalizableConstants.swift in Sources */,
 				187DCD6B270DBD1500579F16 /* AppDefaults.swift in Sources */,
 				187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */,
-				7C8EFECB26F8BE20000CFAE4 /* LoadingIndicatorVC.swift in Sources */,
 				7C692D6E26FC62FC005608C3 /* DisplayAlertManager.swift in Sources */,
 				182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */,
 				7C8EFEC626F8BC02000CFAE4 /* NavigationManager.swift in Sources */,
 				7C8EFEAC26F8BAC7000CFAE4 /* ChangePasswordVC.swift in Sources */,
+				18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */,
 				7C692D4C26FAEC9A005608C3 /* BaseVC.swift in Sources */,
 				187DCD6D270DC9BE00579F16 /* AFWrapperClass.swift in Sources */,
 				7C8EFF2726F9E186000CFAE4 /* SSAssistiveTouchView.swift in Sources */,
@@ -589,7 +645,6 @@
 				7C8EFEEE26F9B899000CFAE4 /* AppointmentConfirmedTVCell.swift in Sources */,
 				187DCD69270DBAF000579F16 /* AppAlert.swift in Sources */,
 				7C50967726F5ABC60058E146 /* AppDelegate.swift in Sources */,
-				7C8EFEC326F8BC02000CFAE4 /* LoadingManager.swift in Sources */,
 				7C8EFEDD26F9A899000CFAE4 /* AppointmentDetailVC.swift in Sources */,
 				7C8EFEFA26F9BD80000CFAE4 /* PendingTVCell.swift in Sources */,
 				7C8EFEF426F9BBAF000CFAE4 /* QueueTVCell.swift in Sources */,
@@ -598,6 +653,7 @@
 				7C5096A526F5ADA00058E146 /* AppExtensions.swift in Sources */,
 				7C8EFEAF26F8BB1A000CFAE4 /* AddPatientVC.swift in Sources */,
 				7C8EFF1426F9DE7F000CFAE4 /* ServiceVC.swift in Sources */,
+				18E9528E271579ED00AD0F50 /* AddUserListEntity.swift in Sources */,
 				7C692D7226FC6816005608C3 /* PreferenceManager.swift in Sources */,
 				7C5096B126F5ADDD0058E146 /* AppFunctions.swift in Sources */,
 				187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */,
@@ -779,18 +835,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Add.SureShow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnowpatient.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -802,18 +858,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Add.SureShow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnowpatient.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dist;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -158,27 +158,36 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         
         return true
     }
-    
+    func flag(country:String) -> String {
+        let base = 127397
+        var usv = String.UnicodeScalarView()
+        for i in country.utf16 {
+            usv.append(UnicodeScalar(base + Int(i))!)
+        }
+        return String(usv)
+    }
     //------------------------------------------------------
     
     //MARK: Action
     @IBAction func countryCodePickerBtnAction(_ sender: Any) {
- 
+        
+        
+        
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] (country: Country) in
-            
+
             guard let self = self else { return }
-            
+
             let selectedCountryCode = country.dialingCode
 //            let selectedCountryName = self.flag(country:country.countryCode)
             let selectedCountryVal = "\(selectedCountryCode ?? "")"
             self.countryCodeLbl.text = selectedCountryVal
 //            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
-            
-            setAppDefaults(country.dialingCode, key: "countryName")
-            
-            
+
+            setAppDefaults(country.countryName, key: "countryName")
+
+
         }
-        
+
         countryController.detailColor = UIColor.red
         
     }
@@ -222,8 +231,10 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         parameters["password"] = txtPswrd.text  as AnyObject
         parameters["first_name"] = txtFirstName.text  as AnyObject
         parameters["last_name"] = txtLastName.text  as AnyObject
-        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
-        
+        parameters["cellno"] = "\(txtPhoneNum.text ?? "")" as AnyObject
+        parameters["countrycode"] = (getSAppDefault(key: "countryName") as? String ?? "")  as AnyObject
+        parameters["usertype"] = "1" as AnyObject
+
         print(parameters)
         return parameters
     }
@@ -325,10 +336,11 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             return
         }
         countryCodeLbl.text = country.dialingCode
-//        countryCodeBtn.setTitle(country.countryCode, for: .highlighted)
+
         countryCodeBtn.clipsToBounds = true
-        //        setAppDefaults(country.countryName, key: "countryName")
-        setAppDefaults("+1", key: "countryName")
+  
+        setAppDefaults("United States", key: "countryName")
+
     }
     
     //------------------------------------------------------

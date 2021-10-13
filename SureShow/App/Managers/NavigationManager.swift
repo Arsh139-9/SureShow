@@ -11,6 +11,10 @@ import UIKit
 struct SSStoryboard {
         
     public static let main: String = "Main"
+    public static let homeChild: String = "HomeChild"
+    public static let appointmentChild: String = "AppointmentChild"
+    public static let profileChild: String = "ProfileChild"
+
  
 }
 
@@ -28,6 +32,10 @@ class NavigationManager: NSObject {
     //MARK: Storyboards
     
     let mainStoryboard = UIStoryboard(name: SSStoryboard.main, bundle: Bundle.main)
+    let homeChildStoryboard = UIStoryboard(name: SSStoryboard.homeChild, bundle: Bundle.main)
+    let appoointmentChildStoryboard = UIStoryboard(name: SSStoryboard.appointmentChild, bundle: Bundle.main)
+    let profileChildStoryboard = UIStoryboard(name: SSStoryboard.profileChild, bundle: Bundle.main)
+
 //    let loaderStoryboard = UIStoryboard(name: SSStoryboard.loader, bundle: Bundle.main)
     
     //------------------------------------------------------
@@ -69,19 +77,19 @@ class NavigationManager: NSObject {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: ChangePasswordVC.self)) as! ChangePasswordVC
     }
     public var editProfileVC: EditProfileVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: EditProfileVC.self)) as! EditProfileVC
+        return profileChildStoryboard.instantiateViewController(withIdentifier: String(describing: EditProfileVC.self)) as! EditProfileVC
     }
     public var signUpVC: SignUpVC {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: SignUpVC.self)) as! SignUpVC
     }
     public var addQueueVC: AddQueueVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AddQueueVC.self)) as! AddQueueVC
+        return appoointmentChildStoryboard.instantiateViewController(withIdentifier: String(describing: AddQueueVC.self)) as! AddQueueVC
     }
     public var editPatientDetailVC: EditPatientDetailVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: EditPatientDetailVC.self)) as! EditPatientDetailVC
+        return homeChildStoryboard.instantiateViewController(withIdentifier: String(describing: EditPatientDetailVC.self)) as! EditPatientDetailVC
     }
     public var addPatientVC: AddPatientVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AddPatientVC.self)) as! AddPatientVC
+        return homeChildStoryboard.instantiateViewController(withIdentifier: String(describing: AddPatientVC.self)) as! AddPatientVC
     }
     public var homeVC: HomeVC {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: HomeVC.self)) as! HomeVC
@@ -99,22 +107,22 @@ class NavigationManager: NSObject {
         return mainStoryboard.instantiateViewController(withIdentifier: String(describing: TabBarVC.self)) as! TabBarVC
     }
     public var appointmentDetailVC: AppointmentDetailVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentDetailVC.self)) as! AppointmentDetailVC
+        return appoointmentChildStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentDetailVC.self)) as! AppointmentDetailVC
     }
     public var appointmentHistoryVC: AppointmentHistoryVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentHistoryVC.self)) as! AppointmentHistoryVC
+        return appoointmentChildStoryboard.instantiateViewController(withIdentifier: String(describing: AppointmentHistoryVC.self)) as! AppointmentHistoryVC
     }
     public var patientDetailVC: PatientDetailVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: PatientDetailVC.self)) as! PatientDetailVC
+        return homeChildStoryboard.instantiateViewController(withIdentifier: String(describing: PatientDetailVC.self)) as! PatientDetailVC
     }
     public var serviceVC: ServiceVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: ServiceVC.self)) as! ServiceVC
+        return profileChildStoryboard.instantiateViewController(withIdentifier: String(describing: ServiceVC.self)) as! ServiceVC
     }
     public var aboutVC: AboutVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: AboutVC.self)) as! AboutVC
+        return profileChildStoryboard.instantiateViewController(withIdentifier: String(describing: AboutVC.self)) as! AboutVC
     }
     public var privacyVC: PrivacyVC {
-        return mainStoryboard.instantiateViewController(withIdentifier: String(describing: PrivacyVC.self)) as! PrivacyVC
+        return profileChildStoryboard.instantiateViewController(withIdentifier: String(describing: PrivacyVC.self)) as! PrivacyVC
     }
     
 

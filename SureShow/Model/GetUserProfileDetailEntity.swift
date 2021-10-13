@@ -32,6 +32,7 @@ struct GetUserProfileData<T>{
     var image: String
     var first_name: String
     var last_name: String
+    var country_code: String
 
 
 
@@ -44,6 +45,7 @@ struct GetUserProfileData<T>{
         let image = dataDict["image"] as? String ?? ""
         let first_name = dataDict["first_name"] as? String ?? ""
         let last_name = dataDict["last_name"] as? String ?? ""
+        let country_code = dataDict["countrycode"] as? String ?? ""
 
         self.status = status
         self.message = alertMessage
@@ -52,6 +54,7 @@ struct GetUserProfileData<T>{
         self.image = image
         self.first_name = first_name
         self.last_name = last_name
+        self.country_code = country_code
 
 
     }

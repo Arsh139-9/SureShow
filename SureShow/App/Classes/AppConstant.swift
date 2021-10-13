@@ -26,10 +26,10 @@ struct WSMethods {
     static let getProfileDetails = "getProfileDetails.php"
     static let changePassword = "user/changepassword"
     static let resentVerficationEmail = "ResentVerficationEmail.php"
-    static let addBiWeeklyInventory = "AddBiWeeklyInventory.php"
-    static let getAllProduct = "GetAllProduct.php"
-    static let addProduct = "AddProduct.php"
-    static let getAllIngredient = "GetAllIngredient.php"
+    static let addPatient = "user/add-user"
+    static let getUserList = "user/getuser"
+    static let editUserDetail = "user/edit-user"
+    static let getRelationship = "user/get-relationship"
     static let getAllIngredientList = "GetAllIngredientList.php"
     static let getListOfItem = "GetListOfItem.php"
     static let addIngredient = "AddIngredient.php"
@@ -101,7 +101,7 @@ struct ViewControllerIdentifier {
 }
 struct StoryboardName {
     static let Main = "Main"
-    static let Setting = "Setting"
+    static let HomeChild = "HomeChild"
     static let BiweekelyInventory = "BiweekelyInventory"
     static let ProductIngredients = "ProductIngredients"
     static let BuildOrder = "BuildOrder"
