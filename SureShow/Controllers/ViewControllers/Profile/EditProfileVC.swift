@@ -134,8 +134,8 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         imgArray.append(compressedData)
         }
         //        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
-//,"type":"1"
-        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","email":txtEmail.text ?? "","cellno":"\(txtPhoneNum.text ?? "")","usertype":"1","countrycode":getSAppDefault(key: "countryName") as? String ?? ""] as [String : Any]
+
+        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","email":txtEmail.text ?? "","cellno":"\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editProfile
         
@@ -221,14 +221,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         
         
     }
-    func flag(country:String) -> String {
-        let base = 127397
-        var usv = String.UnicodeScalarView()
-        for i in country.utf16 {
-            usv.append(UnicodeScalar(base + Int(i))!)
-        }
-        return String(usv)
-    }
+    
     //------------------------------------------------------
     
     //MARK: Actions
@@ -239,10 +232,12 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             guard let self = self else { return }
             
             let selectedCountryCode = country.dialingCode
+            //            let selectedCountryName = self.flag(country:country.countryCode)
             let selectedCountryVal = "\(selectedCountryCode ?? "")"
             self.countryCodeLbl.text = selectedCountryVal
+            //            self.countryCodeBtn.setTitle(selectedCountryVal, for: .normal)
             
-            setAppDefaults(country.countryName, key: "countryName")
+            setAppDefaults(country.dialingCode, key: "countryName")
             
             
         }
@@ -343,7 +338,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         txtFirstName.text = getProfileResp?.first_name
         txtLastName.text = getProfileResp?.last_name
         txtEmail.text = getProfileResp?.email
-        txtPhoneNum.text = getProfileResp?.cellno
+      
         var sPhotoStr = getProfileResp?.image
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
@@ -353,13 +348,17 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         self.countryCodeBtn.clipsToBounds = true
     
        
-        if getProfileResp?.country_code != ""{
+        if getProfileResp?.cellno != ""{
+            let arr = getProfileResp?.cellno.components(separatedBy:"-")
+            
+            txtPhoneNum.text = arr?.count ?? 0 > 1 ? arr?[1] : arr?[0]
             for obj in CountryManager.shared.countries{
-                if obj.countryName == getProfileResp?.country_code{
+                if obj.dialingCode == arr?[0]{
                     let selectedCountryCode = obj.dialingCode
                     countryCodeLbl.text = selectedCountryCode
 
-                    setAppDefaults(obj.countryName, key: "countryName")
+//                    self.countryCodeBtn.setTitle(selectedCountryCode, for: .normal)
+                    setAppDefaults(obj.dialingCode, key: "countryName")
                     
                     break
                 }
@@ -369,14 +368,11 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             guard let country = CountryManager.shared.currentCountry else {
                 return
             }
-            let selectedCountryCode = country.dialingCode
-            countryCodeLbl.text = selectedCountryCode
+            countryCodeLbl.text = country.dialingCode
+            setAppDefaults("+1", key: "countryName")
 
-            setAppDefaults("United States", key: "countryName")
-            
+            //            setAppDefaults(country.countryName, key: "countryName")
         }
-        
-
         
     }
     override func viewDidLayoutSubviews() {
