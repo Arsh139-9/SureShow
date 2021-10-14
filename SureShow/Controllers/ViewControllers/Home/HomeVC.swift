@@ -15,7 +15,12 @@ class HomeVC: UIViewController {
     var HomeArray = [HomeData]()
     var homeUserListArr = [UserListData<AnyHashable>]()
     var relationshipListArr = [RelationshipListData<AnyHashable>]()
-
+    lazy var dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-YYYY"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        return formatter
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         tblHome.dataSource = self
@@ -32,8 +37,11 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       getUserListDataApi()
-        getRelationshipListApi()
+        
+            self.getUserListDataApi()
+            self.getRelationshipListApi()
+        
+        
     }
     
     func generatingParameters() -> [String:AnyObject] {
@@ -51,38 +59,24 @@ class HomeVC: UIViewController {
         return parameters
     }
     open func getRelationshipListApi(){
-//        DispatchQueue.main.async {
-//            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
-//        }
-        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-        
-        let headers: HTTPHeaders = [
-            .authorization(bearerToken: authToken)]
-        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.getRelationship, params:nil, headers: headers) { response in
-//            AFWrapperClass.svprogressHudDismiss(view: self)
+        ModalResponse().getRelationshipListApi(){ response in
             print(response)
             let getHomeListDataResp  = GetRelationshipData(dict:response as? [String : AnyHashable] ?? [:])
             let message = getHomeListDataResp?.message ?? ""
-            
             if let status = getHomeListDataResp?.status{
                 if status == 200{
                     self.relationshipListArr = getHomeListDataResp?.relationshipListArray ?? []
-                   
-                    //                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
-                    //
-                    //                    }
                 }
                 else if status == 401{
                     removeAppDefaults(key:"AuthToken")
                     appDel.logOut()
-                    
                 }
                 else{
                     alert(AppAlertTitle.appName.rawValue, message: message, view: self)
                 }
             }
             
-        } failure: { error in
+        } onFailure: { error in
             AFWrapperClass.svprogressHudDismiss(view: self)
             alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
         }
@@ -132,7 +126,7 @@ class HomeVC: UIViewController {
         vc.relationshipListArr = relationshipListArr
         self.navigationController?.pushViewController(vc, animated: true)
     }
-   
+    
 }
 
 extension HomeVC : UITableViewDelegate , UITableViewDataSource {
@@ -144,9 +138,11 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HomeTVCell", for: indexPath) as! HomeTVCell
         var sPhotoStr = homeUserListArr[indexPath.row].image
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        //        if sPhotoStr != ""{
         cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
-        cell.lblAge.text = "\(homeUserListArr[indexPath.row].dob) years old"
+        let birthday = dateFormatter.date(from: homeUserListArr[indexPath.row].dob)
+        let timeInterval = birthday?.timeIntervalSinceNow
+        let age = abs(Int(timeInterval! / 31556926.0))
+        cell.lblAge.text = "\(age) years old"
         cell.lblName.text = homeUserListArr[indexPath.row].name
         if homeUserListArr[indexPath.row].gender  == 1{
             cell.lblGender.text = "Male"
@@ -174,8 +170,8 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
         vc.parentGuardianName = homeUserListArr[indexPath.row].loginusername
         vc.appointmentDate = ""
         vc.appointmentTime = ""
-       
-        
+        vc.relationShipId = homeUserListArr[indexPath.row].relationship
+        vc.relationshipListArr = relationshipListArr
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

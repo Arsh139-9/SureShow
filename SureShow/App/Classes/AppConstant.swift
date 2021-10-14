@@ -18,27 +18,22 @@ let appScene = (UIApplication.shared.delegate as! SceneDelegate)
 
 
 
+
 struct WSMethods {
     static let signIn = "user/login"
     static let signUp = "user/signup"
-    static let addchildren = "addchildren.php"
-    static let getChildrenDetails = "getChildrenDetails.php"
-    static let getProfileDetails = "getProfileDetails.php"
     static let changePassword = "user/changepassword"
-    static let resentVerficationEmail = "ResentVerficationEmail.php"
+//    static let resentVerficationEmail = "ResentVerficationEmail.php"
     static let addPatient = "user/add-user"
     static let getUserList = "user/getuser"
     static let editUserDetail = "user/edit-user"
-    static let getRelationship = "user/get-relationship"
-    static let getAllIngredientList = "GetAllIngredientList.php"
-    static let getListOfItem = "GetListOfItem.php"
-    static let addIngredient = "AddIngredient.php"
-    static let addIngredientProductDetail = "AddIngredientProductDetail.php"
-    static let addMaping = "AddMaping.php"
-    static let matchMappingUnit = "MatchMappingUnit.php"
-    static let getAllBuildOrderDetail = "GetAllBuildOrderDetail.php"
-    static let addBuildOrder = "AddBuildOrder.php"
-    static let getNotificationDetailById = "GetNotificationDetailById.php"
+    static let getRelationshipList = "user/get-relationship"
+    static let getClinicList = "queue/clinic-list"
+    static let getBranchList = "queue/branch-list"
+    static let getProviderList = "queue/provider-list"
+    static let getDiseaseList = "queue/disease-list"
+
+    
     
     
     static let logOut = "user/logout"

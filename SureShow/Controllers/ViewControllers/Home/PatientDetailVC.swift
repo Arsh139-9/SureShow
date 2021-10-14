@@ -39,7 +39,14 @@ class PatientDetailVC : BaseVC {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         return formatter
     }()
-
+    
+    var relationShipId:Int?
+    
+    var relationshipListArr = [RelationshipListData<AnyHashable>]()
+    
+    
+    
+    
     //------------------------------------------------------
     
     //MARK: Memory Management Method
@@ -64,6 +71,8 @@ class PatientDetailVC : BaseVC {
         vc.id = id
         vc.userAge = userAge
         vc.userImage = userImage
+        vc.relationshipListArr = relationshipListArr
+        vc.relationShipId = relationShipId
         if userGender  == "Male"{
             vc.userGender = 1
         }else{
@@ -89,19 +98,18 @@ class PatientDetailVC : BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         userNameLbl.text = userName
-//        userAgeLbl.text = userAge
+        
         userGenderLbl.text = userGender
         parentGuardianNameLbl.text = parentGuardianName
         appointmentDateLbl.text = appointmentDate
         appointmentTimeLbl.text = appointmentTime
-      
+        
         
         let birthday = dateFormatter.date(from: userAge ?? "")
         let timeInterval = birthday?.timeIntervalSinceNow
         let age = abs(Int(timeInterval! / 31556926.0))
         userAgeLbl.text = "\(age) years old"
         userImage = userImage?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-        //        if sPhotoStr != ""{
         self.imgProfile.sd_setImage(with: URL(string: userImage ?? ""), placeholderImage:UIImage(named:"placeholderProfileImg"))
     }
     

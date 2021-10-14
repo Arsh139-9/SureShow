@@ -22,7 +22,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     @IBOutlet weak var callPopUpView: UIView!
     //    let appoitmentCases = AppoitmentListing()
     var needToshowInfoView: Bool = false
-    
+    var hospitalListArr = [HospitalListData<AnyHashable>]()
+
     //------------------------------------------------------
     
     //MARK: Memory Management Method
@@ -76,6 +77,31 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         updateUI()
         
     }
+    open func getHospitalListApi(){
+        ModalResponse().getHospitalListApi(){ response in
+            print(response)
+            let getHospitalDataResp  = GetHospitalData(dict:response as? [String : AnyHashable] ?? [:])
+            let message = getHospitalDataResp?.message ?? ""
+            if let status = getHospitalDataResp?.status{
+                if status == 200{
+                    self.hospitalListArr = getHospitalDataResp?.hospitalListArray ?? []
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } onFailure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+    }
+ 
+    
     
     func updateUI() {
         
@@ -247,6 +273,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     }
     @IBAction func btnAdd(_ sender: Any) {
         let controller = NavigationManager.shared.addQueueVC
+        controller.hospitalListArr = hospitalListArr
         push(controller: controller)
     }
     
@@ -266,6 +293,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        getHospitalListApi()
     }
     
     //------------------------------------------------------

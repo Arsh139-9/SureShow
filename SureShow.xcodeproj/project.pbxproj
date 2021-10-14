@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181578BC27181D0D00FBDE04 /* AppMultipleApisModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578BB27181D0D00FBDE04 /* AppMultipleApisModal.swift */; };
+		181578BE2718237800FBDE04 /* GetHospitalEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578BD2718237800FBDE04 /* GetHospitalEntity.swift */; };
+		181578C02718364600FBDE04 /* GetBranchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578BF2718364600FBDE04 /* GetBranchEntity.swift */; };
+		181578C227184C7A00FBDE04 /* GetProviderEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578C127184C7A00FBDE04 /* GetProviderEntity.swift */; };
+		181578C427185B7800FBDE04 /* GetDiseaseEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578C327185B7800FBDE04 /* GetDiseaseEntity.swift */; };
+		181578C627185F1200FBDE04 /* AppIBDesignableUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181578C527185F1200FBDE04 /* AppIBDesignableUI.swift */; };
 		182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182E2F5B270EFE1A000FC964 /* AppointmentHistoryTVCell.xib */; };
 		182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */; };
 		182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */; };
@@ -90,6 +96,12 @@
 
 /* Begin PBXFileReference section */
 		14BDB9F8457FA7347E74BDB7 /* Pods-SureShow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SureShow.debug.xcconfig"; path = "Target Support Files/Pods-SureShow/Pods-SureShow.debug.xcconfig"; sourceTree = "<group>"; };
+		181578BB27181D0D00FBDE04 /* AppMultipleApisModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMultipleApisModal.swift; sourceTree = "<group>"; };
+		181578BD2718237800FBDE04 /* GetHospitalEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHospitalEntity.swift; sourceTree = "<group>"; };
+		181578BF2718364600FBDE04 /* GetBranchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBranchEntity.swift; sourceTree = "<group>"; };
+		181578C127184C7A00FBDE04 /* GetProviderEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProviderEntity.swift; sourceTree = "<group>"; };
+		181578C327185B7800FBDE04 /* GetDiseaseEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDiseaseEntity.swift; sourceTree = "<group>"; };
+		181578C527185F1200FBDE04 /* AppIBDesignableUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppIBDesignableUI.swift; sourceTree = "<group>"; };
 		182E2F5B270EFE1A000FC964 /* AppointmentHistoryTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppointmentHistoryTVCell.xib; sourceTree = "<group>"; };
 		182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryTVCell.swift; sourceTree = "<group>"; };
 		182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryVC.swift; sourceTree = "<group>"; };
@@ -321,6 +333,7 @@
 		7C50968D26F5AC9A0058E146 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				181578C527185F1200FBDE04 /* AppIBDesignableUI.swift */,
 				187DCD68270DBAF000579F16 /* AppAlert.swift */,
 				187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */,
 				187DCD64270DBAA200579F16 /* RestManager.swift */,
@@ -334,6 +347,7 @@
 				7C5096B026F5ADDD0058E146 /* AppFunctions.swift */,
 				7C5096A726F5ADD00058E146 /* LocalizableConstants.swift */,
 				7C50967826F5ABC60058E146 /* SceneDelegate.swift */,
+				181578BB27181D0D00FBDE04 /* AppMultipleApisModal.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -354,6 +368,10 @@
 				18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */,
 				18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */,
 				18479F5327170275006C789D /* GetRelationshipEntity.swift */,
+				181578BD2718237800FBDE04 /* GetHospitalEntity.swift */,
+				181578BF2718364600FBDE04 /* GetBranchEntity.swift */,
+				181578C127184C7A00FBDE04 /* GetProviderEntity.swift */,
+				181578C327185B7800FBDE04 /* GetDiseaseEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -632,6 +650,7 @@
 				7C692D6E26FC62FC005608C3 /* DisplayAlertManager.swift in Sources */,
 				182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */,
 				7C8EFEC626F8BC02000CFAE4 /* NavigationManager.swift in Sources */,
+				181578C627185F1200FBDE04 /* AppIBDesignableUI.swift in Sources */,
 				7C8EFEAC26F8BAC7000CFAE4 /* ChangePasswordVC.swift in Sources */,
 				18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */,
 				7C692D4C26FAEC9A005608C3 /* BaseVC.swift in Sources */,
@@ -646,16 +665,20 @@
 				187DCD69270DBAF000579F16 /* AppAlert.swift in Sources */,
 				7C50967726F5ABC60058E146 /* AppDelegate.swift in Sources */,
 				7C8EFEDD26F9A899000CFAE4 /* AppointmentDetailVC.swift in Sources */,
+				181578C227184C7A00FBDE04 /* GetProviderEntity.swift in Sources */,
 				7C8EFEFA26F9BD80000CFAE4 /* PendingTVCell.swift in Sources */,
 				7C8EFEF426F9BBAF000CFAE4 /* QueueTVCell.swift in Sources */,
 				7C8EFEC426F8BC02000CFAE4 /* ValidationManager.swift in Sources */,
 				7C8EFF2126F9E186000CFAE4 /* SSLabel.swift in Sources */,
 				7C5096A526F5ADA00058E146 /* AppExtensions.swift in Sources */,
 				7C8EFEAF26F8BB1A000CFAE4 /* AddPatientVC.swift in Sources */,
+				181578C02718364600FBDE04 /* GetBranchEntity.swift in Sources */,
 				7C8EFF1426F9DE7F000CFAE4 /* ServiceVC.swift in Sources */,
+				181578C427185B7800FBDE04 /* GetDiseaseEntity.swift in Sources */,
 				18E9528E271579ED00AD0F50 /* AddUserListEntity.swift in Sources */,
 				7C692D7226FC6816005608C3 /* PreferenceManager.swift in Sources */,
 				7C5096B126F5ADDD0058E146 /* AppFunctions.swift in Sources */,
+				181578BC27181D0D00FBDE04 /* AppMultipleApisModal.swift in Sources */,
 				187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */,
 				7C8EFF2826F9E186000CFAE4 /* SSButton.swift in Sources */,
 				182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */,
@@ -666,6 +689,7 @@
 				187DCD67270DBAAB00579F16 /* Validation Managers.swift in Sources */,
 				187DCD65270DBAA200579F16 /* RestManager.swift in Sources */,
 				7C5096E826F5AE7C0058E146 /* SegmentView.swift in Sources */,
+				181578BE2718237800FBDE04 /* GetHospitalEntity.swift in Sources */,
 				7C50967926F5ABC60058E146 /* SceneDelegate.swift in Sources */,
 				7C50969F26F5AD960058E146 /* AppConstants.swift in Sources */,
 				7C8EFECE26F99C23000CFAE4 /* TabBarVC.swift in Sources */,

@@ -22,6 +22,8 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     @IBOutlet weak var imgProfile: UIImageView!
     @IBOutlet weak var txtGender: SSGenderTextField!
     @IBOutlet weak var viewGender: UIView!
+    @IBOutlet weak var txtUserRelationship: SSRelationshipTextField!
+    @IBOutlet weak var viewUserRelationship: UIView!
     
     var imgArray = [Data]()
     
@@ -30,6 +32,9 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     var userAge:String?
     var userImage:String?
     var userGender:Int?
+    var relationshipListArr = [RelationshipListData<AnyHashable>]()
+    var pvOptionArr = [String]()
+    var relationShipId:Int?
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var imagePickerVC: ImagePicker?
     var selectedImage: UIImage? {
@@ -59,17 +64,22 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     //MARK: Customs
     
     func setup() {
-        //        imgProfile.image = getPlaceholderImage()
         imagePickerVC = ImagePicker(presentationController: self, delegate: self)
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
-        
+        for obj in relationshipListArr {
+            if obj.id == relationShipId{
+                txtUserRelationship.text = obj.relationship_name
+                break
+            }
+        }
         
         
         txtName.delegate = self
         txtGender.delegate = self
         txtBirthDate.delegate = self
+        txtUserRelationship.delegate = self
         
         txtName.text = userName
         if userGender == 1{
@@ -81,6 +91,12 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         userImage = userImage?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
         self.imgProfile.sd_setImage(with: URL(string: userImage ?? ""), placeholderImage:UIImage(named:"placeholderProfileImg"))
+        txtUserRelationship.delegate = self
+        pvOptionArr.removeAll()
+        for obj in relationshipListArr {
+            pvOptionArr.append(obj.relationship_name)
+        }
+        txtUserRelationship.pvOptions = pvOptionArr
     }
     
     func validate() -> Bool {
@@ -104,7 +120,12 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             
             return false
         }
-        
+        if ValidationManager.shared.isEmpty(text: txtUserRelationship.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please select Relation" , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+        }
         return true
     }
     func genderValParamUpdate() -> String{
@@ -120,9 +141,15 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         if compressedData.isEmpty == false{
             imgArray.append(compressedData)
         }
-        //        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
-        //,"type":"1"
-        let paramds = ["id":id ?? 0,"name":txtName.text ?? "" ,"dob":txtBirthDate.text ?? "","gender":genderValParamUpdate()] as [String : Any]
+        
+        for obj in relationshipListArr {
+            if obj.relationship_name == txtUserRelationship.text{
+                relationShipId = obj.id
+                break
+            }
+        }
+        
+        let paramds = ["id":id ?? 0,"name":txtName.text ?? "" ,"dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editUserDetail
         
@@ -269,7 +296,8 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             viewBirthDate.borderColor =  SSColor.appButton
         case txtGender:
             viewGender.borderColor =  SSColor.appButton
-            
+        case txtUserRelationship:
+            viewUserRelationship.borderColor =  SSColor.appButton
         default:break
             
         }
@@ -284,7 +312,8 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             viewBirthDate.borderColor =  SSColor.appBlack
         case txtGender:
             viewGender.borderColor =  SSColor.appBlack
-            
+        case txtUserRelationship:
+            viewUserRelationship.borderColor =  SSColor.appButton
         default:break
         }
     }

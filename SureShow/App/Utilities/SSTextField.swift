@@ -676,20 +676,12 @@ class SSRelationshipTextField: SSMediumTextField, UITextFieldDelegate, UIPickerV
     let pvGender = UIPickerView()
     //,"Others"
    
-   
-    
-    let pvOptions: [String] = []
+
+    var pvOptions: [String] = []
 
     
     
-//    var pvOption = [String](){
-//        didSet {
-//            for obj in relationshipListArr {
-//                pvOption.append(obj.relationship_name)
-//
-//            }
-//        }
-//    }
+
     
     var selectedOption: String? {
         didSet {
@@ -939,7 +931,7 @@ class SSHospitalTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewD
     private let crossButtonView = UIButton(frame: CGRect(origin: CGPoint.zero, size: crossButtonSize))
     
     let pvGender = UIPickerView()
-    let pvOptions: [String] = [" Not to Answer", "Lorem", "Ipsum"]
+    var pvOptions: [String] = []
     var selectedOption: String? {
         didSet {
             self.text = selectedOption
@@ -1064,7 +1056,7 @@ class SSDoctorTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDat
     private let crossButtonView = UIButton(frame: CGRect(origin: CGPoint.zero, size: crossButtonSize))
     
     let pvDoctor = UIPickerView()
-    let pvOptions: [String] = ["Not to Answer", "Lorem", "Ipsum","New"]
+    var pvOptions: [String] = []
     var selectedOption: String? {
         didSet {
             self.text = selectedOption

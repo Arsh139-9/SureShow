@@ -77,6 +77,7 @@ struct UserListData<T>{
     var dob:String
     var gender:Int
     var loginusername:String
+    var relationship:Int
     var created_at:String
 
     init?(dataDict:[String:T]) {
@@ -88,7 +89,8 @@ struct UserListData<T>{
         let type = dataDict["type"] as? String ?? ""
         let dob = dataDict["dob"] as? String ?? ""
         let gender = dataDict["gender"] as? Int ?? 0
-        let loginusername = dataDict["loginusername"] as? String ?? ""
+        let loginusername = dataDict["loginuser_name"] as? String ?? ""
+        let relationship = dataDict["relationship"] as? Int ?? 0
         let created_at = dataDict["created_at"] as? String ?? ""
 
         
@@ -102,6 +104,7 @@ struct UserListData<T>{
         self.dob = dob
         self.gender = gender
         self.loginusername = loginusername
+        self.relationship = relationship
         self.created_at = created_at
 
     }

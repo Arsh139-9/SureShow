@@ -29,7 +29,8 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     var imgArray = [Data]()
     var childAdultStatus = String()
     var relationshipListArr = [RelationshipListData<AnyHashable>]()
-
+    var pvOptionArr = [String]()
+    var relationShipId:Int?
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var imagePickerVC: ImagePicker?
     var selectedImage: UIImage? {
@@ -69,7 +70,11 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
         txtBirth.delegate = self
         txtGender.delegate = self
         txtUserRelationship.delegate = self
-        txtUserRelationship.relationshipListArr = relationshipListArr
+        pvOptionArr.removeAll()
+        for obj in relationshipListArr {
+            pvOptionArr.append(obj.relationship_name)
+        }
+        txtUserRelationship.pvOptions = pvOptionArr
         
         childAdultStatus = "2"
         
@@ -123,9 +128,14 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
         if compressedData.isEmpty == false{
             imgArray.append(compressedData)
         }
-        //        parameters["cellno"] = "\(getSAppDefault(key: "countryName") as? String ?? "")-\(txtPhoneNum.text ?? "")" as AnyObject
-        //,"type":"1"
-        let paramds = ["name":txtName.text ?? "" ,"dob":txtBirth.text ?? "","gender":genderValParamUpdate(),"type":childAdultStatus] as [String : Any]
+        for obj in relationshipListArr {
+            if obj.relationship_name == txtUserRelationship.text{
+                relationShipId = obj.id
+                break
+            }
+        }
+        
+        let paramds = ["name":txtName.text ?? "" ,"dob":txtBirth.text ?? "","gender":genderValParamUpdate(),"type":childAdultStatus,"relationship":"\(relationShipId ?? 0)"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.addPatient
         
