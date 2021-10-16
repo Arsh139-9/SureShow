@@ -19,5 +19,6 @@ target 'SureShow' do
   pod "MonthYearPicker", '~> 4.0.2'
   pod 'SKCountryPicker'
   pod 'SVProgressHUD'
+  pod 'Firebase/Analytics'
 
 end

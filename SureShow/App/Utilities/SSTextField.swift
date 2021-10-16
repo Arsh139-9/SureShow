@@ -470,7 +470,7 @@ class SSDiseaseTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDa
     private let crossButtonView = UIButton(frame: CGRect(origin: CGPoint.zero, size: crossButtonSize))
     
     let pvGender = UIPickerView()
-    let pvOptions: [String] = ["Not to Answer", "Lorem", "Ipsum","New"]
+    let pvOptions: [String] = []
     var selectedOption: String? {
         didSet {
             self.text = selectedOption

@@ -16,7 +16,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var txtHospitalName: UITextField!
     @IBOutlet weak var txtDoctor: UITextField!
     @IBOutlet weak var viewDoctor: UIView!
-    @IBOutlet weak var viewDisease: UIView!
+    @IBOutlet weak var viewProvider: UIView!
     @IBOutlet weak var txtDisease: SSDiseaseTextField!
     
     @IBOutlet weak var txtProvider: UITextField!
@@ -30,6 +30,13 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     var hospitalId:Int?
     var branchId:Int?
     var globalPickerView = UIPickerView()
+    
+    var rightUserView: UIView {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        let imgView = UIImageView(image: UIImage(named: SSImageName.iconDropDown))
+        imgView.contentMode = .scaleAspectFit
+        return imgView
+    }
     //------------------------------------------------------
     
     //MARK: Memory Management Method
@@ -60,12 +67,27 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         txtDisease.delegate = self
         globalPickerView.delegate = self
         globalPickerView.dataSource = self
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
-        let barButtonItem1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
         
-        let buttons = [barButtonItem1, barButtonItem]
-        toolBar.setItems(buttons, animated: false)
+
+        let label = UILabel(frame: CGRect(x:0, y:0, width:300, height:19))
+        label.text = kAppName
+        label.center = CGPoint(x: view.frame.midX, y: view.frame.height)
+        label.textAlignment = NSTextAlignment.center
+        
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(closePicker))
+        let toolbarTitle = UIBarButtonItem(customView: label)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closePicker))
+        
+        
+//        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
+//        let barButtonItem1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+//        let barButtonItem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closePicker))
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
+        toolBar.setItems([cancelButton, toolbarTitle, doneButton], animated: false)
+
+//        let buttons = [barButtonItem1, barButtonItem,barButtonItem2]
+//        toolBar.setItems(buttons, animated: false)
         txtHospitalName.inputView = globalPickerView
         txtHospitalName.inputAccessoryView = toolBar
         txtDoctor.inputView = globalPickerView
@@ -76,6 +98,17 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         
         txtDisease.inputView = globalPickerView
         txtDisease.inputAccessoryView = toolBar
+        
+//        viewHospitalName .addSubview(rightUserView)
+        txtHospitalName.setupRightImage(imageName:SSImageName.iconDropDown)
+        txtDoctor.setupRightImage(imageName:SSImageName.iconDropDown)
+        txtProvider.setupRightImage(imageName:SSImageName.iconDropDown)
+
+//        txtHospitalName.rightView = rightUserView
+//        txtHospitalName.rightViewMode = .always
+        //        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
+        //        self.leftViewMode = .always
+        
 //        pvOptionArr.removeAll()
 //        for obj in hospitalListArr {
 //            pvOptionArr.append(obj.clinic_name)
@@ -240,17 +273,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-//        switch textField {
-//        case txtHospitalName:
-//            txtHospitalName.borderColor = SSColor.appButton
-//        case txtDoctor:
-//            txtDoctor.borderColor =  SSColor.appButton
-//        case txtDisease:
-//            txtDisease.borderColor =  SSColor.appButton
-//
-//        default:break
-//
-//        }
+
         if textField == txtHospitalName {
             txtHospitalName.borderColor = SSColor.appButton
         } else if textField == txtDoctor {
@@ -261,17 +284,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        switch textField {
-//
-//        case txtHospitalName:
-//            txtHospitalName.borderColor =  SSColor.appBlack
-//        case txtDoctor:
-//            txtDoctor.borderColor =  SSColor.appBlack
-//        case txtDisease:
-//            txtDisease.borderColor =  SSColor.appBlack
-//
-//        default:break
-//        }
+
         
         if textField == txtHospitalName {
             txtHospitalName.borderColor = SSColor.appBlack
@@ -344,18 +357,14 @@ extension AddQueueVC:UIPickerViewDelegate{
         if txtHospitalName.isFirstResponder {
             txtHospitalName.text = hospitalListArr[row].clinic_name
             getBranchListApi()
-//            currentStatusIndex = row
         } else if txtDoctor.isFirstResponder {
             txtDoctor.text = branchListArr[row].branch_name
             getProviderListApi()
-//            currentTypeIndex = row
         } else if txtProvider.isFirstResponder {
             txtProvider.text = providerListArr[row].name
-//            currentGearedIndex = row
         }
         else if txtDisease.isFirstResponder {
             txtDisease.text = diseaseListArr[row].disease_name
-            //            currentGearedIndex = row
         }
     }
 }

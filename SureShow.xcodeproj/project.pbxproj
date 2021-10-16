@@ -18,6 +18,7 @@
 		182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */; };
 		182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */; };
 		18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18479F5327170275006C789D /* GetRelationshipEntity.swift */; };
+		18506C2F271AEB6000125B9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18506C2E271AEB6000125B9A /* GoogleService-Info.plist */; };
 		187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */; };
 		187DCD61270DBA7400579F16 /* ForgotPasswordEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */; };
 		187DCD63270DBA9C00579F16 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD62270DBA9C00579F16 /* AppConstant.swift */; };
@@ -107,6 +108,7 @@
 		182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryVC.swift; sourceTree = "<group>"; };
 		182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
 		18479F5327170275006C789D /* GetRelationshipEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRelationshipEntity.swift; sourceTree = "<group>"; };
+		18506C2E271AEB6000125B9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
 		187DCD60270DBA7400579F16 /* ForgotPasswordEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordEntity.swift; sourceTree = "<group>"; };
 		187DCD62270DBA9C00579F16 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 				7C50969A26F5AD3D0058E146 /* Resources */,
 				7C50967F26F5ABC80058E146 /* Assets.xcassets */,
 				7C50968426F5ABC80058E146 /* Info.plist */,
+				18506C2E271AEB6000125B9A /* GoogleService-Info.plist */,
 			);
 			path = SureShow;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				7C50968026F5ABC80058E146 /* Assets.xcassets in Resources */,
 				FCE2AAF12711CFCD001830C2 /* HomeChild.storyboard in Resources */,
 				7C8EFEEF26F9B899000CFAE4 /* AppointmentConfirmedTVCell.xib in Resources */,
+				18506C2F271AEB6000125B9A /* GoogleService-Info.plist in Resources */,
 				182E2F5C270EFE1A000FC964 /* AppointmentHistoryTVCell.xib in Resources */,
 				7C3CD8DF26F84FA4009E736B /* Poppins-SemiBold.ttf in Resources */,
 				7C8EFEE626F9AF4E000CFAE4 /* HomeTVCell.xib in Resources */,
@@ -861,6 +865,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -884,6 +889,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
