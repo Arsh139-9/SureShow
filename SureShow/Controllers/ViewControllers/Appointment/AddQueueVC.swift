@@ -19,8 +19,12 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var viewProvider: UIView!
     @IBOutlet weak var txtDisease: SSDiseaseTextField!
     
+    @IBOutlet weak var txtPatientName: SSPatientTextField!
+    
+    
     @IBOutlet weak var txtProvider: UITextField!
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
+    var patientListArr = [PatientListData<AnyHashable>]()
     var hospitalListArr = [HospitalListData<AnyHashable>]()
     var branchListArr = [BranchListData<AnyHashable>]()
     var providerListArr = [ProviderListData<AnyHashable>]()
@@ -29,6 +33,12 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     var pvOptionArr = [String]()
     var hospitalId:Int?
     var branchId:Int?
+    var hospitalSId:Int?
+    var branchSId:Int?
+    var patientSId:Int?
+    var providerSId:Int?
+    var diseaseSId:Int?
+
     var globalPickerView = UIPickerView()
     
     var rightUserView: UIView {
@@ -60,11 +70,11 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
-        txtDisease.delegate = self
         txtDoctor.delegate = self
         txtHospitalName.delegate = self
         txtProvider.delegate = self
         txtDisease.delegate = self
+        txtPatientName.delegate = self
         globalPickerView.delegate = self
         globalPickerView.dataSource = self
         
@@ -99,6 +109,9 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         txtDisease.inputView = globalPickerView
         txtDisease.inputAccessoryView = toolBar
         
+        txtPatientName.inputView = globalPickerView
+        txtPatientName.inputAccessoryView = toolBar
+        
 //        viewHospitalName .addSubview(rightUserView)
         txtHospitalName.setupRightImage(imageName:SSImageName.iconDropDown)
         txtDoctor.setupRightImage(imageName:SSImageName.iconDropDown)
@@ -109,11 +122,11 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         //        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
         //        self.leftViewMode = .always
         
-//        pvOptionArr.removeAll()
-//        for obj in hospitalListArr {
-//            pvOptionArr.append(obj.clinic_name)
-//        }
-//        txtHospitalName.pvOptions = pvOptionArr
+        pvOptionArr.removeAll()
+        for obj in patientListArr {
+            pvOptionArr.append(obj.name)
+        }
+        txtPatientName.pvOptions = pvOptionArr
     }
   
     @objc func closePicker() {
@@ -121,9 +134,15 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         txtDoctor.resignFirstResponder()
         txtProvider.resignFirstResponder()
         txtDisease.resignFirstResponder()
-
+        txtPatientName.resignFirstResponder()
     }
     func validate() -> Bool {
+        if ValidationManager.shared.isEmpty(text: txtPatientName.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please select patient name." , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+        }
         
         if ValidationManager.shared.isEmpty(text: txtHospitalName.text) == true {
             showAlertMessage(title: kAppName.localized(), message: "Please select hospital name." , okButton: "Ok", controller: self) {
@@ -244,12 +263,64 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         }
     }
     
+    open func addQueueApi(){
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.addGetQueueList, params: generatingParameters(), headers: headers) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            let message = response["message"] as? String ?? ""
+            if let status = response["status"] as? Int {
+                if status == 200{
+                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } failure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+    }
+    func generatingParameters() -> [String:AnyObject] {
+        var parameters:[String:AnyObject] = [:]
+        parameters["clinic_id"] =  hospitalSId as AnyObject
+        parameters["branch_id"] = branchSId  as AnyObject
+        parameters["provider_id"] = providerSId  as AnyObject
+        parameters["disease_id"] = diseaseSId  as AnyObject
+        parameters["add_user_id"] = patientSId as AnyObject
+      
+//        parameters["usertype"] = "1" as AnyObject
+        
+        print(parameters)
+        return parameters
+    }
+    
     //------------------------------------------------------
     
     //MARK: Actions
     
     @IBAction func btnSave(_ sender: Any) {
-        validate()
+        if validate() == false {
+            return
+        }
+        else{
+            addQueueApi()
+        }
+        
     }
     @IBAction func btnBack(_ sender: Any) {
         self.pop()
@@ -273,8 +344,10 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-
-        if textField == txtHospitalName {
+        if textField == txtPatientName{
+            txtDisease.borderColor = SSColor.appButton
+        }
+        else if textField == txtHospitalName {
             txtHospitalName.borderColor = SSColor.appButton
         } else if textField == txtDoctor {
             txtDoctor.borderColor = SSColor.appButton
@@ -284,9 +357,10 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-
-        
-        if textField == txtHospitalName {
+        if textField == txtPatientName{
+            txtDisease.borderColor = SSColor.appBlack
+        }
+        else if textField == txtHospitalName {
             txtHospitalName.borderColor = SSColor.appBlack
             
         } else if textField == txtDoctor {
@@ -321,7 +395,11 @@ extension AddQueueVC:UIPickerViewDataSource{
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if txtHospitalName.isFirstResponder == true{
+    
+        if txtPatientName.isFirstResponder == true{
+            return patientListArr.count
+        }
+       else if txtHospitalName.isFirstResponder == true{
             return hospitalListArr.count
         }else if txtDoctor.isFirstResponder == true{
             return branchListArr.count
@@ -337,7 +415,10 @@ extension AddQueueVC:UIPickerViewDataSource{
         
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if txtHospitalName.isFirstResponder {
+        if txtPatientName.isFirstResponder == true{
+            return patientListArr[row].name
+        }
+        else if txtHospitalName.isFirstResponder {
             return hospitalListArr[row].clinic_name
         } else if txtDoctor.isFirstResponder {
             return branchListArr[row].branch_name
@@ -354,17 +435,29 @@ extension AddQueueVC:UIPickerViewDataSource{
 // MARK: UIPickerView Delegates
 extension AddQueueVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if txtHospitalName.isFirstResponder {
+        if txtPatientName.isFirstResponder == true{
+            txtPatientName.text = patientListArr[row].name
+            patientSId = patientListArr[row].id
+        }
+       else if txtHospitalName.isFirstResponder {
             txtHospitalName.text = hospitalListArr[row].clinic_name
+             hospitalSId = hospitalListArr[row].clinic_id
+
             getBranchListApi()
         } else if txtDoctor.isFirstResponder {
             txtDoctor.text = branchListArr[row].branch_name
+            branchSId = branchListArr[row].id
+
             getProviderListApi()
         } else if txtProvider.isFirstResponder {
             txtProvider.text = providerListArr[row].name
+            providerSId = providerListArr[row].id
+
         }
         else if txtDisease.isFirstResponder {
             txtDisease.text = diseaseListArr[row].disease_name
+            diseaseSId = diseaseListArr[row].id
+
         }
     }
 }

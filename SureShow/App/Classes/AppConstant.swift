@@ -32,7 +32,11 @@ struct WSMethods {
     static let getBranchList = "queue/branch-list"
     static let getProviderList = "queue/provider-list"
     static let getDiseaseList = "queue/disease-list"
+    static let getPatientList = "queue/patient-list"
+    static let addGetQueueList = "queue/queue"
+    static let deleteQueueList = "queue/delete-queue"
 
+    
     
     
     

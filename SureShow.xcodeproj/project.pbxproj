@@ -28,6 +28,8 @@
 		187DCD6B270DBD1500579F16 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6A270DBD1500579F16 /* AppDefaults.swift */; };
 		187DCD6D270DC9BE00579F16 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */; };
 		187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6E270DCBC600579F16 /* HelperMethods.swift */; };
+		18CA238A271ED29600212CEC /* GetPatientListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA2389271ED29600212CEC /* GetPatientListEntity.swift */; };
+		18CA238C271ED82E00212CEC /* AddQueueEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA238B271ED82E00212CEC /* AddQueueEntity.swift */; };
 		18E9528C271577EA00AD0F50 /* HomeUserListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */; };
 		18E9528E271579ED00AD0F50 /* AddUserListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */; };
 		7C3CD8C526F8456A009E736B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7C3CD8C326F8456A009E736B /* Localizable.strings */; };
@@ -118,6 +120,8 @@
 		187DCD6A270DBD1500579F16 /* AppDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		187DCD6E270DCBC600579F16 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		18CA2389271ED29600212CEC /* GetPatientListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientListEntity.swift; sourceTree = "<group>"; };
+		18CA238B271ED82E00212CEC /* AddQueueEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueueEntity.swift; sourceTree = "<group>"; };
 		18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserListEntity.swift; sourceTree = "<group>"; };
 		18E9528D271579ED00AD0F50 /* AddUserListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserListEntity.swift; sourceTree = "<group>"; };
 		5706CF670E769D051E04F146 /* Pods-SureShow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SureShow.release.xcconfig"; path = "Target Support Files/Pods-SureShow/Pods-SureShow.release.xcconfig"; sourceTree = "<group>"; };
@@ -375,6 +379,8 @@
 				181578BF2718364600FBDE04 /* GetBranchEntity.swift */,
 				181578C127184C7A00FBDE04 /* GetProviderEntity.swift */,
 				181578C327185B7800FBDE04 /* GetDiseaseEntity.swift */,
+				18CA2389271ED29600212CEC /* GetPatientListEntity.swift */,
+				18CA238B271ED82E00212CEC /* AddQueueEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -648,6 +654,7 @@
 				7C8EFED726F99D2D000CFAE4 /* NotificationVC.swift in Sources */,
 				7C8EFED126F99C7F000CFAE4 /* HomeVC.swift in Sources */,
 				7C8EFEA626F8BA65000CFAE4 /* SignUpVC.swift in Sources */,
+				18CA238C271ED82E00212CEC /* AddQueueEntity.swift in Sources */,
 				7C5096A826F5ADD00058E146 /* LocalizableConstants.swift in Sources */,
 				187DCD6B270DBD1500579F16 /* AppDefaults.swift in Sources */,
 				187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */,
@@ -704,6 +711,7 @@
 				182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */,
 				7C8EFF2626F9E186000CFAE4 /* SSDebouncer.swift in Sources */,
 				7C8EFF1126F9D323000CFAE4 /* PrivacyVC.swift in Sources */,
+				18CA238A271ED29600212CEC /* GetPatientListEntity.swift in Sources */,
 				7C8EFF0326F9C658000CFAE4 /* NotificationTVCell.swift in Sources */,
 				7C8EFEB526F8BB77000CFAE4 /* EditProfileVC.swift in Sources */,
 				7C8EFEB826F8BBAC000CFAE4 /* EditPatientDetailVC.swift in Sources */,
@@ -865,7 +873,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -889,7 +897,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 1.3;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

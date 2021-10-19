@@ -14,6 +14,9 @@ class QueueTVCell: UITableViewCell {
     @IBOutlet weak var lblAge: SSMediumLabel!
     @IBOutlet weak var lblName: SSSemiboldLabel!
     @IBOutlet weak var imgMain: UIImageView!
+    @IBOutlet weak var deleteQueueBtn: UIButton!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -119,6 +119,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window = UIWindow(frame: UIScreen.main.bounds)
         // Use the Firebase library to configure APIs.
         FirebaseApp.configure()
+        
+        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+            AnalyticsParameterItemID: "id-",
+            AnalyticsParameterItemName:"dfsfaf",
+            AnalyticsParameterContentType: "cont",
+        ])
         configureKeboard()
         getCustomFontDetails()
         configureNavigationBar()
