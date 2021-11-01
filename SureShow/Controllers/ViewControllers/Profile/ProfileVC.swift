@@ -127,7 +127,7 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
             if let status = self.getProfileResp?.status{
                 if status == 200{
                     DispatchQueue.main.async {
-                        self.userNameLbl.text = "\(self.getProfileResp?.first_name ?? "") \(self.getProfileResp?.last_name ?? "")"
+                        self.userNameLbl.text = "\(self.getProfileResp?.last_name ?? "") \(self.getProfileResp?.first_name ?? "")"
                         self.emailLbl.text = self.getProfileResp?.email ?? ""
                         var sPhotoStr = self.getProfileResp?.image ?? ""
                         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""

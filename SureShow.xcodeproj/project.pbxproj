@@ -17,6 +17,23 @@
 		182E2F5E270EFEEE000FC964 /* AppointmentHistoryTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */; };
 		182E2F60270EFFB7000FC964 /* AppointmentHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */; };
 		182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */; };
+		182FD6172727C96F00036528 /* FGLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6162727C96F00036528 /* FGLocationManager.swift */; };
+		182FD6192727C9DF00036528 /* RequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6182727C9DE00036528 /* RequestManager.swift */; };
+		182FD61D2727CA2500036528 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD61C2727CA2500036528 /* PreferenceManager.swift */; };
+		182FD6332727CC6900036528 /* BasicContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6322727CC6900036528 /* BasicContentView.swift */; };
+		182FD6352727CC6D00036528 /* BouncesContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6342727CC6D00036528 /* BouncesContentView.swift */; };
+		182FD6372727CC7100036528 /* IrregularityContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6362727CC7100036528 /* IrregularityContentView.swift */; };
+		182FD6422727CCEC00036528 /* ESTabBarItemContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD63B2727CCEC00036528 /* ESTabBarItemContentView.swift */; };
+		182FD6432727CCEC00036528 /* ESTabBarItemBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD63C2727CCEC00036528 /* ESTabBarItemBadgeView.swift */; };
+		182FD6442727CCEC00036528 /* ESTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD63D2727CCEC00036528 /* ESTabBarController.swift */; };
+		182FD6452727CCEC00036528 /* ESTabBarItemContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD63E2727CCEC00036528 /* ESTabBarItemContainer.swift */; };
+		182FD6462727CCEC00036528 /* ESTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD63F2727CCEC00036528 /* ESTabBar.swift */; };
+		182FD6472727CCEC00036528 /* ESTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6402727CCEC00036528 /* ESTabBarItem.swift */; };
+		182FD6482727CCEC00036528 /* ESTabBarItemMoreContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD6412727CCEC00036528 /* ESTabBarItemMoreContentView.swift */; };
+		182FD64B2727CF0000036528 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182FD64A2727CF0000036528 /* FloatRatingView.swift */; };
+		1835A0022722A36900CC71F6 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0012722A36900CC71F6 /* Api.swift */; };
+		1835A0042722A36D00CC71F6 /* ApiLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0032722A36C00CC71F6 /* ApiLinker.swift */; };
+		1835A0062722D29D00CC71F6 /* NotificationListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1835A0052722D29D00CC71F6 /* NotificationListEntity.swift */; };
 		18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18479F5327170275006C789D /* GetRelationshipEntity.swift */; };
 		18506C2F271AEB6000125B9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18506C2E271AEB6000125B9A /* GoogleService-Info.plist */; };
 		187DCD5F270DBA6500579F16 /* LoginSignUpEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */; };
@@ -28,6 +45,7 @@
 		187DCD6B270DBD1500579F16 /* AppDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6A270DBD1500579F16 /* AppDefaults.swift */; };
 		187DCD6D270DC9BE00579F16 /* AFWrapperClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */; };
 		187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187DCD6E270DCBC600579F16 /* HelperMethods.swift */; };
+		188007B227203C340058AA93 /* GetPendingListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188007B127203C340058AA93 /* GetPendingListEntity.swift */; };
 		18CA238A271ED29600212CEC /* GetPatientListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA2389271ED29600212CEC /* GetPatientListEntity.swift */; };
 		18CA238C271ED82E00212CEC /* AddQueueEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CA238B271ED82E00212CEC /* AddQueueEntity.swift */; };
 		18E9528C271577EA00AD0F50 /* HomeUserListEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */; };
@@ -50,7 +68,6 @@
 		7C692D4C26FAEC9A005608C3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C692D4B26FAEC9A005608C3 /* BaseVC.swift */; };
 		7C692D5626FB4272005608C3 /* SSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C692D5526FB4272005608C3 /* SSTextField.swift */; };
 		7C692D6E26FC62FC005608C3 /* DisplayAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C692D6D26FC62FC005608C3 /* DisplayAlertManager.swift */; };
-		7C692D7226FC6816005608C3 /* PreferenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C692D7126FC6816005608C3 /* PreferenceManager.swift */; };
 		7C8EFEA326F8BA2E000CFAE4 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEA226F8BA2E000CFAE4 /* LogInVC.swift */; };
 		7C8EFEA626F8BA65000CFAE4 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEA526F8BA65000CFAE4 /* SignUpVC.swift */; };
 		7C8EFEA926F8BA90000CFAE4 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8EFEA826F8BA90000CFAE4 /* ForgotPasswordVC.swift */; };
@@ -109,6 +126,23 @@
 		182E2F5D270EFEEE000FC964 /* AppointmentHistoryTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryTVCell.swift; sourceTree = "<group>"; };
 		182E2F5F270EFFB7000FC964 /* AppointmentHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentHistoryVC.swift; sourceTree = "<group>"; };
 		182E2F61270F2237000FC964 /* GetUserProfileDetailEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetUserProfileDetailEntity.swift; sourceTree = "<group>"; };
+		182FD6162727C96F00036528 /* FGLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FGLocationManager.swift; sourceTree = "<group>"; };
+		182FD6182727C9DE00036528 /* RequestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestManager.swift; sourceTree = "<group>"; };
+		182FD61C2727CA2500036528 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
+		182FD6322727CC6900036528 /* BasicContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicContentView.swift; sourceTree = "<group>"; };
+		182FD6342727CC6D00036528 /* BouncesContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BouncesContentView.swift; sourceTree = "<group>"; };
+		182FD6362727CC7100036528 /* IrregularityContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IrregularityContentView.swift; sourceTree = "<group>"; };
+		182FD63B2727CCEC00036528 /* ESTabBarItemContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarItemContentView.swift; sourceTree = "<group>"; };
+		182FD63C2727CCEC00036528 /* ESTabBarItemBadgeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarItemBadgeView.swift; sourceTree = "<group>"; };
+		182FD63D2727CCEC00036528 /* ESTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarController.swift; sourceTree = "<group>"; };
+		182FD63E2727CCEC00036528 /* ESTabBarItemContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarItemContainer.swift; sourceTree = "<group>"; };
+		182FD63F2727CCEC00036528 /* ESTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBar.swift; sourceTree = "<group>"; };
+		182FD6402727CCEC00036528 /* ESTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarItem.swift; sourceTree = "<group>"; };
+		182FD6412727CCEC00036528 /* ESTabBarItemMoreContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ESTabBarItemMoreContentView.swift; sourceTree = "<group>"; };
+		182FD64A2727CF0000036528 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
+		1835A0012722A36900CC71F6 /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		1835A0032722A36C00CC71F6 /* ApiLinker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiLinker.swift; sourceTree = "<group>"; };
+		1835A0052722D29D00CC71F6 /* NotificationListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListEntity.swift; sourceTree = "<group>"; };
 		18479F5327170275006C789D /* GetRelationshipEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRelationshipEntity.swift; sourceTree = "<group>"; };
 		18506C2E271AEB6000125B9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		187DCD5E270DBA6500579F16 /* LoginSignUpEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginSignUpEntity.swift; sourceTree = "<group>"; };
@@ -120,6 +154,7 @@
 		187DCD6A270DBD1500579F16 /* AppDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDefaults.swift; sourceTree = "<group>"; };
 		187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AFWrapperClass.swift; sourceTree = "<group>"; };
 		187DCD6E270DCBC600579F16 /* HelperMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		188007B127203C340058AA93 /* GetPendingListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingListEntity.swift; sourceTree = "<group>"; };
 		18CA2389271ED29600212CEC /* GetPatientListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPatientListEntity.swift; sourceTree = "<group>"; };
 		18CA238B271ED82E00212CEC /* AddQueueEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQueueEntity.swift; sourceTree = "<group>"; };
 		18E9528B271577EA00AD0F50 /* HomeUserListEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserListEntity.swift; sourceTree = "<group>"; };
@@ -145,7 +180,6 @@
 		7C692D4B26FAEC9A005608C3 /* BaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		7C692D5526FB4272005608C3 /* SSTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSTextField.swift; sourceTree = "<group>"; };
 		7C692D6D26FC62FC005608C3 /* DisplayAlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayAlertManager.swift; sourceTree = "<group>"; };
-		7C692D7126FC6816005608C3 /* PreferenceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceManager.swift; sourceTree = "<group>"; };
 		7C8EFEA226F8BA2E000CFAE4 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
 		7C8EFEA526F8BA65000CFAE4 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		7C8EFEA826F8BA90000CFAE4 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
@@ -204,6 +238,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		182FD6302727CA8100036528 /* ES Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				182FD63A2727CCD800036528 /* Source */,
+				182FD6312727CA9300036528 /* Content */,
+			);
+			path = "ES Tab Bar";
+			sourceTree = "<group>";
+		};
+		182FD6312727CA9300036528 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				182FD6322727CC6900036528 /* BasicContentView.swift */,
+				182FD6342727CC6D00036528 /* BouncesContentView.swift */,
+				182FD6362727CC7100036528 /* IrregularityContentView.swift */,
+			);
+			path = Content;
+			sourceTree = "<group>";
+		};
+		182FD63A2727CCD800036528 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				182FD63F2727CCEC00036528 /* ESTabBar.swift */,
+				182FD63D2727CCEC00036528 /* ESTabBarController.swift */,
+				182FD6402727CCEC00036528 /* ESTabBarItem.swift */,
+				182FD63C2727CCEC00036528 /* ESTabBarItemBadgeView.swift */,
+				182FD63E2727CCEC00036528 /* ESTabBarItemContainer.swift */,
+				182FD63B2727CCEC00036528 /* ESTabBarItemContentView.swift */,
+				182FD6412727CCEC00036528 /* ESTabBarItemMoreContentView.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		182FD6492727CEF400036528 /* Rating View */ = {
+			isa = PBXGroup;
+			children = (
+				182FD64A2727CF0000036528 /* FloatRatingView.swift */,
+			);
+			path = "Rating View";
+			sourceTree = "<group>";
+		};
+		1835A0002722A35900CC71F6 /* Api Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1835A0012722A36900CC71F6 /* Api.swift */,
+				1835A0032722A36C00CC71F6 /* ApiLinker.swift */,
+			);
+			path = "Api Manager";
+			sourceTree = "<group>";
+		};
 		18CE59122714027700DEAE34 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +398,7 @@
 		7C50967526F5ABC60058E146 /* SureShow */ = {
 			isa = PBXGroup;
 			children = (
+				1835A0002722A35900CC71F6 /* Api Manager */,
 				7C50968C26F5AC890058E146 /* App */,
 				7C50969226F5ACDA0058E146 /* Model */,
 				7C50969326F5ACE40058E146 /* Views */,
@@ -340,6 +425,7 @@
 		7C50968D26F5AC9A0058E146 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				182FD6162727C96F00036528 /* FGLocationManager.swift */,
 				181578C527185F1200FBDE04 /* AppIBDesignableUI.swift */,
 				187DCD68270DBAF000579F16 /* AppAlert.swift */,
 				187DCD6C270DC9BE00579F16 /* AFWrapperClass.swift */,
@@ -381,6 +467,8 @@
 				181578C327185B7800FBDE04 /* GetDiseaseEntity.swift */,
 				18CA2389271ED29600212CEC /* GetPatientListEntity.swift */,
 				18CA238B271ED82E00212CEC /* AddQueueEntity.swift */,
+				188007B127203C340058AA93 /* GetPendingListEntity.swift */,
+				1835A0052722D29D00CC71F6 /* NotificationListEntity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -433,8 +521,8 @@
 		7C50969826F5AD2A0058E146 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				18CE59172714040000DEAE34 /* RootTab */,
 				18CE5916271403B400DEAE34 /* Auth */,
+				18CE59172714040000DEAE34 /* RootTab */,
 				18CE59122714027700DEAE34 /* Home */,
 				18CE5913271402CF00DEAE34 /* Appointment */,
 				18CE59142714033800DEAE34 /* Notification */,
@@ -485,11 +573,12 @@
 		7C8EFEBA26F8BC02000CFAE4 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				182FD6182727C9DE00036528 /* RequestManager.swift */,
 				187DCD66270DBAAB00579F16 /* Validation Managers.swift */,
 				7C8EFEC126F8BC02000CFAE4 /* DateTimeManager.swift */,
 				7C692D6D26FC62FC005608C3 /* DisplayAlertManager.swift */,
+				182FD61C2727CA2500036528 /* PreferenceManager.swift */,
 				7C8EFEC026F8BC02000CFAE4 /* NavigationManager.swift */,
-				7C692D7126FC6816005608C3 /* PreferenceManager.swift */,
 				7C8EFEBD26F8BC02000CFAE4 /* ValidationManager.swift */,
 			);
 			path = Managers;
@@ -498,6 +587,8 @@
 		7C8EFF1826F9E186000CFAE4 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				182FD6492727CEF400036528 /* Rating View */,
+				182FD6302727CA8100036528 /* ES Tab Bar */,
 				7C8EFF1F26F9E186000CFAE4 /* SSAssistiveTouchView.swift */,
 				7C8EFF2026F9E186000CFAE4 /* SSButton.swift */,
 				7C8EFF1E26F9E186000CFAE4 /* SSDebouncer.swift */,
@@ -653,6 +744,7 @@
 				7C8EFEB226F8BB42000CFAE4 /* AddQueueVC.swift in Sources */,
 				7C8EFED726F99D2D000CFAE4 /* NotificationVC.swift in Sources */,
 				7C8EFED126F99C7F000CFAE4 /* HomeVC.swift in Sources */,
+				182FD6482727CCEC00036528 /* ESTabBarItemMoreContentView.swift in Sources */,
 				7C8EFEA626F8BA65000CFAE4 /* SignUpVC.swift in Sources */,
 				18CA238C271ED82E00212CEC /* AddQueueEntity.swift in Sources */,
 				7C5096A826F5ADD00058E146 /* LocalizableConstants.swift in Sources */,
@@ -665,6 +757,7 @@
 				7C8EFEAC26F8BAC7000CFAE4 /* ChangePasswordVC.swift in Sources */,
 				18479F5427170275006C789D /* GetRelationshipEntity.swift in Sources */,
 				7C692D4C26FAEC9A005608C3 /* BaseVC.swift in Sources */,
+				182FD6372727CC7100036528 /* IrregularityContentView.swift in Sources */,
 				187DCD6D270DC9BE00579F16 /* AFWrapperClass.swift in Sources */,
 				7C8EFF2726F9E186000CFAE4 /* SSAssistiveTouchView.swift in Sources */,
 				7C8EFEE026F9AB08000CFAE4 /* PatientDetailVC.swift in Sources */,
@@ -672,26 +765,37 @@
 				7C8EFF2426F9E186000CFAE4 /* SSTextView.swift in Sources */,
 				7C8EFF0E26F9D2F5000CFAE4 /* AboutVC.swift in Sources */,
 				7C8EFF0926F9CAE2000CFAE4 /* ProfileTVCell.swift in Sources */,
+				182FD61D2727CA2500036528 /* PreferenceManager.swift in Sources */,
 				7C8EFEEE26F9B899000CFAE4 /* AppointmentConfirmedTVCell.swift in Sources */,
 				187DCD69270DBAF000579F16 /* AppAlert.swift in Sources */,
 				7C50967726F5ABC60058E146 /* AppDelegate.swift in Sources */,
 				7C8EFEDD26F9A899000CFAE4 /* AppointmentDetailVC.swift in Sources */,
+				182FD6442727CCEC00036528 /* ESTabBarController.swift in Sources */,
 				181578C227184C7A00FBDE04 /* GetProviderEntity.swift in Sources */,
 				7C8EFEFA26F9BD80000CFAE4 /* PendingTVCell.swift in Sources */,
 				7C8EFEF426F9BBAF000CFAE4 /* QueueTVCell.swift in Sources */,
 				7C8EFEC426F8BC02000CFAE4 /* ValidationManager.swift in Sources */,
+				182FD6422727CCEC00036528 /* ESTabBarItemContentView.swift in Sources */,
+				182FD6352727CC6D00036528 /* BouncesContentView.swift in Sources */,
+				182FD6452727CCEC00036528 /* ESTabBarItemContainer.swift in Sources */,
 				7C8EFF2126F9E186000CFAE4 /* SSLabel.swift in Sources */,
 				7C5096A526F5ADA00058E146 /* AppExtensions.swift in Sources */,
 				7C8EFEAF26F8BB1A000CFAE4 /* AddPatientVC.swift in Sources */,
 				181578C02718364600FBDE04 /* GetBranchEntity.swift in Sources */,
+				182FD6472727CCEC00036528 /* ESTabBarItem.swift in Sources */,
 				7C8EFF1426F9DE7F000CFAE4 /* ServiceVC.swift in Sources */,
+				182FD6192727C9DF00036528 /* RequestManager.swift in Sources */,
 				181578C427185B7800FBDE04 /* GetDiseaseEntity.swift in Sources */,
 				18E9528E271579ED00AD0F50 /* AddUserListEntity.swift in Sources */,
-				7C692D7226FC6816005608C3 /* PreferenceManager.swift in Sources */,
+				1835A0062722D29D00CC71F6 /* NotificationListEntity.swift in Sources */,
 				7C5096B126F5ADDD0058E146 /* AppFunctions.swift in Sources */,
 				181578BC27181D0D00FBDE04 /* AppMultipleApisModal.swift in Sources */,
+				182FD64B2727CF0000036528 /* FloatRatingView.swift in Sources */,
 				187DCD6F270DCBC600579F16 /* HelperMethods.swift in Sources */,
+				1835A0042722A36D00CC71F6 /* ApiLinker.swift in Sources */,
 				7C8EFF2826F9E186000CFAE4 /* SSButton.swift in Sources */,
+				182FD6172727C96F00036528 /* FGLocationManager.swift in Sources */,
+				182FD6432727CCEC00036528 /* ESTabBarItemBadgeView.swift in Sources */,
 				182E2F62270F2237000FC964 /* GetUserProfileDetailEntity.swift in Sources */,
 				187DCD63270DBA9C00579F16 /* AppConstant.swift in Sources */,
 				7C8EFEE526F9AF4E000CFAE4 /* HomeTVCell.swift in Sources */,
@@ -713,8 +817,12 @@
 				7C8EFF1126F9D323000CFAE4 /* PrivacyVC.swift in Sources */,
 				18CA238A271ED29600212CEC /* GetPatientListEntity.swift in Sources */,
 				7C8EFF0326F9C658000CFAE4 /* NotificationTVCell.swift in Sources */,
+				182FD6462727CCEC00036528 /* ESTabBar.swift in Sources */,
+				188007B227203C340058AA93 /* GetPendingListEntity.swift in Sources */,
 				7C8EFEB526F8BB77000CFAE4 /* EditProfileVC.swift in Sources */,
 				7C8EFEB826F8BBAC000CFAE4 /* EditPatientDetailVC.swift in Sources */,
+				1835A0022722A36900CC71F6 /* Api.swift in Sources */,
+				182FD6332727CC6900036528 /* BasicContentView.swift in Sources */,
 				7C8EFED426F99CDC000CFAE4 /* AppointmentVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -871,9 +979,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -883,7 +991,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnowpatient.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dist;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -895,9 +1003,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.6;
 				DEVELOPMENT_TEAM = BMFBQPH9CZ;
 				INFOPLIST_FILE = SureShow/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -907,7 +1015,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comeonnowpatient.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dist;
+				PROVISIONING_PROFILE_SPECIFIER = come_on_now_patient_12_oct_2021_dev;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

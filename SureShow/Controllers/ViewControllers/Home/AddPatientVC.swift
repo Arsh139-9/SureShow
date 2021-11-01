@@ -20,11 +20,14 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     @IBOutlet weak var viewGender: UIView!
     @IBOutlet weak var txtBirth: SSBirthDateTextField!
     @IBOutlet weak var viewBirthDate: UIView!
-    @IBOutlet weak var txtName: SSUsernameTextField!
     @IBOutlet weak var imgProfile: UIImageView!
-    @IBOutlet weak var viewName: UIView!
     @IBOutlet weak var unchKRBtn: UIButton!
+    @IBOutlet weak var txtFirstName: SSUsernameTextField!
     
+    @IBOutlet weak var viewFirstName: UIView!
+    @IBOutlet weak var viewLastName: UIView!
+    
+    @IBOutlet weak var txtLastName: SSUsernameTextField!
     @IBOutlet weak var cHKRBtn: UIButton!
     var imgArray = [Data]()
     var childAdultStatus = String()
@@ -66,7 +69,8 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
-        txtName.delegate = self
+        txtFirstName.delegate = self
+        txtLastName.delegate = self
         txtBirth.delegate = self
         txtGender.delegate = self
         txtUserRelationship.delegate = self
@@ -82,15 +86,25 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     func genderValParamUpdate() -> String{
         if txtGender.text == "Male"{
             return "1"
-        }else{
+        }
+        else if txtGender.text == "Female"{
             return "2"
+        }
+        else{
+            return "3"
         }
     }
     
     func validate() -> Bool {
         
-        if ValidationManager.shared.isEmpty(text: txtName.text) == true {
-            showAlertMessage(title: kAppName.localized(), message: "Please enter name." , okButton: "Ok", controller: self) {
+        if ValidationManager.shared.isEmpty(text: txtFirstName.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please enter first name." , okButton: "Ok", controller: self) {
+                
+            }
+            return false
+        }
+        if ValidationManager.shared.isEmpty(text: txtLastName.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please enter last name." , okButton: "Ok", controller: self) {
                 
             }
             return false
@@ -134,8 +148,7 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
                 break
             }
         }
-        
-        let paramds = ["name":txtName.text ?? "" ,"dob":txtBirth.text ?? "","gender":genderValParamUpdate(),"type":childAdultStatus,"relationship":"\(relationShipId ?? 0)"] as [String : Any]
+        let paramds = ["first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirth.text ?? "","gender":genderValParamUpdate(),"type":childAdultStatus,"relationship":"\(relationShipId ?? 0)"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.addPatient
         
@@ -282,11 +295,14 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-
-        if textField == txtName {
-            viewName.borderColor = SSColor.appButton
-            
-        } else if textField == txtBirth {
+        
+        if textField == txtFirstName {
+            viewFirstName.borderColor = SSColor.appButton
+        }
+        else if textField == txtLastName {
+            viewLastName.borderColor = SSColor.appButton
+        }
+        else if textField == txtBirth {
             txtBirth.borderColor = SSColor.appButton
         }else if textField == txtGender{
             txtGender.borderColor = SSColor.appButton
@@ -297,8 +313,11 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         
-        if textField == txtName {
-            viewName.borderColor = SSColor.appBlack
+        if textField == txtFirstName {
+            viewFirstName.borderColor = SSColor.appBlack
+        }
+        else if textField == txtLastName {
+            viewLastName.borderColor = SSColor.appBlack
         } else if textField == txtBirth {
             txtBirth.borderColor = SSColor.appBlack
         }else if textField == txtGender{

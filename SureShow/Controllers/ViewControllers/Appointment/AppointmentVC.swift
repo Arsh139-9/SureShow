@@ -8,6 +8,8 @@
 import UIKit
 import Foundation
 import Alamofire
+import KRPullLoader
+
 
 class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentViewDelegate {
     
@@ -25,8 +27,12 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     var hospitalListArr = [HospitalListData<AnyHashable>]()
     var patientListArr = [PatientListData<AnyHashable>]()
     var addQueueListArr = [AddQueueListData<AnyHashable>]()
+    var addQueueListNUArr = [AddQueueListData<AnyHashable>]()
+    
+    //GetPendingAppointmentData
     var patientSId:Int?
-
+    var lastPageNo = 1
+    
     //------------------------------------------------------
     
     //MARK: Memory Management Method
@@ -61,7 +67,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         
         segment1.isSelected = true
         segment2.isSelected = true
-//        segment2.isSelected = !segment1.isSelected
+        //        segment2.isSelected = !segment1.isSelected
         segment3.isSelected = !segment1.isSelected
         segment4.isSelected = !segment1.isSelected
         
@@ -79,15 +85,49 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         
         updateUI()
         
+        let loadMoreView = KRPullLoadView()
+        loadMoreView.delegate = self
+        tblAppointment.addPullLoadableView(loadMoreView, type: .loadMore)
+        
     }
-    open func getQueueListApi(){
-        ModalResponse().getQueueListApi(){ response in
+    open func getCPQListApi(statusS:Int){
+        
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        ModalResponse().getCPQListApi(perPage:9, page: lastPageNo, status: statusS){ response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
             print(response)
+            
             let getQueueDataResp  = GetAddQueueData(dict:response as? [String : AnyHashable] ?? [:])
             let message = getQueueDataResp?.message ?? ""
             if let status = getQueueDataResp?.status{
                 if status == 200{
-                    self.addQueueListArr = getQueueDataResp?.addQueueListArray ?? []
+                    self.lastPageNo = self.lastPageNo + 1
+                    let getQListArr = getQueueDataResp?.addQueueListArray ?? []
+                    
+                    if getQListArr.count != 0{
+                        DispatchQueue.main.async {
+                            //                            self.noDataFoundView.isHidden = true
+                        }
+                        for i in 0..<getQListArr.count {
+                            self.addQueueListNUArr.append(getQListArr[i])
+                        }
+                        self.addQueueListNUArr.sort {
+                            $0.id > $1.id
+                        }
+                        let uniquePosts = self.addQueueListNUArr.unique{$0.id }
+                        
+                        self.addQueueListArr = uniquePosts
+                        
+                        
+                    }else{
+                        DispatchQueue.main.async {
+                            //                            self.noDataFoundView.isHidden = false
+                        }
+                    }
+                    
+                    
                     self.updateUI()
                 }
                 else if status == 401{
@@ -95,9 +135,22 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
                     appDel.logOut()
                 }
                 else{
-                    self.addQueueListArr.removeAll()
+                    if statusS == 3{
+                        if self.addQueueListNUArr.count == 0{
+                            self.addQueueListArr.removeAll()
+                        }
+                    }else if statusS == 2{
+                        if self.addQueueListNUArr.count == 0{
+                            self.addQueueListArr.removeAll()
+                        }
+                    }else{
+                        if self.addQueueListNUArr.count == 0{
+                            self.addQueueListArr.removeAll()
+                        }
+                    }
+                    //
                     self.updateUI()
-                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+//                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
                 }
             }
             
@@ -180,7 +233,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             if let status = response["status"] as? Int {
                 if status == 200{
                     showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
-                        self.getQueueListApi()
+                        self.getCPQListApi(statusS: 1)
                     }
                 }
                 else if status == 401{
@@ -199,7 +252,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     }
     func generatingParameters() -> [String:AnyObject] {
         var parameters:[String:AnyObject] = [:]
-       
+        
         parameters["add_user_id"] = patientSId as AnyObject
         
         //        parameters["usertype"] = "1" as AnyObject
@@ -210,95 +263,144 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     
     @objc func deleteQueueBtnClicked(_ sender: Any?) {
         
-            let button = sender as? UIButton
-            var parentCell = button?.superview
-            
-            while !(parentCell is UITableViewCell) {
-                parentCell = parentCell?.superview
-            }
-            var indexPath: IndexPath? = nil
-            if let cell = parentCell as? UITableViewCell {
-                indexPath = tblAppointment.indexPath(for: cell)
-            }
+        let button = sender as? UIButton
+        var parentCell = button?.superview
+        
+        while !(parentCell is UITableViewCell) {
+            parentCell = parentCell?.superview
+        }
+        var indexPath: IndexPath? = nil
+        if let cell = parentCell as? UITableViewCell {
+            indexPath = tblAppointment.indexPath(for: cell)
+        }
         patientSId = addQueueListArr[indexPath?.row ?? 0].id
         
         deleteQueueApi()
-//            if indexPath != nil{
-//                globalIndexPath = indexPath!
-//
-//            }
+        //            if indexPath != nil{
+        //                globalIndexPath = indexPath!
+        //
+        //            }
         
         
         
         
+    }
+    func getAMPMFromTime(time:Int)->String{
+        if time > 12{
+            return ":00 PM"
+        }else{
+            return ":00 AM"
+        }
     }
     //------------------------------------------------------
     
     //MARK: UITableViewDataSource,UITableViewDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segment4.isSelected{
-            return addQueueListArr.count
-        }else{
-            return 10
-        }
+        return addQueueListArr.count
+        //        if segment4.isSelected{
+        //            return addQueueListArr.count
+        //        }
+        //        else if segment3.isSelected{
+        //            return addPAppointmentListArr.count
+        //        }
+        //        else{
+        //            return 10
+        //        }
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if segment1.isSelected{
-//            if indexPath.row % 2 == 0{
-//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-//                    return cell
-//                }
-//            }else if indexPath.row % 3 == 0{
-//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
-//                    return cell
-//                }
-//            }else{
-//                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
-//                    return cell
-//                }
-//            }
-//        }else
+        //        if segment1.isSelected{
+        //            if indexPath.row % 2 == 0{
+        //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+        //                    return cell
+        //                }
+        //            }else if indexPath.row % 3 == 0{
+        //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+        //                    return cell
+        //                }
+        //            }else{
+        //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
+        //                    return cell
+        //                }
+        //            }
+        //        }else
         if segment2.isSelected {
-            if indexPath.row % 2 == 0{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-                    return cell
+            //            if indexPath.row % 2 == 0{
+            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+            //                    return cell
+            //                }
+            //            }
+            //            else if indexPath.row % 3 == 0{
+            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+            //                    cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
+            //                    return cell
+            //                }
+            //            }
+            //            else{
+            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
+            //                    return cell
+            //                }
+            //            }
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
+                cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
+                if addQueueListArr[indexPath.row].gender  == 1{
+                    cell.lblGender.text = "Male"
+                }else if addQueueListArr[indexPath.row].gender  == 2{
+                    cell.lblGender.text = "Female"
+                }else{
+                    cell.lblGender.text = "Others"
+
                 }
+                cell.lblDate.text = addQueueListArr[indexPath.row].appoint_date
+                
+                var sPhotoStr = addQueueListArr[indexPath.row].image
+                sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+                cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
+                
+                return cell
             }
-            else if indexPath.row % 3 == 0{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
-                    cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
-                    return cell
-                }
-            }
-            else{
-                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
-                    return cell
-                }
-            }
-//            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-//                return cell
-//            }
         }else if segment3.isSelected {
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
+                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
+                cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
+                if addQueueListArr[indexPath.row].gender  == 1{
+                    cell.lblGender.text = "Male"
+                }else if addQueueListArr[indexPath.row].gender  == 2{
+                    cell.lblGender.text = "Female"
+                }else{
+                    cell.lblGender.text = "Others"
+                    
+                }
+                cell.lblDate.text = addQueueListArr[indexPath.row].appoint_date
+                
+                var sPhotoStr = addQueueListArr[indexPath.row].image
+                sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+                cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
                 cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
+                cell.btnReject.addTarget(self, action: #selector(rejectBtnAction(_:)), for: .touchUpInside)
+                
                 return cell
             }
         }else if segment4.isSelected{
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
                 cell.lblAge.text = "\(addQueueListArr[indexPath.row].age)"
-                cell.lblName.text = addQueueListArr[indexPath.row].name
+                cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
                 if addQueueListArr[indexPath.row].gender  == 1{
                     cell.lblGender.text = "Male"
-                }else{
+                }else if addQueueListArr[indexPath.row].gender  == 2{
                     cell.lblGender.text = "Female"
+                }else{
+                    cell.lblGender.text = "Others"
+                    
                 }
+                
                 var sPhotoStr = addQueueListArr[indexPath.row].image
                 sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
                 cell.imgMain.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
                 cell.deleteQueueBtn.addTarget(self, action: #selector(deleteQueueBtnClicked(_:)), for: .touchUpInside)
-
+                
                 return cell
             }
         }
@@ -309,11 +411,11 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         if segment4.isSelected{
             return 135
         }else if segment2.isSelected{
-//            if indexPath.row % 2 == 0 || indexPath.row % 3 == 0{
-//                return 160
-//            }else{
-                return 160
-          //  }
+            //            if indexPath.row % 2 == 0 || indexPath.row % 3 == 0{
+            //                return 160
+            //            }else{
+            return 160
+            //  }
         }else{
             return 160
         }
@@ -321,6 +423,22 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segment2.isSelected{
             let controller =  NavigationManager.shared.appointmentDetailVC
+            controller.cFirstUserName = addQueueListArr[indexPath.row].first_name
+            controller.cLastUserName = addQueueListArr[indexPath.row].last_name
+            controller.cUserAge = addQueueListArr[indexPath.row].age
+            controller.cUserImage = addQueueListArr[indexPath.row].image
+            controller.cUserGender = addQueueListArr[indexPath.row].gender
+            controller.cUserPGName = addQueueListArr[indexPath.row].loginuser_name
+            let appStt = Int(addQueueListArr[indexPath.row].appoint_start_time) ?? 0
+            let appEStt = Int(addQueueListArr[indexPath.row].appoint_end_time) ?? 0
+
+            let fStartTimeAMPM = getAMPMFromTime(time: appStt)
+            let eStartTimeAMPM = getAMPMFromTime(time: appEStt)
+
+            controller.cUserAppointmentTime = "\(addQueueListArr[indexPath.row].appoint_start_time)\(fStartTimeAMPM) - \(addQueueListArr[indexPath.row].appoint_end_time)\(eStartTimeAMPM)"
+
+            controller.cUserAppointmentDate = addQueueListArr[indexPath.row].appoint_date
+
             push(controller: controller)
         }else if  segment1.isSelected{
             if indexPath.row % 2 == 0{
@@ -352,18 +470,28 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             segment1.isSelected = false
             segment3.isSelected = false
             segment4.isSelected = false
+            lastPageNo = 1
+            addQueueListNUArr.removeAll()
+            getCPQListApi(statusS: 3)
         }
         else if view == segment3 {
             
             segment1.isSelected = false
             segment2.isSelected = false
             segment4.isSelected = false
+            lastPageNo = 1
+            addQueueListNUArr.removeAll()
+            
+            getCPQListApi(statusS: 2)
         }
         else if view == segment4 {
             segment1.isSelected = false
             segment2.isSelected = false
             segment3.isSelected = false
-            getQueueListApi()
+            lastPageNo = 1
+            addQueueListNUArr.removeAll()
+            
+            getCPQListApi(statusS: 1)
         }
     }
     //------------------------------------------------------
@@ -373,40 +501,115 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     @IBAction func crossPopupViewBtnAction(_ sender: Any) {
         self.verifiedIdentityPopUpView.isHidden = true
         verifiedPUpViewA.isHidden = true
-
+        
     }
     
     @IBAction func callPopUpBtnAction(_ sender: Any) {
         self.callPopUpView.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
-
+        
     }
     
     @IBAction func callEndPUPViewBtnAction(_ sender: Any) {
         self.tabBarController?.tabBar.isHidden = false
-
+        
         self.verifiedIdentityPopUpView.isHidden = true
         verifiedPUpViewA.isHidden = true
         self.callPopUpView.isHidden = true
-
+        
     }
-    
-    @objc func acceptBtnAction(_ sender: UIButton?) {
+    func generatingARParameters(status:Int,addUserId:Int) -> [String:AnyObject] {
+        var parameters:[String:AnyObject] = [:]
+        
+        parameters["add_user_id"] = addUserId as AnyObject
+        
+        parameters["status"] = status as AnyObject
+        
+        print(parameters)
+        return parameters
+    }
+    @objc func rejectBtnAction(_ sender: Any?) {
+        //        verifiedPUpViewA.isHidden = false
+        //        self.verifiedIdentityPopUpView.isHidden = false
+        
+        let button = sender as? UIButton
+        var parentCell = button?.superview
+        
+        while !(parentCell is UITableViewCell) {
+            parentCell = parentCell?.superview
+        }
+        var indexPath: IndexPath? = nil
+        if let cell = parentCell as? UITableViewCell {
+            indexPath = tblAppointment.indexPath(for: cell)
+        }
+        let addUserId = addQueueListArr[indexPath?.row ?? 0].id
+        
+        
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        ModalResponse().pendingAppointmentAcceptRejectApi(params:generatingARParameters(status:4, addUserId:addUserId)) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            let getARData  = ForgotPasswordData(dict:response as? [String : AnyHashable] ?? [:])
+            if getARData?.status == 200{
+                showAlertMessage(title: kAppName.localized(), message: getARData?.message ?? "" , okButton: "OK", controller: self) {
+                    self.getCPQListApi(statusS: 2)
+                }
+            }
+            else if getARData?.status == 401{
+                removeAppDefaults(key:"AuthToken")
+                appDel.logOut()
+            }
+            else{
+                alert(AppAlertTitle.appName.rawValue, message: getARData?.message ?? "", view: self)
+            }
+        } onFailure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+        
+    }
+    @objc func acceptBtnAction(_ sender: Any?) {
         verifiedPUpViewA.isHidden = false
         self.verifiedIdentityPopUpView.isHidden = false
         
-//        var parentCell = sender?.superview
-//
-//        while !(parentCell is NotificationsTVC) {
-//            parentCell = parentCell?.superview
-//        }
-//        var indexPath: IndexPath? = nil
-//        let cell1 = parentCell as? NotificationsTVC
-//        indexPath = notificationsTableView.indexPath(for: cell1!)
-//        let detailId = notificationArray[indexPath!.row].detail_id
-//
-//        let notificationId = notificationArray[indexPath!.row].notification_id
-//        acceptRejectApi(status: "1", id: detailId,notificationId: notificationId)
+        let button = sender as? UIButton
+        var parentCell = button?.superview
+        
+        while !(parentCell is UITableViewCell) {
+            parentCell = parentCell?.superview
+        }
+        var indexPath: IndexPath? = nil
+        if let cell = parentCell as? UITableViewCell {
+            indexPath = tblAppointment.indexPath(for: cell)
+        }
+        let addUserId = addQueueListArr[indexPath?.row ?? 0].id
+        
+        
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        ModalResponse().pendingAppointmentAcceptRejectApi(params:generatingARParameters(status:3, addUserId:addUserId)) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            let getARData  = ForgotPasswordData(dict:response as? [String : AnyHashable] ?? [:])
+            if getARData?.status == 200{
+                //                showAlertMessage(title: kAppName.localized(), message: getARData?.message ?? "" , okButton: "OK", controller: self) {
+                self.getCPQListApi(statusS: 2)
+                // }
+            }
+            else if getARData?.status == 401{
+                removeAppDefaults(key:"AuthToken")
+                appDel.logOut()
+            }
+            else{
+                alert(AppAlertTitle.appName.rawValue, message: getARData?.message ?? "", view: self)
+            }
+        } onFailure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
         
         
     }
@@ -424,20 +627,81 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setup()
-//
+        
+        //
     }
     
     //------------------------------------------------------
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setup()
         self.tabBarController?.tabBar.isHidden = false
-        getQueueListApi()
-
+        lastPageNo = 1
+        addQueueListNUArr.removeAll()
+        
+        getCPQListApi(statusS: 3)
+        
         getPatientListApi()
         getHospitalListApi()
     }
     
     //------------------------------------------------------
 }
+extension AppointmentVC:KRPullLoadViewDelegate{
+    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
+        if type == .loadMore {
+            switch state {
+            case let .loading(completionHandler):
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                    completionHandler()
+                    if self.segment2.isSelected == true{
+                        self.getCPQListApi(statusS: 3)
+                    }
+                    else if self.segment3.isSelected == true{
+                        self.getCPQListApi(statusS: 2)
+                        
+                    }else if self.segment4.isSelected == true{
+                        self.getCPQListApi(statusS: 1)
+                        
+                    }
+                    
+                }
+            default: break
+            }
+            return
+        }
+        
+        switch state {
+        case .none:
+            pullLoadView.messageLabel.text = ""
+            
+        case let .pulling(offset, threshould):
+            if offset.y > threshould {
+                pullLoadView.messageLabel.text = "Pull more. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            } else {
+                pullLoadView.messageLabel.text = "Release to refresh. offset: \(Int(offset.y)), threshould: \(Int(threshould)))"
+            }
+            
+        case let .loading(completionHandler):
+            pullLoadView.messageLabel.text = "Updating..."
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
+                completionHandler()
+                if self.segment2.isSelected == true{
+                    self.getCPQListApi(statusS: 3)
+                }
+                else if self.segment3.isSelected == true{
+                    self.getCPQListApi(statusS: 2)
+                    
+                }else if self.segment4.isSelected == true{
+                    self.getCPQListApi(statusS: 1)
+                    
+                }
+                
+            }
+        }
+    }
+    
+    
+}
+

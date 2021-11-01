@@ -15,8 +15,12 @@ import IQKeyboardManagerSwift
 
 class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePickerDelegate {
     
-    @IBOutlet weak var viewName: UIView!
-    @IBOutlet weak var txtName: SSUsernameTextField!
+    @IBOutlet weak var viewFirstName: UIView!
+    @IBOutlet weak var txtFirstName: SSUsernameTextField!
+    @IBOutlet weak var viewLastName: UIView!
+    @IBOutlet weak var txtLastName: SSUsernameTextField!
+    
+    
     @IBOutlet weak var txtBirthDate: SSBirthDateTextField!
     @IBOutlet weak var viewBirthDate: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
@@ -29,6 +33,8 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     
     var id:Int?
     var userName:String?
+    var firstName:String?
+    var lastName:String?
     var userAge:String?
     var userImage:String?
     var userGender:Int?
@@ -76,16 +82,21 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         }
         
         
-        txtName.delegate = self
+        txtFirstName.delegate = self
+        txtLastName.delegate = self
         txtGender.delegate = self
         txtBirthDate.delegate = self
         txtUserRelationship.delegate = self
         
-        txtName.text = userName
+        txtFirstName.text = firstName
+        txtLastName.text = lastName
         if userGender == 1{
             txtGender.text = "Male"
-        }else{
+        }else if userGender == 2{
             txtGender.text = "Female"
+        }else{
+            txtGender.text = "Others"
+
         }
         txtBirthDate.text = userAge
         userImage = userImage?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
@@ -101,8 +112,14 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     
     func validate() -> Bool {
         
-        if ValidationManager.shared.isEmpty(text: txtName.text) == true {
-            showAlertMessage(title: kAppName.localized(), message: "Please enter name." , okButton: "Ok", controller: self) {
+        if ValidationManager.shared.isEmpty(text: txtFirstName.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please enter first name." , okButton: "Ok", controller: self) {
+            }
+            
+            return false
+        }
+        if ValidationManager.shared.isEmpty(text: txtLastName.text) == true {
+            showAlertMessage(title: kAppName.localized(), message: "Please enter last name." , okButton: "Ok", controller: self) {
             }
             
             return false
@@ -131,8 +148,12 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     func genderValParamUpdate() -> String{
         if txtGender.text == "Male"{
             return "1"
-        }else{
+        }
+        else if txtGender.text == "Female"{
             return "2"
+        }
+        else{
+            return "3"
         }
     }
     func editUserDetailApi() {
@@ -149,7 +170,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             }
         }
         
-        let paramds = ["id":id ?? 0,"name":txtName.text ?? "" ,"dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)"] as [String : Any]
+        let paramds = ["id":id ?? 0,"first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)"] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editUserDetail
         
@@ -258,6 +279,9 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     }
     
     @IBAction func btnDelete(_ sender: Any) {
+        
+        
+        
         let controller = NavigationManager.shared.homeVC
         popBack(3)
     }
@@ -290,8 +314,10 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case txtName:
-            viewName.borderColor =  SSColor.appButton
+        case txtFirstName:
+            viewFirstName.borderColor =  SSColor.appButton
+        case txtLastName:
+            viewLastName.borderColor =  SSColor.appButton
         case txtBirthDate:
             viewBirthDate.borderColor =  SSColor.appButton
         case txtGender:
@@ -306,8 +332,10 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         
-        case txtName:
-            viewName.borderColor =  SSColor.appBlack
+        case txtFirstName:
+            viewFirstName.borderColor =  SSColor.appBlack
+        case txtLastName:
+            viewLastName.borderColor =  SSColor.appBlack
         case txtBirthDate:
             viewBirthDate.borderColor =  SSColor.appBlack
         case txtGender:

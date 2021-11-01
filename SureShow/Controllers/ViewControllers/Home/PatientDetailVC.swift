@@ -27,6 +27,9 @@ class PatientDetailVC : BaseVC {
     
     var id:Int?
     var userName:String?
+    var firstName:String?
+    var lastName:String?
+
     var userAge:String?
     var userImage:String?
     var userGender:String?
@@ -67,7 +70,13 @@ class PatientDetailVC : BaseVC {
     
     @IBAction func btnEdit(_ sender: Any) {
         let vc =  NavigationManager.shared.editPatientDetailVC
+//        let userN = userNameLbl.text
+//        let arr = userN?.components(separatedBy:" ")
+//        vc.firstName = arr?[1]
+//        vc.lastName = arr?[0]
         vc.userName = userNameLbl.text
+        vc.firstName = firstName
+        vc.lastName = lastName
         vc.id = id
         vc.userAge = userAge
         vc.userImage = userImage
@@ -75,8 +84,10 @@ class PatientDetailVC : BaseVC {
         vc.relationShipId = relationShipId
         if userGender  == "Male"{
             vc.userGender = 1
-        }else{
+        }else if userGender  == "Female"{
             vc.userGender = 2
+        }else {
+            vc.userGender = 3
         }
         push(controller: vc)
     }
@@ -97,7 +108,7 @@ class PatientDetailVC : BaseVC {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        userNameLbl.text = userName
+        userNameLbl.text = "\(lastName ?? "") \(firstName ?? "")"
         
         userGenderLbl.text = userGender
         parentGuardianNameLbl.text = parentGuardianName

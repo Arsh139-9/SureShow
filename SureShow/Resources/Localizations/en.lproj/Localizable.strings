@@ -269,7 +269,7 @@
 "permission_allow" = "Allow";
 "permission_not_now" = "Not Now";
 
-"sureshow" = "Sureshow";
+"sureshow" = "Patient";
 "queued" = "QUEUED";
 "all" = "ALL";
 "pending" = "PENDING";

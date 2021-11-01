@@ -18,7 +18,8 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var emailView: UIView!
     @IBOutlet weak var btnRememberMe: SSRememberMeButton!
     
-    
+    var rememberMeSelected = false
+
     var iconClick = true
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     
@@ -41,26 +42,18 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     //MARK: Customs
     
     func setup() {
-        
+        txtEmail.text = self.getEmail()
+        txtPswrd.text = self.getPassword()
+        btnRememberMe.isSelected = rememberMeSelected
+        self.btnRememberMe.setImage(rememberMeSelected == true ? #imageLiteral(resourceName: "check") : #imageLiteral(resourceName: "uncheck"), for: .normal)
+
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
         txtEmail.delegate = self
         txtPswrd.delegate = self
         //        btnRememberMe.delegate = self
-        if PreferenceManager.shared.rememberMeEmail.isEmpty == false {
-            txtEmail.text = PreferenceManager.shared.rememberMeEmail
-            btnRememberMe.isRemember = true
-        } else {
-            btnRememberMe.isRemember = false
-        }
-        
-        if PreferenceManager.shared.rememberMePassword.isEmpty == false {
-            txtPswrd.text = PreferenceManager.shared.rememberMePassword
-            btnRememberMe.isRemember = true
-        } else {
-            btnRememberMe.isRemember = false
-        }
+       
         
     }
     open func signInApi(){
@@ -74,6 +67,11 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             let message = loginResp?.alertMessage ?? ""
             if let status = loginResp?.status  {
                 if status == 200{
+                    if self.rememberMeSelected == true{
+                        storeCredential(email: self.txtEmail.text!, password: self.txtPswrd.text!)
+                    }else{
+                        removeCredential()
+                    }
                     setAppDefaults(loginResp?.access_token, key: "AuthToken")
 
 //                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
@@ -191,9 +189,43 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         let controller = NavigationManager.shared.forgotPasswordVC
         push(controller: controller)
     }
-    @IBAction func btnRemember(_ sender: Any) {
+    @IBAction func btnRemember(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        self.rememberMeSelected = sender.isSelected
+        self.btnRememberMe.setImage(rememberMeSelected == true ? #imageLiteral(resourceName: "check") : #imageLiteral(resourceName: "uncheck"), for: .normal)
+        if !rememberMeSelected{
+            removeAppDefaults(key: "userEmail")
+            removeAppDefaults(key: "userPassword")
+        }
+    }
+    func getEmail() -> String
+    {
+        if let email =  UserDefaults.standard.value(forKey:"userEmail")
+        {
+            rememberMeSelected = true
+            return email as! String
+        }
+        else
+        {
+            rememberMeSelected = false
+            return ""
+        }
     }
     
+    func getPassword() -> String
+    {
+        if let password =  UserDefaults.standard.value(forKey:"userPassword")
+        {
+            rememberMeSelected = true
+            return password as! String
+        }
+        else
+        {
+            rememberMeSelected = false
+            return ""
+            
+        }
+    }
     //------------------------------------------------------
     //MARK: UITextFieldDelegate
     
@@ -222,7 +254,9 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()    }
+        setup()
+        
+    }
     
     //------------------------------------------------------
     

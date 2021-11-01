@@ -124,7 +124,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         
         pvOptionArr.removeAll()
         for obj in patientListArr {
-            pvOptionArr.append(obj.name)
+            pvOptionArr.append("\(obj.last_name) \(obj.first_name)")
         }
         txtPatientName.pvOptions = pvOptionArr
     }
@@ -416,7 +416,7 @@ extension AddQueueVC:UIPickerViewDataSource{
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if txtPatientName.isFirstResponder == true{
-            return patientListArr[row].name
+            return "\(patientListArr[row].last_name) \(patientListArr[row].first_name)"
         }
         else if txtHospitalName.isFirstResponder {
             return hospitalListArr[row].clinic_name
@@ -436,7 +436,7 @@ extension AddQueueVC:UIPickerViewDataSource{
 extension AddQueueVC:UIPickerViewDelegate{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if txtPatientName.isFirstResponder == true{
-            txtPatientName.text = patientListArr[row].name
+            txtPatientName.text = "\(patientListArr[row].last_name) \(patientListArr[row].first_name)"
             patientSId = patientListArr[row].id
         }
        else if txtHospitalName.isFirstResponder {

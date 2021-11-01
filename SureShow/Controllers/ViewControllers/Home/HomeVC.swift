@@ -12,7 +12,6 @@ import Alamofire
 class HomeVC: UIViewController {
     
     @IBOutlet weak var tblHome: UITableView!
-    var HomeArray = [HomeData]()
     var homeUserListArr = [UserListData<AnyHashable>]()
     var relationshipListArr = [RelationshipListData<AnyHashable>]()
     lazy var dateFormatter : DateFormatter = {
@@ -27,11 +26,7 @@ class HomeVC: UIViewController {
         tblHome.delegate = self
         
         tblHome.register(UINib(nibName: "HomeTVCell", bundle: nil), forCellReuseIdentifier: "HomeTVCell")
-        self.HomeArray.append(HomeData(image: "uncle", name: "Grave Judson", gender: "Male" ,  age: "75 years old"))
-        self.HomeArray.append(HomeData(image: "uncle", name: "Harry Judson", gender: "Male" ,  age: "65 years old"))
-        self.HomeArray.append(HomeData(image: "uncle", name: "Peter Grave ", gender: "Male" ,  age: "70 years old"))
-        self.HomeArray.append(HomeData(image: "uncle", name: "Bithr pop", gender: "Male" ,  age: "55 years old"))
-        self.HomeArray.append(HomeData(image: "uncle", name: "Grave Judson", gender: "Male" ,  age: "70 years old"))
+        
         
     }
     
@@ -143,11 +138,14 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
         let timeInterval = birthday?.timeIntervalSinceNow
         let age = abs(Int(timeInterval! / 31556926.0))
         cell.lblAge.text = "\(age) years old"
-        cell.lblName.text = homeUserListArr[indexPath.row].name
+        cell.lblName.text = "\(homeUserListArr[indexPath.row].last_name) \(homeUserListArr[indexPath.row].first_name)"
         if homeUserListArr[indexPath.row].gender  == 1{
             cell.lblGender.text = "Male"
-        }else{
+        }else if homeUserListArr[indexPath.row].gender  == 2{
             cell.lblGender.text = "Female"
+        }else{
+            cell.lblGender.text = "Others"
+
         }
         return cell
     }
@@ -158,14 +156,18 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name:StoryboardName.HomeChild, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PatientDetailVC") as! PatientDetailVC
-        vc.userName = homeUserListArr[indexPath.row].name
+        vc.firstName = homeUserListArr[indexPath.row].first_name
+        vc.lastName = homeUserListArr[indexPath.row].last_name
         vc.userAge = homeUserListArr[indexPath.row].dob
         vc.userImage = homeUserListArr[indexPath.row].image
         vc.id = homeUserListArr[indexPath.row].id
         if homeUserListArr[indexPath.row].gender  == 1{
             vc.userGender = "Male"
-        }else{
+        }else if homeUserListArr[indexPath.row].gender  == 2{
             vc.userGender = "Female"
+        }
+        else{
+            vc.userGender = "Others"
         }
         vc.parentGuardianName = homeUserListArr[indexPath.row].loginusername
         vc.appointmentDate = ""
@@ -177,18 +179,3 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
     
 }
 
-struct HomeData {
-    var image : String
-    var name : String
-    var gender : String
-    var age : String
-    
-    init(image : String, name : String , gender : String, age : String ) {
-        self.image = image
-        self.name = name
-        self.gender = gender
-        self.age = age
-        
-        
-    }
-}

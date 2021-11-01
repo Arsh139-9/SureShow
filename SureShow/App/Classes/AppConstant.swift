@@ -35,8 +35,9 @@ struct WSMethods {
     static let getPatientList = "queue/patient-list"
     static let addGetQueueList = "queue/queue"
     static let deleteQueueList = "queue/delete-queue"
+    static let acceptReject = "queue/user-confirmation"
+    static let notificationList = "user/get-notification-list"
 
-    
     
     
     
@@ -47,11 +48,12 @@ struct WSMethods {
     
     
 }
+//LIVE URL -:
+let kBASEURL = "https://comeonnow.io/come_on_now/api/v1/"
 
-let WS_Live = ""
-let WS_Staging = "https://comeonnow.io/come_on_now/api/v1/"
+//STAGING URL -:
 
-let kBASEURL = WS_Staging
+
 
 struct SettingWebLinks {
     static let privacyPolicy = "PrivacyAndPolicy.html"

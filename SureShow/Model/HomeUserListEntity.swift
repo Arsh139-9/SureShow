@@ -72,6 +72,9 @@ struct UserListData<T>{
     var id:Int
     var user_id:String
     var name:String
+    var first_name:String
+    var last_name:String
+
     var image:String
     var type:String
     var dob:String
@@ -85,6 +88,9 @@ struct UserListData<T>{
         let id = dataDict["id"] as? Int ?? 0
         let user_id = dataDict["user_id"] as? String ?? ""
         let name = dataDict["name"] as? String ?? ""
+        let first_name = dataDict["first_name"] as? String ?? ""
+        let last_name = dataDict["last_name"] as? String ?? ""
+
         let image = dataDict["image"] as? String ?? ""
         let type = dataDict["type"] as? String ?? ""
         let dob = dataDict["dob"] as? String ?? ""
@@ -99,6 +105,9 @@ struct UserListData<T>{
         self.id = id
         self.user_id = user_id
         self.name = name
+        self.first_name = first_name
+        self.last_name = last_name
+
         self.image = image
         self.type = type
         self.dob = dob

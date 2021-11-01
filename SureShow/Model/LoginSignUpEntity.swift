@@ -35,3 +35,20 @@ struct LoginSignUpData<T>{
     }
 }
 
+
+struct LoginCodable:Codable {
+    var status:Int
+    var alertMessage:String
+    var access_token:String
+    
+    init(){
+        status = 0
+        alertMessage = ""
+        access_token = ""
+    }
+    private enum CodingKeys:String,CodingKey{
+        case status
+        case alertMessage
+        case access_token
+    }
+}

@@ -20,6 +20,20 @@ class AppointmentDetailVC : BaseVC {
     @IBOutlet weak var lblName: SSSemiboldLabel!
     @IBOutlet weak var imgProfile: UIImageView!
     
+    var cUserName:String?
+    var cFirstUserName:String?
+    var cLastUserName:String?
+
+    var cUserGender:Int?
+    var cUserAge:Int?
+    var cUserPGName:String?
+    var cUserAppointmentTime:String?
+    var cUserAppointmentDate:String?
+    var cDoctorName:String?
+    var cHospitalName:String?
+    var cUserImage:String?
+    
+    
     //------------------------------------------------------
     
     //MARK: Memory Management Method
@@ -48,6 +62,26 @@ class AppointmentDetailVC : BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lblName.text = "\(cLastUserName) \(cFirstUserName)"
+        lblAge.text = "\(cUserAge ?? 0)"
+        lblHospitalName.text = ""
+        lblDoctorName.text = ""
+        lblParentName.text = cUserPGName
+        lblAppointmentTime.text = cUserAppointmentTime
+        lblAppointmentDate.text = cUserAppointmentDate
+        cUserImage = cUserImage?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+        self.imgProfile.sd_setImage(with: URL(string: cUserImage ?? ""), placeholderImage:UIImage(named:"placeholderProfileImg"))
+        if cUserGender  == 1 {
+         lblGender.text = "Male"
+        }else if cUserGender  == 2{
+          lblGender.text = "Female"
+        }else{
+            lblGender.text = "Others"
+            
+        }
+//        lblGender.text = cUserGender
+        
+        
     }
     
     //------------------------------------------------------

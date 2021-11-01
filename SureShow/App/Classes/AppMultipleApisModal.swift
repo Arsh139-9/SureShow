@@ -118,13 +118,13 @@ class ModalResponse{
         }
         
     }
-    open func getQueueListApi(onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
+    open func getCPQListApi(perPage:Int,page:Int,status:Int,onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
         
         let headers: HTTPHeaders = [
             .authorization(bearerToken: authToken)]
         
-        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.addGetQueueList, params:nil, headers:headers) { response in
+        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.addGetQueueList +  "?status=\(status)&per-page=\(perPage)&page=\(page)", params:nil, headers:headers) { response in
             let result = response as AnyObject
             print(result)
             if let json = result as? [String:AnyObject] {
@@ -136,8 +136,42 @@ class ModalResponse{
         }
         
     }
-    
-    
+    open func pendingAppointmentAcceptRejectApi(params:[String : Any]?,onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        
+        AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.acceptReject, params:params, headers:headers) { response in
+            let result = response as AnyObject
+            print(result)
+            if let json = result as? [String:AnyObject] {
+                success(json as [String:AnyObject])
+            }
+        } failure: { error in
+            
+            failure(error)
+        }
+        
+    }
+    open func getNotificationListApi(perPage:Int,page:Int,onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        
+        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.notificationList +  "?per-page=\(perPage)&page=\(page)", params:nil, headers:headers) { response in
+            let result = response as AnyObject
+            print(result)
+            if let json = result as? [String:AnyObject] {
+                success(json as [String:AnyObject])
+            }
+        } failure: { error in
+            
+            failure(error)
+        }
+        
+    }
     
 }
 

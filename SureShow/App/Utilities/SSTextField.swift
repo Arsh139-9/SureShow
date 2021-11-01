@@ -927,7 +927,7 @@ class SSGenderTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDat
     
     let pvGender = UIPickerView()
     //,"Others"
-    let pvOptions: [String] = ["Male","Female"]
+    let pvOptions: [String] = ["Male","Female","Others"]
     var selectedOption: String? {
         didSet {
             self.text = selectedOption

@@ -51,16 +51,25 @@ struct GetPatientData<T>{
 struct PatientListData<T>{
     var id:Int
     var name:String
+    var first_name:String
+    var last_name:String
+
     var is_self:Int
     
     init?(dataDict:[String:T]) {
         
         let id = dataDict["id"] as? Int ?? 0
         let name = dataDict["name"] as? String ?? ""
+        let first_name = dataDict["first_name"] as? String ?? ""
+        let last_name = dataDict["last_name"] as? String ?? ""
+
         let is_self = dataDict["is_self"] as? Int ?? 0
         
         self.id = id
         self.name = name
+        self.first_name = first_name
+        self.last_name = last_name
+
         self.is_self = is_self
         
     }

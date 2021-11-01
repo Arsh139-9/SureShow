@@ -382,8 +382,8 @@
             filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "addUserApi()"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "requestWith(endUrl:parameters:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "SureShow/Controllers/ViewControllers/Auth/LogInVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "signInApi()"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,13 +430,13 @@
             filePath = "SureShow/Controllers/ViewControllers/Auth/LogInVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "signInApi()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "F7D17989-5488-4924-B1E1-69CB9F42EFAF - e717af9ff12d1563"
+                  uuid = "F7D17989-5488-4924-B1E1-69CB9F42EFAF - e717af9ff12d145a"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -446,12 +446,12 @@
                   urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/LogInVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "505">
+                  startingLineNumber = "63"
+                  endingLineNumber = "63"
+                  offsetFromSymbolStart = "544">
                </Location>
                <Location
-                  uuid = "F7D17989-5488-4924-B1E1-69CB9F42EFAF - 7d696604012354bb"
+                  uuid = "F7D17989-5488-4924-B1E1-69CB9F42EFAF - 7d69660401235440"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -461,9 +461,9 @@
                   urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/LogInVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "276">
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "116">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -487,38 +487,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "39F704C8-75FA-4433-B834-B8D9C07C595E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "textFieldDidBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "94A7D124-0BA8-4940-9369-E89654CEF2DA"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
-            landmarkName = "textFieldDidBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7A06B945-8CA4-47C3-B115-56E18F99D9A4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -526,8 +494,8 @@
             filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "textFieldShouldReturn(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -542,8 +510,8 @@
             filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
             landmarkName = "textFieldShouldReturn(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -558,57 +526,9 @@
             filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "textFieldDidBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "173B85BA-450A-40B1-9562-857C792A69E6"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "textFieldDidBeginEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "28DF595A-F44C-44A4-A770-08E26C5F4E53"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
-            landmarkName = "textFieldDidEndEditing(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EF672AA1-492A-4E2F-81F1-4799E95859E1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Home/AddPatientVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
-            landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -711,70 +631,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D33DDC9B-6B97-479B-84BA-5D0D51F6122D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "countryCodePickerBtnAction(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D33DDC9B-6B97-479B-84BA-5D0D51F6122D - 91c96c3d4dce9d3d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SureShow.SignUpVC.countryCodePickerBtnAction(Any) -&gt; ()"
-                  moduleName = "SureShow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
-                  offsetFromSymbolStart = "53">
-               </Location>
-               <Location
-                  uuid = "D33DDC9B-6B97-479B-84BA-5D0D51F6122D - aa30088b16b204c5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (SKCountryPicker.Country) -&gt; () in SureShow.SignUpVC.countryCodePickerBtnAction(Any) -&gt; ()"
-                  moduleName = "SureShow"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "176"
-                  endingLineNumber = "176"
-                  offsetFromSymbolStart = "226">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "61423138-FF47-4706-85BA-6B4903A68A79"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "countryCodePickerBtnAction(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A9692AFC-CED8-477E-85B7-3E66DE86B2BC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -800,7 +656,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "274"
                   endingLineNumber = "274"
-                  offsetFromSymbolStart = "1051">
+                  offsetFromSymbolStart = "1136">
                </Location>
                <Location
                   uuid = "A9692AFC-CED8-477E-85B7-3E66DE86B2BC - d00e445fbd29ac2c"
@@ -815,7 +671,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "275"
                   endingLineNumber = "275"
-                  offsetFromSymbolStart = "69">
+                  offsetFromSymbolStart = "100">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -864,7 +720,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "267"
                   endingLineNumber = "267"
-                  offsetFromSymbolStart = "203">
+                  offsetFromSymbolStart = "312">
                </Location>
                <Location
                   uuid = "6F3D8265-9A8E-43CD-A500-EC313F6478C4 - 1a010aefe6ae5d3c"
@@ -879,7 +735,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "268"
                   endingLineNumber = "268"
-                  offsetFromSymbolStart = "30">
+                  offsetFromSymbolStart = "32">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -903,32 +759,352 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8EA90D08-CEFB-4D97-B08F-3E0D3E7BABB6"
+            uuid = "B2197E01-29C7-46A0-9196-788D787A1A37"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SureShow/Controllers/ViewControllers/Appointment/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "getQueueListApi()"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
+            landmarkName = "segment(view:didChange:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FFCFF24B-71BF-4E9D-92D9-9FD51B5E2EA3"
+            uuid = "07EABB31-C4CE-4F54-9FEB-5552A8C9BD26"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getNotificationListApi()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "07EABB31-C4CE-4F54-9FEB-5552A8C9BD26 - 46b2dc8a3c4fd024"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SureShow.NotificationVC.getNotificationListApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "07EABB31-C4CE-4F54-9FEB-5552A8C9BD26 - 4c9df548cfc86aab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;) -&gt; () in SureShow.NotificationVC.getNotificationListApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "54"
+                  endingLineNumber = "54"
+                  offsetFromSymbolStart = "304">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DAE1B889-0FAB-4E2C-97BF-785737C6D3C5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "getNotificationListApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "024C6EFF-8621-4EFB-8F85-6FA3C0E2DB14"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "pullLoadView(_:didChangeState:viewType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB0C30B3-3ACA-4B72-8E39-50253E87BA05"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "getNotificationListApi()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AB0C30B3-3ACA-4B72-8E39-50253E87BA05 - 4c9df548cfc8685f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;) -&gt; () in SureShow.NotificationVC.getNotificationListApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "3080">
+               </Location>
+               <Location
+                  uuid = "AB0C30B3-3ACA-4B72-8E39-50253E87BA05 - eedde88d003598a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (SureShow.NotificationListData&lt;Swift.AnyHashable&gt;) -&gt; Swift.Int in closure #2 (Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;) -&gt; () in SureShow.NotificationVC.getNotificationListApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Notification/NotificationVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "74"
+                  endingLineNumber = "74"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64E5A6BB-FF21-471D-8918-3957E965E7B4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Home/EditPatientDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "setup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6486A47-F15C-4AF9-9B11-C640D9CC20A7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Home/EditPatientDetailVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "setup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC62DF3B-9541-45F5-BF53-60FD41096A37"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SureShow/Controllers/ViewControllers/Appointment/AppointmentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "getQueueListApi()"
+            startingLineNumber = "432"
+            endingLineNumber = "432"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DF7AD76-A18F-44B5-92BD-191B15E0AF3F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Appointment/AppointmentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
+            landmarkName = "getPatientListApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F7E5879F-1E3F-4CF1-8126-9D0E434B30AD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Appointment/AppointmentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "getPatientListApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA0D357E-9616-42FD-9778-43275E3CF19C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Appointment/AppointmentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "getPatientListApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5179BAC2-0954-436E-BC95-F88E3D568F11"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/App/Classes/AppMultipleApisModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "getPatientListApi(onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43B2E877-8EDA-4B43-9BF8-B12D01D8DD34"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/App/Classes/AppMultipleApisModal.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getPatientListApi(onSuccess:onFailure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F4C456B-61C9-441D-BADE-CCEDE8805C1C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "signUpApi()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "235F3DEE-926E-4296-9310-E6673FD6A736"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
+            landmarkName = "signUpApi()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "235F3DEE-926E-4296-9310-E6673FD6A736 - d61f5c7de3a131bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SureShow.SignUpVC.signUpApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "209"
+                  endingLineNumber = "209"
+                  offsetFromSymbolStart = "544">
+               </Location>
+               <Location
+                  uuid = "235F3DEE-926E-4296-9310-E6673FD6A736 - e56245e4fdeec7f3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (__C.NSDictionary) -&gt; () in SureShow.SignUpVC.signUpApi() -&gt; ()"
+                  moduleName = "SureShow"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/apple/Desktop/IITKota/Arshdeep%20Singh/SureShow-main/SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "210"
+                  endingLineNumber = "210"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "57CCF3EF-1045-4506-B297-584125562C19"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SureShow/Controllers/ViewControllers/Auth/SignUpVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "signUpApi()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
