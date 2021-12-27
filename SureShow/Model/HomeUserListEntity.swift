@@ -76,12 +76,13 @@ struct UserListData<T>{
     var last_name:String
 
     var image:String
-    var type:String
+    var type:Int
     var dob:String
     var gender:Int
     var loginusername:String
     var relationship:Int
     var created_at:String
+//    var planDetailArr:[PlanDetailData<T>]
 
     init?(dataDict:[String:T]) {
         
@@ -92,7 +93,7 @@ struct UserListData<T>{
         let last_name = dataDict["last_name"] as? String ?? ""
 
         let image = dataDict["image"] as? String ?? ""
-        let type = dataDict["type"] as? String ?? ""
+        let type = dataDict["type"] as? Int ?? 0
         let dob = dataDict["dob"] as? String ?? ""
         let gender = dataDict["gender"] as? Int ?? 0
         let loginusername = dataDict["loginuser_name"] as? String ?? ""

@@ -316,6 +316,21 @@ extension UIViewController {
         dateFormater.dateFormat = "d MMM yyyy"
         return dateFormater.string(from: dateFromServer)
     }
+    func returnFirstWordInString(string:String) -> String{
+        var fStr = String()
+        if let spaceIndex = string.firstIndex(of: " ") {
+            fStr = String(string.prefix(upTo: string.index(after: spaceIndex)))
+        }
+        return fStr
+    }
+    
+    func getAMPMFromTime(time:Int)->String{
+        if time > 12{
+            return ":00 PM"
+        }else{
+            return ":00 AM"
+        }
+    }
 }
 
 //MARK:  UIImageView

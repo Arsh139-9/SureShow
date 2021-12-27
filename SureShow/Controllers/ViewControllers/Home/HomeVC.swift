@@ -32,7 +32,8 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.homeUserListArr.removeAll()
+
             self.getUserListDataApi()
             self.getRelationshipListApi()
         
@@ -93,12 +94,8 @@ class HomeVC: UIViewController {
             if let status = getHomeListDataResp?.status{
                 if status == 200{
                     self.homeUserListArr = getHomeListDataResp?.homeUserListArray ?? []
-                    DispatchQueue.main.async {
-                        self.tblHome.reloadData()
-                    }
-                    //                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
-                    //
-                    //                    }
+                   
+                   
                 }
                 else if status == 401{
                     removeAppDefaults(key:"AuthToken")
@@ -106,7 +103,10 @@ class HomeVC: UIViewController {
                     
                 }
                 else{
-                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                    alert(AppAlertTitle.appName.rawValue, message: "No patient added here", view: self)
+                }
+                DispatchQueue.main.async {
+                    self.tblHome.reloadData()
                 }
             }
             
@@ -145,7 +145,6 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
             cell.lblGender.text = "Female"
         }else{
             cell.lblGender.text = "Others"
-
         }
         return cell
     }
@@ -156,6 +155,7 @@ extension HomeVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name:StoryboardName.HomeChild, bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "PatientDetailVC") as! PatientDetailVC
+        vc.type = homeUserListArr[indexPath.row].type
         vc.firstName = homeUserListArr[indexPath.row].first_name
         vc.lastName = homeUserListArr[indexPath.row].last_name
         vc.userAge = homeUserListArr[indexPath.row].dob

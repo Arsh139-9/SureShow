@@ -27,6 +27,8 @@ struct WSMethods {
     static let addPatient = "user/add-user"
     static let getUserList = "user/getuser"
     static let editUserDetail = "user/edit-user"
+    static let deleteUser = "user/delete-user"
+
     static let getRelationshipList = "user/get-relationship"
     static let getClinicList = "queue/clinic-list"
     static let getBranchList = "queue/branch-list"
@@ -37,7 +39,7 @@ struct WSMethods {
     static let deleteQueueList = "queue/delete-queue"
     static let acceptReject = "queue/user-confirmation"
     static let notificationList = "user/get-notification-list"
-
+    static let getAppointmentHistory = "queue/appointment-history"
     
     
     
@@ -55,10 +57,11 @@ let kBASEURL = "https://comeonnow.io/come_on_now/api/v1/"
 
 
 
+
 struct SettingWebLinks {
-    static let privacyPolicy = "PrivacyAndPolicy.html"
-    static let aboutUs = "about.html"
-    static let termsAndConditions = "terms&services.html"
+    static let privacyPolicy = "https://www.comeonnow.io/v2/webservice/PrivacyAndPolicy.html"
+    static let aboutUs = "https://www.comeonnow.io/v2/webservice/about.html"
+    static let termsAndConditions = "https://www.comeonnow.io/v2/webservice/terms&services.html"
 }
 struct NavBarTitle {
     static let privacyPolicy = "Privacy policy"

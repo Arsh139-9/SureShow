@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 import IQKeyboardManagerSwift
 import SKCountryPicker
+import SafariServices
 
 class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
@@ -24,19 +25,10 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var viewEmail: UIView!
     @IBOutlet weak var txtLastName: SSUsernameTextField!
     @IBOutlet weak var viewLastName: UIView!
-    
-    
     @IBOutlet weak var txtPhoneNum: SSMobileNumberTextField!
-    
     @IBOutlet weak var viewPhoneNum: UIView!
     @IBOutlet weak var countryCodeBtn: UIButton!
-
     @IBOutlet weak var countryCodeLbl: SSSemiboldLabel!
-    
-    
-    
-    
-    
     @IBOutlet weak var checkUncheckBtn: UIButton!
     
     
@@ -283,6 +275,14 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             sender.tag = 0
         }
     }
+    
+    @IBAction func btnPrivacyPolicy(_ sender: Any) {
+        if let url = URL(string:"https://www.dharmani.com/ComeOnNow/webservice/PrivacyAndPolicy.html")
+                           {
+                               let safariCC = SFSafariViewController(url: url)
+                               present(safariCC, animated: true, completion: nil)
+                           }
+               }
     
     //------------------------------------------------------
     

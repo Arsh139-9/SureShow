@@ -114,15 +114,7 @@ extension NotificationVC : UITableViewDataSource, UITableViewDelegate {
         cell.lblDetails.text = notify.notify_title
         cell.lblTime.text = notify.creation_date == "" ? "11:30 AM":notify.creation_date
         cell.lblDate.text = notify.appoint_start_time == "" ? "5-12-2021, 12:00 PM to 02:00 Pm":notify.appoint_start_time
-        //        cell.viewAccept.isHidden = true
-        //        if indexPath.row == 0{
-        //            cell.viewAccept.isHidden = false
-        //        }else if indexPath.row == 1{
-        //            cell.viewAccept.isHidden = true
-        //        }else if indexPath.row == 2{
-        //            cell.viewAccept.isHidden = false
-        //        }else{}
-        
+      
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

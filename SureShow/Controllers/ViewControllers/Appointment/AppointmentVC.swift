@@ -25,7 +25,6 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     //    let appoitmentCases = AppoitmentListing()
     var needToshowInfoView: Bool = false
     var hospitalListArr = [HospitalListData<AnyHashable>]()
-    var patientListArr = [PatientListData<AnyHashable>]()
     var addQueueListArr = [AddQueueListData<AnyHashable>]()
     var addQueueListNUArr = [AddQueueListData<AnyHashable>]()
     
@@ -56,9 +55,9 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         tblAppointment.dataSource = self
         
         segment1.btn.setTitle(LocalizableConstants.Controller.SureShow.all.localized(), for: .normal)
-        segment2.btn.setTitle(LocalizableConstants.Controller.SureShow.confirmed.localized(), for: .normal)
-        segment3.btn.setTitle(LocalizableConstants.Controller.SureShow.pending.localized(), for: .normal)
-        segment4.btn.setTitle(LocalizableConstants.Controller.SureShow.queued.localized(), for: .normal)
+        segment2.btn.setTitle(LocalizableConstants.Controller.SureShow.pending.localized(), for: .normal)
+        segment3.btn.setTitle(LocalizableConstants.Controller.SureShow.queued.localized(), for: .normal)
+        segment4.btn.setTitle(LocalizableConstants.Controller.SureShow.confirmed.localized(), for: .normal)
         
         segment1.delegate = self
         segment2.delegate = self
@@ -144,9 +143,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
                             self.addQueueListArr.removeAll()
                         }
                     }else{
-                        if self.addQueueListNUArr.count == 0{
                             self.addQueueListArr.removeAll()
-                        }
+                        
                     }
                     //
                     self.updateUI()
@@ -183,29 +181,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
         }
     }
-    open func getPatientListApi(){
-        ModalResponse().getPatientListApi(){ response in
-            print(response)
-            let getPatientDataResp  = GetPatientData(dict:response as? [String : AnyHashable] ?? [:])
-            let message = getPatientDataResp?.message ?? ""
-            if let status = getPatientDataResp?.status{
-                if status == 200{
-                    self.patientListArr = getPatientDataResp?.patientListArray ?? []
-                }
-                else if status == 401{
-                    removeAppDefaults(key:"AuthToken")
-                    appDel.logOut()
-                }
-                else{
-                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
-                }
-            }
-            
-        } onFailure: { error in
-            AFWrapperClass.svprogressHudDismiss(view: self)
-            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
-        }
-    }
+    
     
     
     func updateUI() {
@@ -233,6 +209,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             if let status = response["status"] as? Int {
                 if status == 200{
                     showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+                        self.lastPageNo = 1
+                        self.addQueueListNUArr.removeAll()
                         self.getCPQListApi(statusS: 1)
                     }
                 }
@@ -253,7 +231,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     func generatingParameters() -> [String:AnyObject] {
         var parameters:[String:AnyObject] = [:]
         
-        parameters["add_user_id"] = patientSId as AnyObject
+        parameters["id"] = patientSId as AnyObject
         
         //        parameters["usertype"] = "1" as AnyObject
         
@@ -285,13 +263,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         
         
     }
-    func getAMPMFromTime(time:Int)->String{
-        if time > 12{
-            return ":00 PM"
-        }else{
-            return ":00 AM"
-        }
-    }
+  
     //------------------------------------------------------
     
     //MARK: UITableViewDataSource,UITableViewDelegate
@@ -326,42 +298,6 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         //            }
         //        }else
         if segment2.isSelected {
-            //            if indexPath.row % 2 == 0{
-            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-            //                    return cell
-            //                }
-            //            }
-            //            else if indexPath.row % 3 == 0{
-            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
-            //                    cell.btnAccept.addTarget(self, action: #selector(acceptBtnAction(_:)), for: .touchUpInside)
-            //                    return cell
-            //                }
-            //            }
-            //            else{
-            //                if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
-            //                    return cell
-            //                }
-            //            }
-            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
-                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
-                cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
-                if addQueueListArr[indexPath.row].gender  == 1{
-                    cell.lblGender.text = "Male"
-                }else if addQueueListArr[indexPath.row].gender  == 2{
-                    cell.lblGender.text = "Female"
-                }else{
-                    cell.lblGender.text = "Others"
-
-                }
-                cell.lblDate.text = addQueueListArr[indexPath.row].appoint_date
-                
-                var sPhotoStr = addQueueListArr[indexPath.row].image
-                sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-                cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
-                
-                return cell
-            }
-        }else if segment3.isSelected {
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PendingTVCell.self)) as? PendingTVCell {
                 cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
                 cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
@@ -383,9 +319,14 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
                 
                 return cell
             }
-        }else if segment4.isSelected{
+            
+            
+            
+            
+           
+        }else if segment3.isSelected {
             if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: QueueTVCell.self)) as? QueueTVCell {
-                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age)"
+                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
                 cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
                 if addQueueListArr[indexPath.row].gender  == 1{
                     cell.lblGender.text = "Male"
@@ -403,18 +344,39 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
                 
                 return cell
             }
+        }else if segment4.isSelected{
+            if let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AppointmentConfirmedTVCell.self)) as? AppointmentConfirmedTVCell {
+                cell.lblAge.text = "\(addQueueListArr[indexPath.row].age) years old"
+                cell.lblName.text = "\(addQueueListArr[indexPath.row].last_name) \(addQueueListArr[indexPath.row].first_name)"
+                if addQueueListArr[indexPath.row].gender  == 1{
+                    cell.lblGender.text = "Male"
+                }else if addQueueListArr[indexPath.row].gender  == 2{
+                    cell.lblGender.text = "Female"
+                }else{
+                    cell.lblGender.text = "Others"
+
+                }
+                cell.lblDate.text = addQueueListArr[indexPath.row].appoint_date
+                
+                var sPhotoStr = addQueueListArr[indexPath.row].image
+                sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
+                cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
+                
+                return cell
+            }
         }
         return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if segment4.isSelected{
+       
+        if segment3.isSelected{
             return 135
         }else if segment2.isSelected{
             //            if indexPath.row % 2 == 0 || indexPath.row % 3 == 0{
             //                return 160
             //            }else{
-            return 160
+            return 167
             //  }
         }else{
             return 160
@@ -472,7 +434,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             segment4.isSelected = false
             lastPageNo = 1
             addQueueListNUArr.removeAll()
-            getCPQListApi(statusS: 3)
+            getCPQListApi(statusS: 2)
         }
         else if view == segment3 {
             
@@ -482,7 +444,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             lastPageNo = 1
             addQueueListNUArr.removeAll()
             
-            getCPQListApi(statusS: 2)
+            getCPQListApi(statusS: 1)
         }
         else if view == segment4 {
             segment1.isSelected = false
@@ -491,7 +453,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             lastPageNo = 1
             addQueueListNUArr.removeAll()
             
-            getCPQListApi(statusS: 1)
+            getCPQListApi(statusS: 3)
         }
     }
     //------------------------------------------------------
@@ -521,7 +483,7 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     func generatingARParameters(status:Int,addUserId:Int) -> [String:AnyObject] {
         var parameters:[String:AnyObject] = [:]
         
-        parameters["add_user_id"] = addUserId as AnyObject
+        parameters["id"] = addUserId as AnyObject
         
         parameters["status"] = status as AnyObject
         
@@ -554,6 +516,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             let getARData  = ForgotPasswordData(dict:response as? [String : AnyHashable] ?? [:])
             if getARData?.status == 200{
                 showAlertMessage(title: kAppName.localized(), message: getARData?.message ?? "" , okButton: "OK", controller: self) {
+                    self.lastPageNo = 1
+                    self.addQueueListNUArr.removeAll()
                     self.getCPQListApi(statusS: 2)
                 }
             }
@@ -571,8 +535,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         
     }
     @objc func acceptBtnAction(_ sender: Any?) {
-        verifiedPUpViewA.isHidden = false
-        self.verifiedIdentityPopUpView.isHidden = false
+//        verifiedPUpViewA.isHidden = false
+//        self.verifiedIdentityPopUpView.isHidden = false
         
         let button = sender as? UIButton
         var parentCell = button?.superview
@@ -596,6 +560,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
             let getARData  = ForgotPasswordData(dict:response as? [String : AnyHashable] ?? [:])
             if getARData?.status == 200{
                 //                showAlertMessage(title: kAppName.localized(), message: getARData?.message ?? "" , okButton: "OK", controller: self) {
+                self.lastPageNo = 1
+                self.addQueueListNUArr.removeAll()
                 self.getCPQListApi(statusS: 2)
                 // }
             }
@@ -616,7 +582,6 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
     @IBAction func btnAdd(_ sender: Any) {
         let controller = NavigationManager.shared.addQueueVC
         controller.hospitalListArr = hospitalListArr
-        controller.patientListArr = patientListArr
         push(controller: controller)
     }
     
@@ -640,9 +605,8 @@ class AppointmentVC : BaseVC, UITableViewDelegate,UITableViewDataSource,SegmentV
         lastPageNo = 1
         addQueueListNUArr.removeAll()
         
-        getCPQListApi(statusS: 3)
+        getCPQListApi(statusS: 2)
         
-        getPatientListApi()
         getHospitalListApi()
     }
     
@@ -656,13 +620,13 @@ extension AppointmentVC:KRPullLoadViewDelegate{
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                     completionHandler()
                     if self.segment2.isSelected == true{
-                        self.getCPQListApi(statusS: 3)
+                        self.getCPQListApi(statusS: 2)
                     }
                     else if self.segment3.isSelected == true{
-                        self.getCPQListApi(statusS: 2)
+                        self.getCPQListApi(statusS: 1)
                         
                     }else if self.segment4.isSelected == true{
-                        self.getCPQListApi(statusS: 1)
+                        self.getCPQListApi(statusS: 3)
                         
                     }
                     
@@ -688,13 +652,13 @@ extension AppointmentVC:KRPullLoadViewDelegate{
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
                 completionHandler()
                 if self.segment2.isSelected == true{
-                    self.getCPQListApi(statusS: 3)
+                    self.getCPQListApi(statusS: 2)
                 }
                 else if self.segment3.isSelected == true{
-                    self.getCPQListApi(statusS: 2)
+                    self.getCPQListApi(statusS: 1)
                     
                 }else if self.segment4.isSelected == true{
-                    self.getCPQListApi(statusS: 1)
+                    self.getCPQListApi(statusS: 3)
                     
                 }
                 

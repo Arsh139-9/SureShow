@@ -39,6 +39,12 @@ class ServiceVC : BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let url = NSURL(string: SettingWebLinks.termsAndConditions)
+        let request = NSURLRequest(url: url! as URL)
+        serviceWebView.navigationDelegate = self
+        serviceWebView.load(request as URLRequest)
+//        headingLbl.text = linkLblText
+        // Do any additional setup after loading the view.
     }
     
     //------------------------------------------------------
@@ -48,4 +54,24 @@ class ServiceVC : BaseVC {
     }
     
     //------------------------------------------------------
+}
+extension ServiceVC:WKNavigationDelegate{
+
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    AFWrapperClass.svprogressHudShow(title: "Loading...", view: self)
+  }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    AFWrapperClass.svprogressHudDismiss(view: self)
+  }
+
+    private func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+        Alert.present(
+            title: AppAlertTitle.appName.rawValue,
+            message: error.localizedDescription,
+            actions: .ok(handler: {
+            }),
+            from: self
+        )
+      }
 }

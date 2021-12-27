@@ -15,7 +15,6 @@ import IQKeyboardManagerSwift
 class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePickerDelegate {
     
     @IBOutlet weak var txtGender: SSGenderTextField!
-    
     @IBOutlet weak var txtUserRelationship: SSRelationshipTextField!
     @IBOutlet weak var viewGender: UIView!
     @IBOutlet weak var txtBirth: SSBirthDateTextField!

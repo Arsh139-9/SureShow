@@ -136,6 +136,24 @@ class ModalResponse{
         }
         
     }
+    public func getAppointmentHistoryListApi(perPage:Int,page:Int,onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+       
+        AFWrapperClass.requestGETURL(kBASEURL + WSMethods.getAppointmentHistory + "?per-page=\(perPage)&page=\(page)", params:nil, headers:headers) { response in
+            let result = response as AnyObject
+            print(result)
+            if let json = result as? [String:AnyObject] {
+                success(json as [String:AnyObject])
+            }
+        } failure: { error in
+
+            failure(error)
+        }
+
+    }
     open func pendingAppointmentAcceptRejectApi(params:[String : Any]?,onSuccess success: @escaping ([String:AnyObject]) -> Void, onFailure failure: @escaping (Error) -> Void) {
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
         

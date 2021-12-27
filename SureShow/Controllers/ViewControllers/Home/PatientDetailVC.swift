@@ -29,7 +29,7 @@ class PatientDetailVC : BaseVC {
     var userName:String?
     var firstName:String?
     var lastName:String?
-
+    var type:Int?
     var userAge:String?
     var userImage:String?
     var userGender:String?
@@ -70,10 +70,8 @@ class PatientDetailVC : BaseVC {
     
     @IBAction func btnEdit(_ sender: Any) {
         let vc =  NavigationManager.shared.editPatientDetailVC
-//        let userN = userNameLbl.text
-//        let arr = userN?.components(separatedBy:" ")
-//        vc.firstName = arr?[1]
-//        vc.lastName = arr?[0]
+
+        vc.type = type
         vc.userName = userNameLbl.text
         vc.firstName = firstName
         vc.lastName = lastName

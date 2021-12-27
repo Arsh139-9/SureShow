@@ -96,7 +96,7 @@ class LogInVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         var parameters:[String:AnyObject] = [:]
         parameters["username"] = txtEmail.text  as AnyObject
         parameters["password"] = txtPswrd.text  as AnyObject
-        parameters["device_type"] = "1"  as AnyObject
+        parameters["device_type"] = "2"  as AnyObject
         parameters["usertype"] = "1"  as AnyObject
         var deviceToken  = getSAppDefault(key: "DeviceToken") as? String ?? ""
         if deviceToken == ""{

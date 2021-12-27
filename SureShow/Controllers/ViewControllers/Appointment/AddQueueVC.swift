@@ -18,11 +18,9 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var viewDoctor: UIView!
     @IBOutlet weak var viewProvider: UIView!
     @IBOutlet weak var txtDisease: SSDiseaseTextField!
-    
     @IBOutlet weak var txtPatientName: SSPatientTextField!
-    
-    
     @IBOutlet weak var txtProvider: UITextField!
+    
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var patientListArr = [PatientListData<AnyHashable>]()
     var hospitalListArr = [HospitalListData<AnyHashable>]()
@@ -38,7 +36,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     var patientSId:Int?
     var providerSId:Int?
     var diseaseSId:Int?
-
+    
     var globalPickerView = UIPickerView()
     
     var rightUserView: UIView {
@@ -66,7 +64,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     //MARK: Customs
     
     func setup() {
-        
+        getPatientListApi()
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
@@ -78,7 +76,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         globalPickerView.delegate = self
         globalPickerView.dataSource = self
         
-
+        
         let label = UILabel(frame: CGRect(x:0, y:0, width:300, height:19))
         label.text = kAppName
         label.center = CGPoint(x: view.frame.midX, y: view.frame.height)
@@ -90,14 +88,11 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(closePicker))
         
         
-//        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closePicker))
-//        let barButtonItem1 = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-//        let barButtonItem2 = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(closePicker))
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 44))
         toolBar.setItems([cancelButton, toolbarTitle, doneButton], animated: false)
-
-//        let buttons = [barButtonItem1, barButtonItem,barButtonItem2]
-//        toolBar.setItems(buttons, animated: false)
+        
+        //        let buttons = [barButtonItem1, barButtonItem,barButtonItem2]
+        //        toolBar.setItems(buttons, animated: false)
         txtHospitalName.inputView = globalPickerView
         txtHospitalName.inputAccessoryView = toolBar
         txtDoctor.inputView = globalPickerView
@@ -112,13 +107,13 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         txtPatientName.inputView = globalPickerView
         txtPatientName.inputAccessoryView = toolBar
         
-//        viewHospitalName .addSubview(rightUserView)
+        //        viewHospitalName .addSubview(rightUserView)
         txtHospitalName.setupRightImage(imageName:SSImageName.iconDropDown)
         txtDoctor.setupRightImage(imageName:SSImageName.iconDropDown)
         txtProvider.setupRightImage(imageName:SSImageName.iconDropDown)
-
-//        txtHospitalName.rightView = rightUserView
-//        txtHospitalName.rightViewMode = .always
+        
+        //        txtHospitalName.rightView = rightUserView
+        //        txtHospitalName.rightViewMode = .always
         //        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
         //        self.leftViewMode = .always
         
@@ -128,7 +123,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         }
         txtPatientName.pvOptions = pvOptionArr
     }
-  
+    
     @objc func closePicker() {
         txtHospitalName.resignFirstResponder()
         txtDoctor.resignFirstResponder()
@@ -154,8 +149,8 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             showAlertMessage(title: kAppName.localized(), message: "Please select doctor name." , okButton: "Ok", controller: self) {
                 
             }
-
-           
+            
+            
             return false
         }
         
@@ -163,15 +158,40 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             showAlertMessage(title: kAppName.localized(), message: "Please select disease name." , okButton: "Ok", controller: self) {
                 
             }
-
+            
             return false
         }
         return true
+    }
+    open func getPatientListApi(){
+        ModalResponse().getPatientListApi(){ response in
+            print(response)
+            let getPatientDataResp  = GetPatientData(dict:response as? [String : AnyHashable] ?? [:])
+            let message = getPatientDataResp?.message ?? ""
+            if let status = getPatientDataResp?.status{
+                if status == 200{
+                    self.patientListArr = getPatientDataResp?.patientListArray ?? []
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } onFailure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
     }
     open func getDiseaseListApi(){
         ModalResponse().getDiseaseListApi(){ response in
             print(response)
             let getDiseaseDataResp  = GetDiseaseData(dict:response as? [String : AnyHashable] ?? [:])
+            AFWrapperClass.svprogressHudDismiss(view: self)
+
             let message = getDiseaseDataResp?.message ?? ""
             if let status = getDiseaseDataResp?.status{
                 if status == 200{
@@ -203,15 +223,16 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         ModalResponse().getBranchListApi(clinicId:hospitalId ?? 0){ response in
             print(response)
             let getBranchDataResp  = GetBranchData(dict:response as? [String : AnyHashable] ?? [:])
+            AFWrapperClass.svprogressHudDismiss(view: self)
             let message = getBranchDataResp?.message ?? ""
             if let status = getBranchDataResp?.status{
                 if status == 200{
                     self.branchListArr = getBranchDataResp?.branchListArray ?? []
-//                    self.pvOptionArr.removeAll()
-//                    for obj in self.branchListArr {
-//                        self.pvOptionArr.append(obj.branch_name)
-//                    }
-//                    self.txtDoctor.pvOptions = self.pvOptionArr
+                    //                    self.pvOptionArr.removeAll()
+                    //                    for obj in self.branchListArr {
+                    //                        self.pvOptionArr.append(obj.branch_name)
+                    //                    }
+                    //                    self.txtDoctor.pvOptions = self.pvOptionArr
                 }
                 else if status == 401{
                     removeAppDefaults(key:"AuthToken")
@@ -238,6 +259,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         ModalResponse().getProviderListApi(clinicId:hospitalId ?? 0, branchId: branchId ?? 0){ response in
             print(response)
             let getProviderDataResp  = GetProviderData(dict:response as? [String : AnyHashable] ?? [:])
+            AFWrapperClass.svprogressHudDismiss(view: self)
             let message = getProviderDataResp?.message ?? ""
             if let status = getProviderDataResp?.status{
                 if status == 200{
@@ -302,8 +324,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         parameters["provider_id"] = providerSId  as AnyObject
         parameters["disease_id"] = diseaseSId  as AnyObject
         parameters["add_user_id"] = patientSId as AnyObject
-      
-//        parameters["usertype"] = "1" as AnyObject
+        
         
         print(parameters)
         return parameters
@@ -329,7 +350,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     //------------------------------------------------------
     
     //MARK: UITextFieldDelegate
-
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -338,7 +359,6 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         } else {
             self.view.endEditing(true)
         }
-       
         
         return true
     }
@@ -395,11 +415,11 @@ extension AddQueueVC:UIPickerViewDataSource{
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    
+        
         if txtPatientName.isFirstResponder == true{
             return patientListArr.count
         }
-       else if txtHospitalName.isFirstResponder == true{
+        else if txtHospitalName.isFirstResponder == true{
             return hospitalListArr.count
         }else if txtDoctor.isFirstResponder == true{
             return branchListArr.count
@@ -439,25 +459,25 @@ extension AddQueueVC:UIPickerViewDelegate{
             txtPatientName.text = "\(patientListArr[row].last_name) \(patientListArr[row].first_name)"
             patientSId = patientListArr[row].id
         }
-       else if txtHospitalName.isFirstResponder {
+        else if txtHospitalName.isFirstResponder {
             txtHospitalName.text = hospitalListArr[row].clinic_name
-             hospitalSId = hospitalListArr[row].clinic_id
-
+            hospitalSId = hospitalListArr[row].clinic_id
+            
             getBranchListApi()
         } else if txtDoctor.isFirstResponder {
             txtDoctor.text = branchListArr[row].branch_name
             branchSId = branchListArr[row].id
-
+            
             getProviderListApi()
         } else if txtProvider.isFirstResponder {
             txtProvider.text = providerListArr[row].name
             providerSId = providerListArr[row].id
-
+            
         }
         else if txtDisease.isFirstResponder {
             txtDisease.text = diseaseListArr[row].disease_name
             diseaseSId = diseaseListArr[row].id
-
+            
         }
     }
 }

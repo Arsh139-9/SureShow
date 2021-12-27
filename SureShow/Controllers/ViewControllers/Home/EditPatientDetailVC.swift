@@ -19,8 +19,6 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     @IBOutlet weak var txtFirstName: SSUsernameTextField!
     @IBOutlet weak var viewLastName: UIView!
     @IBOutlet weak var txtLastName: SSUsernameTextField!
-    
-    
     @IBOutlet weak var txtBirthDate: SSBirthDateTextField!
     @IBOutlet weak var viewBirthDate: UIView!
     @IBOutlet weak var imgProfile: UIImageView!
@@ -32,6 +30,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     var imgArray = [Data]()
     
     var id:Int?
+    var type:Int?
     var userName:String?
     var firstName:String?
     var lastName:String?
@@ -145,6 +144,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         }
         return true
     }
+    
     func genderValParamUpdate() -> String{
         if txtGender.text == "Male"{
             return "1"
@@ -156,6 +156,48 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             return "3"
         }
     }
+    func generatingParameters() -> [String:AnyObject] {
+        var parameters:[String:AnyObject] = [:]
+        
+        parameters["id"] = id as AnyObject
+        
+        
+        print(parameters)
+        return parameters
+    }
+    open func deleteUserApi(){
+        DispatchQueue.main.async {
+            AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
+        }
+        let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
+        
+        let headers: HTTPHeaders = [
+            .authorization(bearerToken: authToken)]
+        AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.deleteUser, params: generatingParameters(), headers: headers) { response in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            print(response)
+            let message = response["message"] as? String ?? ""
+            if let status = response["status"] as? Int {
+                if status == 200{
+                    showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
+                        self.popBack(3)
+                    }
+                }
+                else if status == 401{
+                    removeAppDefaults(key:"AuthToken")
+                    appDel.logOut()
+                }
+                else{
+                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                }
+            }
+            
+        } failure: { error in
+            AFWrapperClass.svprogressHudDismiss(view: self)
+            alert(AppAlertTitle.appName.rawValue, message: error.localizedDescription, view: self)
+        }
+    }
+    
     func editUserDetailApi() {
         let compressedData = (imgProfile.image?.jpegData(compressionQuality: 0.3))!
         imgArray.removeAll()
@@ -170,7 +212,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             }
         }
         
-        let paramds = ["id":id ?? 0,"first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)"] as [String : Any]
+        let paramds = ["id":id ?? 0,"first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)","type":type ?? 0] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editUserDetail
         
@@ -238,7 +280,8 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
                 let signUpStepData =  ForgotPasswordData(dict: respDict)
                 if signUpStepData?.status == 200{
                     showAlertMessage(title: kAppName.localized(), message: signUpStepData?.message ?? ""  , okButton: "OK", controller: self) {
-                        self.navigationController?.popToRootViewController(animated: true)
+                        self.popBack(3)
+
                         
                         //                        removeAppDefaults(key:"AuthToken")
                         //                        appDel.logOut()
@@ -280,10 +323,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     
     @IBAction func btnDelete(_ sender: Any) {
         
-        
-        
-        let controller = NavigationManager.shared.homeVC
-        popBack(3)
+        deleteUserApi()
     }
     
     //------------------------------------------------------
