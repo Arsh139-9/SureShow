@@ -9,14 +9,19 @@ import UIKit
 import Foundation
 import IQKeyboardManagerSwift
 import Alamofire
+
+
 class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
-    @IBOutlet weak var txtConfirmPswrd: SSPasswordTextField!
+    @IBOutlet weak var cPImgView: UIImageView!
+    @IBOutlet weak var nextPasswordImgView: UIImageView!
+    @IBOutlet weak var confirmPasswordImgView: UIImageView!
     @IBOutlet weak var confirmPswrdView: UIView!
-    @IBOutlet weak var txtNewPswrd: SSPasswordTextField!
     @IBOutlet weak var newPswrdView: UIView!
     @IBOutlet weak var chngPswrdView: UIView!
-    @IBOutlet weak var txtChngPswrd: SSPasswordTextField!
+    @IBOutlet weak var txtOldPassword: SSPasswordTextField!
+    @IBOutlet weak var txtNewPassword: SSPasswordTextField!
+    @IBOutlet weak var txtConfirmPassword: SSPasswordTextField!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
     var textTitle: String?
@@ -46,54 +51,54 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
-        txtChngPswrd.delegate = self
-        txtNewPswrd.delegate = self
-        txtConfirmPswrd.delegate = self
+        txtOldPassword.delegate = self
+        txtNewPassword.delegate = self
+        txtConfirmPassword.delegate = self
     }
     
     func validate() -> Bool {
         
-        if ValidationManager.shared.isEmpty(text: txtChngPswrd.text) == true {
+        if ValidationManager.shared.isEmpty(text: txtOldPassword.text) == true {
             showAlertMessage(title: kAppName.localized(), message: "Please enter password." , okButton: "Ok", controller: self) {
             }
-
+            
             return false
         }
         
-        if ValidationManager.shared.isEmpty(text: txtNewPswrd.text) == true {
+        if ValidationManager.shared.isEmpty(text: txtNewPassword.text) == true {
             showAlertMessage(title: kAppName.localized(), message: "Please enter new password." , okButton: "Ok", controller: self) {
             }
             return false
         }
         
-//        if ValidationManager.shared.isValid(text: txtNewPswrd.text!, for: RegularExpressions.password8AS) == false {
-//            showAlertMessage(title: kAppName.localized(), message: "Please enter valid new password. Password should contain at least 8 characters, with at least 1 letter and 1 special character." , okButton: "Ok", controller: self) {
-//            }
-//            return false
-//        }
+        //        if ValidationManager.shared.isValid(text: txtNewPswrd.text!, for: RegularExpressions.password8AS) == false {
+        //            showAlertMessage(title: kAppName.localized(), message: "Please enter valid new password. Password should contain at least 8 characters, with at least 1 letter and 1 special character." , okButton: "Ok", controller: self) {
+        //            }
+        //            return false
+        //        }
         
-        if ValidationManager.shared.isEmpty(text: txtConfirmPswrd.text) == true {
+        if ValidationManager.shared.isEmpty(text: txtConfirmPassword.text) == true {
             showAlertMessage(title: kAppName.localized(), message: "Please enter confirm password." , okButton: "Ok", controller: self) {
             }
             return false
         }
         
-//        if ValidationManager.shared.isValid(text: txtConfirmPswrd.text!, for: RegularExpressions.password8AS) == false {
-//            showAlertMessage(title: kAppName.localized(), message: "Please enter valid confirm password. Password should contain at least 8 characters, with at least 1 letter and 1 special character." , okButton: "Ok", controller: self) {
-//            }
-//            return false
-//        }
+        //        if ValidationManager.shared.isValid(text: txtConfirmPswrd.text!, for: RegularExpressions.password8AS) == false {
+        //            showAlertMessage(title: kAppName.localized(), message: "Please enter valid confirm password. Password should contain at least 8 characters, with at least 1 letter and 1 special character." , okButton: "Ok", controller: self) {
+        //            }
+        //            return false
+        //        }
         
-        if (txtChngPswrd.text == txtNewPswrd.text) {
+        if (txtOldPassword.text == txtNewPassword.text) {
             showAlertMessage(title: kAppName.localized(), message: "The old and new password must not be the same." , okButton: "Ok", controller: self) {
             }
-
+            
             return false
         }
         
-        if (txtNewPswrd.text != txtConfirmPswrd.text) {
+        if (txtNewPassword.text != txtConfirmPassword.text) {
             showAlertMessage(title: kAppName.localized(), message: "New passwords and confirm password not match.", okButton: "OK", controller: self)
-                {
+            {
                 
             }
             return false
@@ -101,13 +106,12 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         
         return true
     }
-    
     open func changePasswordApi(){
         DispatchQueue.main.async {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
         let authToken  = getSAppDefault(key: "AuthToken") as? String ?? ""
-
+        
         let headers: HTTPHeaders = [
             .authorization(bearerToken: authToken)]
         AFWrapperClass.requestPostWithMultiFormData(kBASEURL + WSMethods.changePassword, params: generatingParameters(), headers: headers) { response in
@@ -117,7 +121,6 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
             if let status = response["status"] as? Int {
                 if status == 200{
                     showAlertMessage(title: kAppName.localized(), message: message , okButton: "OK", controller: self) {
-                        
                         self.navigationController?.popViewController(animated: true)
                     }
                 }
@@ -137,42 +140,40 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     }
     func generatingParameters() -> [String:AnyObject] {
         var parameters:[String:AnyObject] = [:]
-        parameters["password"] = txtNewPswrd.text  as AnyObject
-        parameters["old_password"] = txtChngPswrd.text  as AnyObject
-
-//        parameters["device_type"] = "1"  as AnyObject
-//        var deviceToken  = getSAppDefault(key: "DeviceToken") as? String ?? ""
-//        if deviceToken == ""{
-//            deviceToken = "123"
-//        }
-//        parameters["device_token"] = deviceToken  as AnyObject
+        parameters["password"] = txtNewPassword.text  as AnyObject
+        parameters["old_password"] = txtOldPassword.text  as AnyObject
+        parameters["usertype"] = "2"  as AnyObject
         print(parameters)
         return parameters
     }
     //------------------------------------------------------
     
-    //MARK: Action
+    //MARK: Actions
+ 
+    @IBAction func hideShowPasswordBtnAction(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.tag == 0{
+            sender.isSelected ? oldPasswordEncrypt() : oldPasswordDecrypt()
+        }else if sender.tag == 1{
+            sender.isSelected ? newPasswordEncrypt() : newPasswordDecrypt()
+        }else if sender.tag == 2{
+            sender.isSelected ? confirmPasswordEncrypt() :confirmPasswordDecrypt()
+        }
+    }
     
     @IBAction func btnBack(_ sender: Any) {
         self.pop()
     }
     
     @IBAction func btnSave(_ sender: Any) {
-        if validate() == false {
-            return
-        }
-        else{
-            changePasswordApi()
-        }
+        validate() == false ? returnFunc() : changePasswordApi()
     }
-    
     
     //------------------------------------------------------
     
     //MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         if IQKeyboardManager.shared.canGoNext {
             IQKeyboardManager.shared.goNext()
         } else {
@@ -183,11 +184,11 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
-        case txtChngPswrd:
+        case txtOldPassword:
             chngPswrdView.borderColor =  SSColor.appButton
-        case txtNewPswrd :
+        case txtNewPassword :
             newPswrdView.borderColor = SSColor.appButton
-        case txtConfirmPswrd :
+        case txtConfirmPassword :
             confirmPswrdView.borderColor = SSColor.appButton
         default:break
             
@@ -196,11 +197,11 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
-        case txtChngPswrd:
+        case txtOldPassword:
             chngPswrdView.borderColor =  SSColor.appBlack
-        case txtNewPswrd :
+        case txtNewPassword :
             newPswrdView.borderColor = SSColor.appBlack
-        case txtConfirmPswrd :
+        case txtConfirmPassword :
             confirmPswrdView.borderColor = SSColor.appBlack
         default:break
         }
@@ -223,3 +224,25 @@ class ChangePasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     //------------------------------------------------------
 }
+
+extension ChangePasswordVC{
+    func oldPasswordEncrypt(){
+        txtOldPassword.isSecureTextEntry = false;cPImgView.image = UIImage(named: SSImageName.iconEyeShow)
+    }
+    func newPasswordEncrypt(){
+        txtNewPassword.isSecureTextEntry = false;nextPasswordImgView.image = UIImage(named: SSImageName.iconEyeShow)
+    }
+    func confirmPasswordEncrypt(){
+        txtConfirmPassword.isSecureTextEntry = false;confirmPasswordImgView.image = UIImage(named: SSImageName.iconEyeShow)
+    }
+    func oldPasswordDecrypt(){
+        txtOldPassword.isSecureTextEntry = true;cPImgView.image = UIImage(named: SSImageName.iconEye)
+    }
+    func newPasswordDecrypt(){
+        txtNewPassword.isSecureTextEntry = true;nextPasswordImgView.image = UIImage(named: SSImageName.iconEye)
+    }
+    func confirmPasswordDecrypt(){
+        txtConfirmPassword.isSecureTextEntry = true;confirmPasswordImgView.image = UIImage(named: SSImageName.iconEye)
+    }
+}
+

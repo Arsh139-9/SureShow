@@ -26,9 +26,12 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     @IBOutlet weak var viewGender: UIView!
     @IBOutlet weak var txtUserRelationship: SSRelationshipTextField!
     @IBOutlet weak var viewUserRelationship: UIView!
-    
+    @IBOutlet weak var unchKRBtn: UIButton!
+    @IBOutlet weak var cHKRBtn: UIButton!
+    var childAdultStatus:Int?
+
     var imgArray = [Data]()
-    
+    var relationIndex:Int?
     var id:Int?
     var type:Int?
     var userName:String?
@@ -64,21 +67,26 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         
     }
     
+    func selectAdult(){
+        unchKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+    }
+    func selectChild(){
+        unchKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+    }
+    
     //------------------------------------------------------
     
     //MARK: Customs
     
     func setup() {
+        childAdultStatus = type
         imagePickerVC = ImagePicker(presentationController: self, delegate: self)
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
         
-        for obj in relationshipListArr {
-            if obj.id == relationShipId{
-                txtUserRelationship.text = obj.relationship_name
-                break
-            }
-        }
+       
         
         
         txtFirstName.delegate = self
@@ -86,7 +94,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         txtGender.delegate = self
         txtBirthDate.delegate = self
         txtUserRelationship.delegate = self
-        
+        childAdultStatus == 1 ? selectAdult() : selectChild()
         txtFirstName.text = firstName
         txtLastName.text = lastName
         if userGender == 1{
@@ -106,7 +114,27 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
         for obj in relationshipListArr {
             pvOptionArr.append(obj.relationship_name)
         }
-        txtUserRelationship.pvOptions = pvOptionArr
+        for obj in relationshipListArr {
+            if obj.id == relationShipId{
+                txtUserRelationship.text = obj.relationship_name
+               
+                break
+            }
+        }
+        if let index = txtGender.pvOptions.firstIndex(where: { $0 == txtGender.text }) {
+            txtGender.isFromEdit = true
+            txtGender.selectedIndex = index
+            txtGender.pvGender.selectRow(index, inComponent: 0, animated: false)
+            
+        }
+        if let index = relationshipListArr.firstIndex(where: { $0.id == relationShipId ?? 0 }) {
+            txtUserRelationship.isFromEdit = true
+            txtUserRelationship.selectedIndex = index
+            txtUserRelationship.pvOptions = pvOptionArr
+            txtUserRelationship.pvGender.selectRow(index, inComponent: 0, animated: false)
+            relationIndex = index
+        }
+
     }
     
     func validate() -> Bool {
@@ -212,7 +240,7 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
             }
         }
         
-        let paramds = ["id":id ?? 0,"first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)","type":type ?? 0] as [String : Any]
+        let paramds = ["id":id ?? 0,"first_name":txtFirstName.text ?? "" ,"last_name":txtLastName.text ?? "","dob":txtBirthDate.text ?? "","gender":genderValParamUpdate(),"relationship":"\(relationShipId ?? 0)","type":childAdultStatus ?? 0] as [String : Any]
         
         let strURL = kBASEURL + WSMethods.editUserDetail
         
@@ -302,6 +330,18 @@ class EditPatientDetailVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, Ima
     //------------------------------------------------------
     
     //MARK: Action
+    
+    @IBAction func unchekRadioBtnAction(_ sender: UIButton) {
+        childAdultStatus = 2
+        selectChild()
+
+    }
+    
+    @IBAction func chckRadioBtnAction(_ sender: UIButton) {
+        childAdultStatus = 1
+        selectAdult()
+
+    }
     
     @IBAction func btnSave(_ sender: Any) {
         if validate() == false {

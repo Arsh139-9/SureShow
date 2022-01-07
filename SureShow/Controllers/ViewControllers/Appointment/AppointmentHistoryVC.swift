@@ -10,6 +10,7 @@ import UIKit
 class AppointmentHistoryVC: BaseVC,UITableViewDelegate,UITableViewDataSource{
     @IBOutlet weak var tblAppointment: UITableView!
 
+    @IBOutlet weak var notFoundAppointmentHistoryView: UIView!
     //MARK: Customs
     var appointmentHistoryListArr:[AddQueueListData<AnyHashable>]?
     var lastPageNo:Int?
@@ -34,7 +35,7 @@ class AppointmentHistoryVC: BaseVC,UITableViewDelegate,UITableViewDataSource{
         DispatchQueue.main.async {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-        ModalResponse().getAppointmentHistoryListApi(perPage:9, page: lastPageNo ?? 0){ response in
+        ModalResponse().getAppointmentHistoryListApi(perPage:5000, page: lastPageNo ?? 0){ response in
             AFWrapperClass.svprogressHudDismiss(view: self)
             
             let getAppointmentDataResp  = GetAddQueueData(dict:response as? [String : AnyHashable] ?? [:])
@@ -73,8 +74,8 @@ class AppointmentHistoryVC: BaseVC,UITableViewDelegate,UITableViewDataSource{
                     removeAppDefaults(key:"AuthToken")
                     appDel.logOut()
                 }else{
-                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
-                    
+                    self.notFoundAppointmentHistoryView.isHidden = false
+
                 }
                 
             }
@@ -154,6 +155,7 @@ class AppointmentHistoryVC: BaseVC,UITableViewDelegate,UITableViewDataSource{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        notFoundAppointmentHistoryView.isHidden = true
         lastPageNo = 1
         getAppointmentHistoryListsApi()
     }

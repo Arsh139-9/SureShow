@@ -139,7 +139,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal" translatesAutoresizingMaskIntoConstraints="NO" id="iaN-ar-Bae">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal" translatesAutoresizingMaskIntoConstraints="NO" id="iaN-ar-Bae">
                                 <rect key="frame" x="263.5" y="104.5" width="22.5" height="22.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="iaN-ar-Bae" secondAttribute="height" multiplier="1:1" id="zjM-Oa-Fyq"/>

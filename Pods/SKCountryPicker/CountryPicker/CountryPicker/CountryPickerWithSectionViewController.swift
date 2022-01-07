@@ -32,6 +32,7 @@ open class CountryPickerWithSectionViewController: CountryPickerController {
     open override func viewDidAppear(_ animated: Bool) {
         if #available(iOS 11.0, *) {
             navigationItem.hidesSearchBarWhenScrolling = true
+            navigationController?.navigationBar.backgroundColor = .white
         }
         scrollToPreviousCountryIfNeeded()
     }

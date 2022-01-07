@@ -179,7 +179,7 @@ class SignUpVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
 
 
         }
-
+    
         countryController.detailColor = UIColor.red
         
     }

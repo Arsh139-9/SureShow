@@ -127,9 +127,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            AnalyticsParameterItemName:"dfsfaf",
 //            AnalyticsParameterContentType: "cont",
 //        ])
+       
+
+        UINavigationController().interactivePopGestureRecognizer?.isEnabled = false
         configureKeboard()
         getCustomFontDetails()
-        configureNavigationBar()
+//        configureNavigationBar()
 //        chekLoggedUser()
         registerRemoteNotificaton(application)
         

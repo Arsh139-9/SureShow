@@ -62,7 +62,6 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     //MARK: Customs
     
     func setup() {
-        //        imgProfile.image = getPlaceholderImage()
         imagePickerVC = ImagePicker(presentationController: self, delegate: self)
         
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
@@ -79,7 +78,7 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
         }
         txtUserRelationship.pvOptions = pvOptionArr
         
-        childAdultStatus = "2"
+        childAdultStatus = "1"
         
     }
     func genderValParamUpdate() -> String{
@@ -233,20 +232,25 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
         
         
     }
-    
+    func selectAdult(){
+        unchKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+    }
+    func selectChild(){
+        unchKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+        cHKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+    }
     //------------------------------------------------------
     
     //MARK: Actions
     @IBAction func unchekRadioBtnAction(_ sender: UIButton) {
-        childAdultStatus = "1"
-        unchKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
-        cHKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
+        childAdultStatus = "2"
+       selectChild()
     }
     
     @IBAction func chckRadioBtnAction(_ sender: UIButton) {
-        childAdultStatus = "2"
-        unchKRBtn.setImage(UIImage(named: "un"), for:UIControl.State.normal)
-        cHKRBtn.setImage(UIImage(named: "sel"), for:UIControl.State.normal)
+        childAdultStatus = "1"
+        selectAdult()
         
     }
     
@@ -342,7 +346,6 @@ class AddPatientVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePicke
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        imgProfile.circle()
     }
     
     //------------------------------------------------------

@@ -52,6 +52,12 @@ class ForgotPasswordVC : BaseVC, UITextFieldDelegate, UITextViewDelegate  {
 
             return false
         }
+        if ValidationManager.shared.isValid(text: txtEmail.text!, for: RegularExpressions.email) == false {
+            showAlertMessage(title: kAppName.localized(), message: "Please enter valid email address." , okButton: "Ok", controller: self) {
+            }
+            
+            return false
+        }
         return true
     }
     

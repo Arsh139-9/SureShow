@@ -335,18 +335,18 @@ extension UIViewController {
 
 //MARK:  UIImageView
 
-extension UIImageView {
-    
-    func circle() {
-        self.contentMode = .scaleToFill
-        self.layer.cornerRadius = bounds.height/2
-        shadowOffset = .zero
-        //        shadowColor = FGColor.appBlack
-        shadowOpacity = SSSettings.shadowOpacity
+
+
+extension UIViewController{
+    func returnAge(birthday:Date?) -> Int{
+        let timeInterval = birthday?.timeIntervalSinceNow
+        let age = abs(Int(timeInterval! / 31556926.0))
+        return age
+    }
+    func returnFunc(){
+        return
     }
 }
-
-
 extension UIImageView {
     public func roundCornersLeft(_ corners: UIRectCorner, radius: CGFloat) {
         let maskPath = UIBezierPath(roundedRect: bounds,

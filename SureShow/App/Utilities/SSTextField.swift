@@ -799,7 +799,8 @@ class SSRelationshipTextField: SSMediumTextField, UITextFieldDelegate, UIPickerV
 
     var pvOptions: [String] = []
 
-    
+    var isFromEdit = false
+    var selectedIndex = 0
     
 
     
@@ -828,7 +829,7 @@ class SSRelationshipTextField: SSMediumTextField, UITextFieldDelegate, UIPickerV
         pvGender.dataSource = self
         pvGender.delegate = self
         inputView = pvGender
-        
+
         crossButtonView.contentMode = .center
         crossButtonView.setImage(UIImage(named: ""), for: UIControl.State.normal)
     }
@@ -865,7 +866,11 @@ class SSRelationshipTextField: SSMediumTextField, UITextFieldDelegate, UIPickerV
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if selectedOption == nil {
-            selectedOption = pvOptions.first
+            if isFromEdit {
+                selectedOption = pvOptions[selectedIndex]
+            } else {
+                selectedOption = pvOptions.first
+            }
         }
     }
     
@@ -927,6 +932,8 @@ class SSGenderTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDat
     
     let pvGender = UIPickerView()
     //,"Others"
+    var isFromEdit = false
+    var selectedIndex = 0
     let pvOptions: [String] = ["Male","Female","Others"]
     var selectedOption: String? {
         didSet {
@@ -990,7 +997,11 @@ class SSGenderTextField: SSMediumTextField, UITextFieldDelegate, UIPickerViewDat
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if selectedOption == nil {
-            selectedOption = pvOptions.first
+            if isFromEdit {
+                selectedOption = pvOptions[selectedIndex]
+            } else {
+                selectedOption = pvOptions.first
+            }
         }
     }
     

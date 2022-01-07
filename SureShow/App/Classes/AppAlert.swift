@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 enum AppAlertTitle : String {
-    case appName = "Patient"
+    case appName = "Come On Now! Patient"
     case connectionError = "Connection Error"
     
 }

@@ -9,13 +9,16 @@ import UIKit
 
 class NotificationTVCell: UITableViewCell {
     
-    @IBOutlet weak var lblTime: SSMediumLabel!
     @IBOutlet weak var btnReject: UIButton!
     @IBOutlet weak var btnAccept: SSActiveButton!
     @IBOutlet weak var viewAccept: UIView!
     @IBOutlet weak var lblDate: SSRegularLabel!
-    @IBOutlet weak var lblDetails: SSMediumLabel!
+    
     @IBOutlet weak var imgProfile: UIImageView!
+    @IBOutlet weak var lblTime: SSMediumLabel!
+    @IBOutlet weak var lblAppointment: SSRegularLabel!
+    @IBOutlet weak var lblName: SSMediumLabel!
+    @IBOutlet weak var lblDetails: SSMediumLabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

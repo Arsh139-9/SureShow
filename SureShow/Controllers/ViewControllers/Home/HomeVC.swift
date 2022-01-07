@@ -12,6 +12,8 @@ import Alamofire
 class HomeVC: UIViewController {
     
     @IBOutlet weak var tblHome: UITableView!
+    
+    @IBOutlet weak var noUserFoundPopUpView: UIView!
     var homeUserListArr = [UserListData<AnyHashable>]()
     var relationshipListArr = [RelationshipListData<AnyHashable>]()
     lazy var dateFormatter : DateFormatter = {
@@ -33,6 +35,7 @@ class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.homeUserListArr.removeAll()
+        noUserFoundPopUpView.isHidden = true
 
             self.getUserListDataApi()
             self.getRelationshipListApi()
@@ -103,7 +106,8 @@ class HomeVC: UIViewController {
                     
                 }
                 else{
-                    alert(AppAlertTitle.appName.rawValue, message: "No patient added here", view: self)
+                    self.noUserFoundPopUpView.isHidden = false
+
                 }
                 DispatchQueue.main.async {
                     self.tblHome.reloadData()

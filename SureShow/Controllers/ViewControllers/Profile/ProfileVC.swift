@@ -132,7 +132,7 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
                         var sPhotoStr = self.getProfileResp?.image ?? ""
                         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
                         //        if sPhotoStr != ""{
-                        self.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"place"))
+                        self.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
                         //}
                         
                     }
@@ -275,7 +275,6 @@ class ProfileVC : BaseVC, UITableViewDelegate, UITableViewDataSource {
         super.viewWillAppear(animated)
         setup()
         tblProfile.separatorStyle = .none
-        imgProfile.circle()
         getProfileApi()
     }
     

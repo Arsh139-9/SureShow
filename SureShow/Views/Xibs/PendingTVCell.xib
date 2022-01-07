@@ -141,7 +141,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal" translatesAutoresizingMaskIntoConstraints="NO" id="ov2-QF-irD">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cal" translatesAutoresizingMaskIntoConstraints="NO" id="ov2-QF-irD">
                                 <rect key="frame" x="263.5" y="68" width="22.5" height="22.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ov2-QF-irD" secondAttribute="height" multiplier="1:1" id="wPk-Lj-4gl"/>

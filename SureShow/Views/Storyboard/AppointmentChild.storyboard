@@ -382,6 +382,22 @@
                                 <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
                                 <color key="backgroundColor" name="appBackground"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E6A-CU-wsM">
+                                <rect key="frame" x="0.0" y="73.5" width="375" height="593.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No appointment history found!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JWm-qy-Ip3" customClass="SSSemiboldLabel" customModule="SureShow" customModuleProvider="target">
+                                        <rect key="frame" x="40.5" y="283" width="294" height="27"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Medium" family="Poppins" pointSize="19"/>
+                                        <color key="textColor" red="0.60828006270000001" green="0.58770447969999995" blue="0.61248391869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="JWm-qy-Ip3" firstAttribute="centerY" secondItem="E6A-CU-wsM" secondAttribute="centerY" id="Ls3-xE-a3r"/>
+                                    <constraint firstItem="JWm-qy-Ip3" firstAttribute="centerX" secondItem="E6A-CU-wsM" secondAttribute="centerX" id="WDw-Th-H01"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aLj-bh-LLQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -391,8 +407,12 @@
                             <constraint firstAttribute="bottom" secondItem="h9Q-um-XQv" secondAttribute="bottom" id="4vs-Lu-72t"/>
                             <constraint firstItem="h9Q-um-XQv" firstAttribute="trailing" secondItem="aLj-bh-LLQ" secondAttribute="trailing" id="6gG-Kh-aKM"/>
                             <constraint firstItem="YVA-Sf-xtc" firstAttribute="width" secondItem="Tg5-nb-BF4" secondAttribute="width" id="8EV-6l-3Rb"/>
+                            <constraint firstItem="E6A-CU-wsM" firstAttribute="top" secondItem="h9Q-um-XQv" secondAttribute="top" id="DNx-ar-Ksj"/>
+                            <constraint firstItem="E6A-CU-wsM" firstAttribute="trailing" secondItem="h9Q-um-XQv" secondAttribute="trailing" id="Hao-dE-4RO"/>
+                            <constraint firstItem="E6A-CU-wsM" firstAttribute="bottom" secondItem="h9Q-um-XQv" secondAttribute="bottom" id="Lc6-Pn-vwN"/>
                             <constraint firstItem="h9Q-um-XQv" firstAttribute="top" secondItem="YVA-Sf-xtc" secondAttribute="bottom" id="MrG-OW-Y52"/>
                             <constraint firstItem="3rE-YC-stb" firstAttribute="width" secondItem="Tg5-nb-BF4" secondAttribute="width" id="P3u-Xe-cn3"/>
+                            <constraint firstItem="E6A-CU-wsM" firstAttribute="leading" secondItem="h9Q-um-XQv" secondAttribute="leading" id="Rlg-hb-9yG"/>
                             <constraint firstItem="h9Q-um-XQv" firstAttribute="leading" secondItem="aLj-bh-LLQ" secondAttribute="leading" id="ZdT-KP-LVB"/>
                             <constraint firstItem="3rE-YC-stb" firstAttribute="top" secondItem="Tg5-nb-BF4" secondAttribute="top" id="gz4-vT-6Qt"/>
                             <constraint firstItem="YVA-Sf-xtc" firstAttribute="centerX" secondItem="Tg5-nb-BF4" secondAttribute="centerX" id="hQv-aa-lSN"/>
@@ -402,6 +422,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="notFoundAppointmentHistoryView" destination="E6A-CU-wsM" id="TC9-nH-6B6"/>
                         <outlet property="tblAppointment" destination="h9Q-um-XQv" id="fUY-uL-GPK"/>
                     </connections>
                 </viewController>
@@ -499,7 +520,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Patient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-C4-ao4" customClass="SSPatientTextField" customModule="SureShow" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Patient Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-C4-ao4" customClass="PaddingTextField" customModule="SureShow" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="32.5" width="341" height="52.5"/>
                                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -667,7 +688,7 @@
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Disease" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zgb-7s-SEs" customClass="SSDiseaseTextField" customModule="SureShow" customModuleProvider="target">
+                                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Disease" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zgb-7s-SEs" customClass="PaddingTextField" customModule="SureShow" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="32.5" width="341" height="52.5"/>
                                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -682,6 +703,9 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                                                 <real key="value" value="0.69999999999999996"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="paddingLeft">
+                                                                                <real key="value" value="7"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </textField>

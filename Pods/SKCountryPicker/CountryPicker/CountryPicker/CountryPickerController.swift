@@ -219,7 +219,7 @@ open class CountryPickerController: UIViewController {
 }
 
 
-// MARK: - Internal Methods 
+// MARK: - Internal Methods
 internal extension CountryPickerController {
 
     func loadCountries() {

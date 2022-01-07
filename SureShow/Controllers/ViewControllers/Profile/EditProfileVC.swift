@@ -179,9 +179,6 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
                 }else{
                     multipartFormData.append(imageData1, withName: "image" , fileName: ranStr + String(i + 1) + ".jpg", mimeType: imageData1.mimeType)
                 }
-                
-                
-                
             }
             
             
@@ -204,15 +201,10 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
                 if signUpStepData?.status == 200{
                     showAlertMessage(title: kAppName.localized(), message: signUpStepData?.message ?? ""  , okButton: "OK", controller: self) {
                         self.navigationController?.popViewController(animated: true)
-
-//                        removeAppDefaults(key:"AuthToken")
-//                        appDel.logOut()
                     }
                 }else{
-                    
                 }
             }else{
-                
             }
             
             
@@ -243,10 +235,9 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
             self.countryCodeLbl.text = selectedCountryVal
             
             setAppDefaults(country.countryName, key: "countryName")
-            
-            
+           
         }
-        
+       
         countryController.detailColor = UIColor.red
         
     }
@@ -347,7 +338,7 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
         var sPhotoStr = getProfileResp?.image
         sPhotoStr = sPhotoStr?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         //        if sPhotoStr != ""{
-        imgProfile.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"place"))
+        imgProfile.sd_setImage(with: URL(string: sPhotoStr ?? ""), placeholderImage:UIImage(named:"placeholderProfileImg"))
         
         self.countryCodeBtn.contentHorizontalAlignment = .center
         self.countryCodeBtn.clipsToBounds = true
@@ -382,7 +373,6 @@ class EditProfileVC : BaseVC, UITextViewDelegate, UITextFieldDelegate, ImagePick
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        imgProfile.circle()
     }
     
     //------------------------------------------------------

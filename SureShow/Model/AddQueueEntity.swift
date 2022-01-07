@@ -95,6 +95,7 @@ struct AddQueueListData<T>{
     var name:String
     var first_name:String
     var last_name:String
+    var description:String
 
     var image:String
     var type:String
@@ -115,6 +116,7 @@ struct AddQueueListData<T>{
         let name = dataDict["name"] as? String ?? ""
         let first_name = dataDict["first_name"] as? String ?? ""
         let last_name = dataDict["last_name"] as? String ?? ""
+        let description = dataDict["description"] as? String ?? ""
 
         let image = dataDict["image"] as? String ?? ""
         let type = dataDict["type"] as? String ?? ""
@@ -134,6 +136,7 @@ struct AddQueueListData<T>{
         self.name = name
         self.first_name = first_name
         self.last_name = last_name
+        self.description = description
 
         self.image = image
         self.type = type

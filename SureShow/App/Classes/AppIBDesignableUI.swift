@@ -166,56 +166,45 @@ extension UIImageView {
         layer.mask = shape
     }
 }
-@IBDesignable
-class RoundableImageView: UIImageView {
+@IBDesignable extension UIImageView {
 
-    @IBInspectable var cornerRadiusImg : CGFloat = 0.0{
-        didSet{
-            self.applyCornerRadius()
+    @IBInspectable var masksToBounds: Bool {
+        set {
+            layer.masksToBounds = newValue
+        }
+        get {
+            return layer.masksToBounds
         }
     }
 
-    @IBInspectable var borderColorImg : UIColor = UIColor.clear{
-        didSet{
-            self.applyCornerRadius()
+    @IBInspectable  var borderWidthImg: CGFloat {
+        set {
+            layer.borderWidth = newValue
+        }
+        get {
+            return layer.borderWidth
         }
     }
-
-    @IBInspectable var borderWidthImg : Double = 0{
-        didSet{
-            self.applyCornerRadius()
+    
+    @IBInspectable var cornerRadiusImg: CGFloat {
+        set {
+            layer.cornerRadius = newValue
+        }
+        get {
+            return layer.cornerRadius
         }
     }
-
-    @IBInspectable var circular : Bool = false{
-        didSet{
-            self.applyCornerRadius()
+    
+    @IBInspectable var borderColorImg: UIColor? {
+        set {
+            guard let uiColor = newValue else { return }
+            layer.borderColor = uiColor.cgColor
+        }
+        get {
+            guard let color = layer.borderColor else { return nil }
+            return UIColor(cgColor: color)
         }
     }
-
-    func applyCornerRadius()
-    {
-        if(self.circular) {
-            self.layer.cornerRadius = self.bounds.size.height/2
-            self.layer.masksToBounds = true
-            self.layer.borderColor = self.borderColorImg.cgColor
-            self.layer.borderWidth = CGFloat(self.borderWidthImg)
-        }else {
-            self.layer.cornerRadius = cornerRadiusImg
-            self.layer.masksToBounds = true
-            self.layer.borderColor = self.borderColorImg.cgColor
-            self.layer.borderWidth = CGFloat(self.borderWidthImg)
-        }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.applyCornerRadius()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        applyCornerRadius()
-    }
-
 }
+
+

@@ -14,6 +14,7 @@ class NotificationVC: UIViewController {
     var lastPageNo = 1
     
     @IBOutlet weak var tblNotification: UITableView!
+    @IBOutlet weak var noNotificationFoundPopUpView: UIView!
     
     var notificationListArr = [NotificationListData<AnyHashable>]()
     var notificationNUArray = [NotificationListData<AnyHashable>]()
@@ -33,6 +34,7 @@ class NotificationVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        noNotificationFoundPopUpView.isHidden = true
         lastPageNo = 1
         getNotificationListApi()
         
@@ -50,7 +52,7 @@ class NotificationVC: UIViewController {
         DispatchQueue.main.async {
             AFWrapperClass.svprogressHudShow(title:"Loading...", view:self)
         }
-        ModalResponse().getNotificationListApi(perPage:9, page: lastPageNo){ response in
+        ModalResponse().getNotificationListApi(perPage:5000, page: lastPageNo){ response in
             AFWrapperClass.svprogressHudDismiss(view: self)
             print(response)
             
@@ -88,8 +90,8 @@ class NotificationVC: UIViewController {
                     appDel.logOut()
                 }
                 else{
-                    
-                    alert(AppAlertTitle.appName.rawValue, message: message, view: self)
+                    self.noNotificationFoundPopUpView.isHidden = false
+
                 }
             }
             
@@ -111,9 +113,10 @@ extension NotificationVC : UITableViewDataSource, UITableViewDelegate {
         var sPhotoStr = notificationListArr[indexPath.row].image
         sPhotoStr = sPhotoStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         cell.imgProfile.sd_setImage(with: URL(string: sPhotoStr ), placeholderImage:UIImage(named:"placeholderProfileImg"))
-        cell.lblDetails.text = notify.notify_title
-        cell.lblTime.text = notify.creation_date == "" ? "11:30 AM":notify.creation_date
-        cell.lblDate.text = notify.appoint_start_time == "" ? "5-12-2021, 12:00 PM to 02:00 Pm":notify.appoint_start_time
+        cell.lblName.text = notify.notify_title
+        cell.lblTime.text = notificationListArr[indexPath.row].creation_date == "" ? "11:30 AM":notificationListArr[indexPath.row].creation_date
+        cell.lblAppointment.text = notificationListArr[indexPath.row].notify_message
+
       
         return cell
     }

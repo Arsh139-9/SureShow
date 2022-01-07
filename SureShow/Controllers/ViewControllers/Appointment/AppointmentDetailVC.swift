@@ -62,10 +62,10 @@ class AppointmentDetailVC : BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblName.text = "\(cLastUserName) \(cFirstUserName)"
+        lblName.text = "\(cLastUserName ?? "") \(cFirstUserName ?? "")"
         lblAge.text = "\(cUserAge ?? 0)"
         lblHospitalName.text = ""
-        lblDoctorName.text = ""
+        lblDoctorName.text = cDoctorName
         lblParentName.text = cUserPGName
         lblAppointmentTime.text = cUserAppointmentTime
         lblAppointmentDate.text = cUserAppointmentDate

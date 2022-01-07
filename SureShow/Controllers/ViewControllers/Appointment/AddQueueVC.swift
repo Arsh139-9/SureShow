@@ -17,8 +17,8 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     @IBOutlet weak var txtDoctor: UITextField!
     @IBOutlet weak var viewDoctor: UIView!
     @IBOutlet weak var viewProvider: UIView!
-    @IBOutlet weak var txtDisease: SSDiseaseTextField!
-    @IBOutlet weak var txtPatientName: SSPatientTextField!
+    @IBOutlet weak var txtDisease: UITextField!
+    @IBOutlet weak var txtPatientName: UITextField!
     @IBOutlet weak var txtProvider: UITextField!
     
     var returnKeyHandler: IQKeyboardReturnKeyHandler?
@@ -37,7 +37,7 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     var providerSId:Int?
     var diseaseSId:Int?
     
-    var globalPickerView = UIPickerView()
+    var globalPickerView:UIPickerView?
     
     var rightUserView: UIView {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -65,16 +65,21 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     func setup() {
         getPatientListApi()
+        getDiseaseListApi()
         returnKeyHandler = IQKeyboardReturnKeyHandler(controller: self)
         returnKeyHandler?.delegate = self
-        
+        txtPatientName.tintColor = .clear
+        txtHospitalName.tintColor = .clear
         txtDoctor.delegate = self
         txtHospitalName.delegate = self
         txtProvider.delegate = self
         txtDisease.delegate = self
         txtPatientName.delegate = self
-        globalPickerView.delegate = self
-        globalPickerView.dataSource = self
+        let picker = UIPickerView()
+        globalPickerView = picker
+        
+        globalPickerView?.delegate = self
+        globalPickerView?.dataSource = self
         
         
         let label = UILabel(frame: CGRect(x:0, y:0, width:300, height:19))
@@ -95,10 +100,8 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         //        toolBar.setItems(buttons, animated: false)
         txtHospitalName.inputView = globalPickerView
         txtHospitalName.inputAccessoryView = toolBar
-        txtDoctor.inputView = globalPickerView
-        txtDoctor.inputAccessoryView = toolBar
         
-        txtProvider.inputView = globalPickerView
+        txtDoctor.inputAccessoryView = toolBar
         txtProvider.inputAccessoryView = toolBar
         
         txtDisease.inputView = globalPickerView
@@ -117,11 +120,11 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         //        self.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: self.frame.height))
         //        self.leftViewMode = .always
         
-        pvOptionArr.removeAll()
-        for obj in patientListArr {
-            pvOptionArr.append("\(obj.last_name) \(obj.first_name)")
-        }
-        txtPatientName.pvOptions = pvOptionArr
+//        pvOptionArr.removeAll()
+//        for obj in patientListArr {
+//            pvOptionArr.append("\(obj.last_name) \(obj.first_name)")
+//        }
+//        txtPatientName.pvOptions = pvOptionArr
     }
     
     @objc func closePicker() {
@@ -362,21 +365,46 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         
         return true
     }
-    
+    func caretRect(for position: UITextPosition) -> CGRect {
+       return .zero
+     }
+     
+      func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+       return []
+     }
+     
+   override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+       return false
+     }
+   
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.tintColor = .clear
+        
+        globalPickerView?.reloadAllComponents()
         if textField == txtPatientName{
             txtDisease.borderColor = SSColor.appButton
         }
         else if textField == txtHospitalName {
             txtHospitalName.borderColor = SSColor.appButton
         } else if textField == txtDoctor {
+            if txtHospitalName.text != ""{
+                txtDoctor.inputView = globalPickerView
+            }
             txtDoctor.borderColor = SSColor.appButton
-        }else if textField == txtDisease{
+        }
+        else if textField == txtProvider{
+            if txtDoctor.text != ""{
+                txtProvider.inputView = globalPickerView
+            }
+        }
+        else if textField == txtDisease{
             txtDisease.borderColor = SSColor.appButton
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.tintColor = .clear
+
         if textField == txtPatientName{
             txtDisease.borderColor = SSColor.appBlack
         }
@@ -386,7 +414,12 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
         } else if textField == txtDoctor {
             txtDoctor.borderColor = SSColor.appBlack
             
-        }else if textField == txtDisease{
+        }
+        else if textField == txtProvider {
+            txtProvider.borderColor = SSColor.appBlack
+           
+       }
+        else if textField == txtDisease{
             txtDisease.borderColor = SSColor.appBlack
         }
     }
@@ -404,7 +437,6 @@ class AddQueueVC : BaseVC, UITextFieldDelegate, UITextViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getDiseaseListApi()
     }
     
     //------------------------------------------------------
